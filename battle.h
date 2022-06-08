@@ -1,4 +1,8 @@
-class Battle
+#ifndef BATTLE_H_
+#define BATTLE_H_
+#include "Card.h"
+
+class Battle : public Card
 {
     Battle(int force, int health, int loot);
     
@@ -15,3 +19,5 @@ protected:
     int m_healthLose;
     int m_gainedLoot;
 }
+
+#endif
