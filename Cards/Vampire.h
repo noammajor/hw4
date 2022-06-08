@@ -4,15 +4,17 @@
 
 class Vampire: public Battle
 {
-    Vampire(int const force, int const damage, int const loot,std::string const type);
-
+public:
+    Vampire();
+    Vampire& operator=(const Vampire& dragon) = default;
+    Vampire(const Vampire&) = default;
     ~Vampire()=default;
 
 
 private:
-    std::string m_type = Vampire;
-    int static const VAMPIRE_DAMAGE = 10;
-    int static const VAMPIRE_COINS = 2;
+    std::string TYPE_MONSTER = "Vampire";
+    int  static const VAMPIRE_DAMAGE = 10;
+    int  static const VAMPIRE_COINS = 2;
     int static const VAMPIRE_FORCE = 10;
 };
 #endif

@@ -1,5 +1,7 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
+#include <queue>
+#include "Card.h"
 
 class Mtmchkin{
 
@@ -49,8 +51,17 @@ public:
 
 private:
     int m_numberOfRounds;
-    int m_numerOfPlayersInGames;
+    int m_numberOfPlayersInGames;
     int m_numberOfCards;
+    std::queue<Card*> m_cardsQueue;
+    std::string VAMPCOMP = "Vampire";
+    std::string DRAGCOMP = "Dragon";
+
+
+
+
+    //std::string TYPE_MONSTER = "Vampire";
+
 
 };
 

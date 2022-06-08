@@ -1,12 +1,17 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
 #include "Card.h"
+#include "string.h"
+#include <string>
 
 class Battle : public Card
 {
-    Battle(int force, int health, int loot,std::string type);
+public:
+    Battle();
+
+    Battle(int force,int health,int loot,std::string Type);
     
-    //~Battle()=default;
+    ~Battle()=default;
 
     void applyEncounter(Player& player) override;
 
@@ -15,11 +20,11 @@ class Battle : public Card
     void losebattle(Player& player,int health);
 
 protected:
-    std::string static const m_monster;
-    int static const m_battleForce;
-    int static const m_healthLose;
-    int static const m_gainedLoot;
+    std::string const m_monster;
+    int const m_battleForce;
+    int const m_healthLose;
+    int const m_gainedLoot;
 
-}
+};
 
 #endif
