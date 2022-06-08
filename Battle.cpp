@@ -1,6 +1,5 @@
 #include "Battle.h"
 
-
 Battle::Battle(int force,int health,int loot)
 {
      m_battleForce=force;
@@ -25,20 +24,20 @@ void Battle::winbattle(Player& player, int loot)
 player.levelUp();
 player.addCoins(loot);
 printWinBattle(player.m_name, m_monster);
+if(player.getLevel()==10)
+{
+    //leadership board
+
+}
 return;
 }
-
-
-
-    void winbattle(Player& player,int loot);
-
-    void losebattle(Player& player);
-
-protected:
-    std::string static const m_monster;
-    int static const m_battleForce;
-    int static const m_healthLose;
-    int static const m_gainedLoot;
+void Battle::losebattle(Player &player, int health)
+{
+    player.damage(health);
+    printLossBattle(player.m_name,m_monster);
+    if(player.isKnockedOut())
+    {
+        //leadership board
+    }
+    return;
 }
-
-#endif

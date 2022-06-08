@@ -46,6 +46,12 @@ public:
     *          int - number of rounds played
     */
     int getNumberOfRounds() const;
+
+private:
+    int m_numberOfRounds;
+    int m_numerOfPlayersInGames;
+    int m_numberOfCards;
+
 };
 
 

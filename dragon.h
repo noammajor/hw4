@@ -10,6 +10,7 @@ class Dragon: public Battle
 
 
 private:
+    std::string TYPETYPE_MONSTER = Dragon;
     int static const DRAGON_DAMAGE = 100;
     int static const DRAGON_COINS = 1000;
     int static const DRAGON_FORCE = 25;
