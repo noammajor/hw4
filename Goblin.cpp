@@ -1,16 +1,5 @@
-
-
-class Wizard: public Player
+#include "Goblin.h"
+Goblin::Goblin(GOBLIN_FORCE,GOBLIN_DAMAGE,GOBLIN_COINS)
 {
-
-    void heal(int HpToHeal) override;
-
-    Wizard(std:string name);
-
-    ~Wizard();
-
-private:
-const static  std::string WIZARD=Wizard;
-
-};
-#endif
+    m_battleForce(GOBLIN_FORCE),m_healthLose(GOBLIN_DAMAGE),m_gainedLoot(GOBLIN_COINS);
+}

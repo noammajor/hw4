@@ -8,16 +8,16 @@ class Battle : public Card
     
     ~Battle()=default;
 
-    void applyEncounter(Player& player) override;
+  //  void applyEncounter(Player& player) override;
 
-    void winbattle(Player& player);
+    void winbattle(Player& player,int loot);
 
     void losebattle(Player& player);
 
 protected:
-    int m_battleForce;
-    int m_healthLose;
-    int m_gainedLoot;
+    int static const m_battleForce;
+    int static const m_healthLose;
+    int static const m_gainedLoot;
 }
 
 #endif
