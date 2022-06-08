@@ -4,7 +4,7 @@
 
 class Vampire: public Battle
 {
-    Vampire(int const force, int const damage, int const loot);
+    Vampire(int const force, int const damage, int const loot,std::string const type);
 
     ~Vampire()=default;
 
