@@ -8,7 +8,7 @@
 /*
 * Run Length Encoding List
 *
-* Implements a Player in muchkin game
+* Implements a Player in Mtmchkin game
 
 *the following class is available:
 *player
@@ -117,14 +117,8 @@ public:
     int getAttackStrength() const;
 
 
-    /*
-    *returns the attack strength of the player which is force+level
-    */
-    int getAttackStrength() const;
-
-
 protected:
-    static const int NO_COINS = 0;
+    //static const int NO_COINS = 0;
     static const int MAX_LEVEL = 10;
     static const int MAX_HP = 100;
 
