@@ -35,7 +35,7 @@ public:
      * @param HP - the amount of health left for a player.
      * @param coins - the amount of tresure available to player.
      */
-    Player(const std::string &name);
+    Player(const std::string &name, const std::string &job);
 
 
     /*
@@ -116,14 +116,20 @@ public:
     int getAttackStrength() const;
 
 
+    /*
+    *returns the attack strength of the player which is force+level
+    */
+    int getAttackStrength() const;
+
+
 protected:
     static const int NO_COINS = 0;
     static const int MAX_LEVEL = 10;
-    static const int MaxHp = 100;
+    static const int MAX_HP = 100;
 
 
     std::string m_name;
-    const std::string job;
+    const std::string m_job;
     int m_level;
     int m_force;
     HealthPoints m_playerhealthpoints;
