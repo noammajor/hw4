@@ -4,13 +4,16 @@
 
 class Dragon: public Battle
 {
-    Dragon(int const force, int const damage, int const loot);
+public:
+    Dragon();
+    Dragon& operator=(const Dragon& dragon) = default;
+    Dragon(const Dragon&) = default;
+    ~Dragon();
 
-    ~Dragon()=default;
 
 
 private:
-    std::string TYPETYPE_MONSTER = Dragon;
+    std::string TYPE_MONSTER = "Dragon";
     int static const DRAGON_DAMAGE = 100;
     int static const DRAGON_COINS = 1000;
     int static const DRAGON_FORCE = 25;

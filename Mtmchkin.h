@@ -60,6 +60,16 @@ private:
     std::queue<Player*> m_winners;
     std::queue<Player*> m_losers;
 
+    std::string VAMPCOMP = "Vampire";
+    std::string DRAGCOMP = "Dragon";
+    std::string GOBLCOMP = "Goblin";
+
+
+
+
+
+    //std::string TYPE_MONSTER = "Vampire";
+
 
 };
 

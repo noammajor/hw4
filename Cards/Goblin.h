@@ -4,13 +4,15 @@
 
 class Goblin: public Battle
 {
-    Goblin(int const force, int const damage, int const loot,std:string type);
-
+public:
+    Goblin();
+    Goblin& operator=(const Goblin& goblin) = default;
+    Goblin(const Goblin&) = default;
     ~Goblin() = default;
 
 
 private:
-       std::string TYPE_MONSTER= Goblin;
+       std::string TYPE_MONSTER= "Goblin";
        int static const GOBLIN_DAMAGE = 10;
        int static const GOBLIN_COINS = 2;
        int static const GOBLIN_FORCE = 6;

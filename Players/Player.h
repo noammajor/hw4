@@ -55,7 +55,8 @@ public:
      */
     ~Player() = default;
 
-
+    //needs to be made
+    std::string getname();
     /*
      *prints players info to screen
      */

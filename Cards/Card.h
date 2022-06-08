@@ -38,7 +38,7 @@ public:
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
-    virtual Card(const Card&) = default;
+    Card(const Card&) = default;
     virtual ~Card();
     virtual Card& operator=(const Card& other) = default;
 
