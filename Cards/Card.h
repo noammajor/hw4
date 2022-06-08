@@ -2,7 +2,7 @@
 #define EX2_Card_H
 
 #include <string>
-#include "../Player.h"
+#include "../Players/Player.h"
 #include "../utilities.h"
 
 /*

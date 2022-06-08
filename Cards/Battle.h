@@ -1,6 +1,6 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
-#include "Cards/Card.h"
+#include "Card.h"
 
 class Battle : public Card
 {
