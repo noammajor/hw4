@@ -1,6 +1,6 @@
 #ifndef GOBLIN_H_
 #define GOBLIN_H_
-#include "../Battle.h"
+#include "Battle.h"
 
 class Goblin: public Battle
 {
