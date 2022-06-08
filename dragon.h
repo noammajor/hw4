@@ -4,13 +4,15 @@
 
 class Dragon: public Battle
 {
-    Dragon();
+    Dragon(int const force, int const damage, int const loot);
 
     ~Dragon()=default;
 
 
 private:
-
+    int static const DRAGON_DAMAGE = 100;
+    int static const DRAGON_COINS = 1000;
+    int static const DRAGON_FORCE = 25;
 };
 
 #endif
