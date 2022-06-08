@@ -1,9 +1,11 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
+#include "Cards/Card.h"
+#include "Players/Player.h"
 #include <queue>
-#include "Card.h"
 
-class Mtmchkin{
+class Mtmchkin
+{
 
 public:
     
@@ -54,6 +56,10 @@ private:
     int m_numberOfPlayersInGames;
     int m_numberOfCards;
     std::queue<Card*> m_cardsQueue;
+    std::queue<Player*> m_playersQueue;
+    std::queue<Player*> m_winners;
+    std::queue<Player*> m_losers;
+
     std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
     std::string GOBLCOMP = "Goblin";
