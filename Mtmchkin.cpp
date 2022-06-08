@@ -25,7 +25,8 @@ Mtmchkin::Mtmchkin(const std::string fileName)
             break;
         }
 
-        switch(line) {
+        switch(line)
+        {
             case line.compare(DRAGCOMP):
             {
                 Dragon card = Dragon();
@@ -39,6 +40,13 @@ Mtmchkin::Mtmchkin(const std::string fileName)
                 break;
             }
             case line.compare(GOBLCOMP):
+            {
+                Goblin card = Goblin();
+                m_cardsQueue.push(&card);
+                break;
+            }
+            //fairy
+            case line.compare(FairCOMP):
             {
                 Goblin card = Goblin();
                 m_cardsQueue.push(&card);

@@ -57,6 +57,7 @@ private:
     std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
     std::string GOBLCOMP = "Goblin";
+    std::string FairCOMP = "Fairy";
 
 
 
