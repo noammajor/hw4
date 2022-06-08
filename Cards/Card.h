@@ -2,8 +2,8 @@
 #define EX2_Card_H
 
 #include <string>
-#include "Player.h"
-#include "utilities.h"
+#include "../Player.h"
+#include "../utilities.h"
 
 /*
  *  CardType:

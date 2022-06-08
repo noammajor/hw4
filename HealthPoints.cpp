@@ -1,4 +1,4 @@
-#include "healthpoints.h"
+#include "HealthPoints.h"
 
 
    
