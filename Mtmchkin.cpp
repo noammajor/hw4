@@ -9,6 +9,7 @@
 #include "Cards/Card.h"
 #include "Dragon.h"
 #include "Vampire.h"
+#include "Goblin.h"
 
 using namespace std;
 
@@ -29,16 +30,19 @@ Mtmchkin::Mtmchkin(const std::string fileName)
             {
                 Dragon card = Dragon();
                 m_cardsQueue.push(&card);
+                break;
             }
             case line.compare(VAMPCOMP):
             {
                 Vampire card = Vampire();
                 m_cardsQueue.push(&card);
+                break;
             }
-            case line.compare(VAMPCOMP):
+            case line.compare(GOBLCOMP):
             {
-                Vampire card = Vampire();
+                Goblin card = Goblin();
                 m_cardsQueue.push(&card);
+                break;
             }
 
 

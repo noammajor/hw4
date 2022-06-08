@@ -56,6 +56,8 @@ private:
     std::queue<Card*> m_cardsQueue;
     std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
+    std::string GOBLCOMP = "Goblin";
+
 
 
 
