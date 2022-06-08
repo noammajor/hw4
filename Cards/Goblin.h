@@ -1,12 +1,12 @@
 #ifndef GOBLIN_H_
 #define GOBLIN_H_
-#include "Battle.h"
+#include "../Battle.h"
 
 class Goblin: public Battle
 {
     Goblin(int const force, int const damage, int const loot);
 
-    ~Goblin()=default;
+    ~Goblin() = default;
 
 
 private:

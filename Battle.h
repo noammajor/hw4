@@ -1,12 +1,12 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
-#include "Card.h"
+#include "Cards/Card.h"
 
 class Battle : public Card
 {
     Battle(int force, int health, int loot);
     
-    ~Battle()=default;
+    //~Battle()=default;
 
   //  void applyEncounter(Player& player) override;
 
