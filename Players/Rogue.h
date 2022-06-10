@@ -1,6 +1,7 @@
 #ifndef HW4_ROGUE_H
 #define HW4_ROGUE_H
 
+#include <string>
 
 class Rogue  : public Player
 {

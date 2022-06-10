@@ -1,16 +1,16 @@
 #ifndef HW4_MERCHANT_H
 #define HW4_MERCHANT_H
-
+#include "Player.h"
+#include "utilities.h"
+#include "Appliance.h"
+using std::cout;
 
 class Merchant : public Appliance
 {
     Merchant() = default;
-    ~Merchant() = default;
+    ~Merchant();
 
     void applyEncounter(Player& player) override;
-
-    void applyBuff (Player& player);
-    void applyHeal (Player& player);
 
 protected:
 

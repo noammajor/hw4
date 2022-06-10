@@ -1,12 +1,12 @@
 #ifndef HW4_FIGHTER_H
 #define HW4_FIGHTER_H
 
-class Fighter  : public Player
+class Fighter: public Player
 {
 
     int getAttackStrength() const override;
 
-    Fighter(std:string name);
+    Fighter(std::string name);
 
     ~Fighter();
 

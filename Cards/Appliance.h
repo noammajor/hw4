@@ -7,10 +7,10 @@ class Appliance :public Card
 
     ~Appliance()=default;
 
-    virtual void applyEncounter(Player& player);
+    virtual void applyEncounter(Player& player)=0;
 
 protected:
-    int static const m_hpEffect=10;
+    int const m_hpEffect=10;
 
-}
+};
 #endif

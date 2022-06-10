@@ -63,6 +63,10 @@ public:
     void printInfo() const;
 
 
+
+    std::string  gettype();
+
+
     /*
      *adds a level to player during game
      */
@@ -73,6 +77,9 @@ public:
      *returns players level
      */
     int getLevel() const;
+
+
+    int getcoins() const;
 
 
     /*
@@ -109,13 +116,6 @@ public:
      used for payment to buy iteams during game using cards
      */
     bool pay(int payment);
-
-
-    /*
-     *returns the attack strength of the player which is force+level
-     */
-    int getAttackStrength() const;
-
 
     /*
     *returns the attack strength of the player which is force+level
