@@ -117,6 +117,13 @@ public:
      */
     bool pay(int payment);
 
+
+    /*
+     *returns the attack strength of the player which is force+level
+     */
+    int getAttackStrength() const;
+
+
     /*
     *returns the attack strength of the player which is force+level
     */

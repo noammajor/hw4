@@ -1,3 +1,4 @@
+#include "Player.h"
 #ifndef HW4_ROGUE_H
 #define HW4_ROGUE_H
 
@@ -5,15 +6,13 @@
 
 class Rogue  : public Player
 {
-
+    Rogue(const std::string &name);
+    ~Rogue();
     void addCoins(int coinsToAdd) override;
 
-    Rogue(std:string name);
-
-    ~Rogue();
 
 private:
-    const static  std::string ROGUE = Rogue;
+    const static std::string ROGUE = Rogue;
 
 
 
