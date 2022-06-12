@@ -89,6 +89,7 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 }
 
 
+
 std::queue<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
 {
     std::queue<std::unique_ptr<Player>> playersQueue;
