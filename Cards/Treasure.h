@@ -7,7 +7,7 @@ class Treasure : public Appliance
     Treasure() = default;
     ~Treasure() = default;
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player>) override;
 
 
 protected:

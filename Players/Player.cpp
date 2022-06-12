@@ -1,7 +1,10 @@
 #include "Player.h"
 #include "../utilities.h"
+#include <ostream>
+#include <iostream>
 
-Player::Player(const std::string &name, const std::string &job) : m_name(name), m_force(DEFAULT_FORCE), m_playerhealthpoints(MAX_HP),
+
+Player::Player(const std::string& name, const std::string& job) : m_name(name), m_force(DEFAULT_FORCE), m_playerhealthpoints(MAX_HP),
                             m_level(INITIAL_LEVEL), m_coins(DEFAULT_COINS), m_job(job)
 {
 }
@@ -9,8 +12,19 @@ Player::Player(const std::string &name, const std::string &job) : m_name(name), 
 
 void Player::printInfo() const
 {
-    printPlayerDetails(os, &m_name, &m_job, &m_level, &m_force, &m_playerhealthpoints, &m_coins);
+    printPlayerDetails(std::cout , &m_name, &m_job, m_level, m_force, m_playerhealthpoints, m_coins);
     //first argument?
+}
+
+
+std::string Player::getType() const
+{
+    return m_job;
+}
+
+std::string Player::getName() const
+{
+    return m_name;
 }
 
 
@@ -27,6 +41,12 @@ void Player::levelUp()
 int Player::getLevel() const
 {
     return m_level;
+}
+
+
+int Player::getCoins() const
+{
+    return m_coins;
 }
 
 

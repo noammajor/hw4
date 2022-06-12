@@ -8,7 +8,7 @@ class Pitfall : public Appliance
     Pitfall& operator=(const Pitfall& fairy)=default;
     Pitfall(const Pitfall&) = default;
     ~Pitfall();
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player>) override;
 
 
 protected:

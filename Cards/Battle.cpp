@@ -1,35 +1,38 @@
 #include "Battle.h"
 #include "Player.h"
 
-Battle::Battle(int force,int health,int loot,std::string) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
+Battle::Battle(int force, int health, int loot, std::string) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
 {
 }
-void Battle::applyEncounter(Player &player)
+
+
+void Battle::applyEncounter(std::unique_ptr<Player>)
 {
-    if (player.getAttackStrength()>=m_battleForce)
+    if (player->getAttackStrength()>=m_battleForce)
     {
-        winbattle( player, m_gainedLoot);
+        winBattle( *player, m_gainedLoot);
         return;
     }
     else
-        losebattle( player,m_healthLose);
-    return;
-
+        loseBattle( *player,m_healthLose);
 }
 
-void Battle::winbattle(Player& player, int loot)
+
+void Battle::winBattle(Player& player, int loot)
 {
-player.levelUp();
-player.addCoins(loot);
-printWinBattle(player.getname(), m_monster);
-if(player.getLevel()==10)
-{
+    player.levelUp();
+    player.addCoins(loot);
+    printWinBattle(player.getname(), m_monster);
+    if(player.getLevel()==10)
+    {
     //leadership board
 
+    }
+
 }
-return;
-}
-void Battle::losebattle(Player &player, int health)
+
+
+void Battle::loseBattle(Player &player, int health)
 {
     player.damage(health);
     printLossBattle(player.getname(),m_monster);
@@ -37,5 +40,4 @@ void Battle::losebattle(Player &player, int health)
     {
         //leadership board
     }
-    return;
 }

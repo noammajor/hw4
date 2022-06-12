@@ -12,7 +12,7 @@ using std::endl;
 /* ---------------------------------------------------------------------------------------------- */
 // ----------------       Print functions for Player class          -----------------------
 
-void printPlayerDetails(ostream &os, const string &name, const string &job, int level, int force, int HP, int coins)
+void printPlayerDetails(ostream &os, const string *name, const string *job, int level, int force, int HP, int coins)
 {
     const int nameDistance = 16;
     const int distance = 6;

@@ -7,7 +7,7 @@ class Appliance :public Card
 
     ~Appliance()=default;
 
-    virtual void applyEncounter(Player& player)=0;
+    //virtual void applyEncounter(Player* player)=0;
 
 protected:
     int const m_hpEffect=10;

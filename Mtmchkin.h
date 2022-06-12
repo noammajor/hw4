@@ -3,6 +3,9 @@
 #include "Cards/Card.h"
 #include "Players/Player.h"
 #include <queue>
+#include <map>
+#include <memory>
+
 
 class Mtmchkin
 {
@@ -16,7 +19,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    Mtmchkin(const std::string fileName);
+    explicit Mtmchkin(char *fileName);
     
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -56,9 +59,10 @@ private:
     int m_numberOfPlayersInGames;
     int m_numberOfCards;
     std::queue<Card*> m_cardsQueue;
-    std::queue<Player*> m_playersQueue;
-    std::queue<Player*> m_winners;
-    std::queue<Player*> m_losers;
+    std::queue<std::unique_ptr<Player>> m_playersQueue;
+    std::queue<std::unique_ptr<Player>> m_winners;
+    std::queue<std::unique_ptr<Player>> m_losers;
+    static std::map <std::string, int> m_playersJobs;
 
     std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
@@ -66,7 +70,17 @@ private:
     std::string FairCOMP = "Fairy";
 
 
+    static std::map <std::string, int> initializeJobsMap();
+    static int initializePlayersNumber();
+    static std::queue<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 
+
+    enum jobs
+    {
+        ROGUE,
+        WIZARD,
+        FIGHTER
+    };
 
 
     //std::string TYPE_MONSTER = "Vampire";

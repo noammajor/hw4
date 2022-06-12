@@ -10,7 +10,7 @@ class Merchant : public Appliance
     Merchant() = default;
     ~Merchant();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player>) override;
 
 protected:
 

@@ -8,7 +8,7 @@
 /*
 * Run Length Encoding List
 *
-* Implements a Player in muchkin game
+* Implements a Player in mtmchkin game
 
 *the following class is available:
 *player
@@ -35,7 +35,7 @@ public:
      * @param HP - the amount of health left for a player.
      * @param coins - the amount of tresure available to player.
      */
-    Player(const std::string &name, const std::string &job);
+    Player(const std::string &name, const std::string& job);
 
 
     /*
@@ -55,8 +55,7 @@ public:
      */
     ~Player() = default;
 
-    //needs to be made
-    std::string getname();
+
     /*
      *prints players info to screen
      */
@@ -64,7 +63,10 @@ public:
 
 
 
-    std::string  gettype();
+    std::string getType() const;
+
+
+    std::string getName() const;
 
 
     /*
@@ -79,7 +81,7 @@ public:
     int getLevel() const;
 
 
-    int getcoins() const;
+    int getCoins() const;
 
 
     /*
@@ -124,19 +126,13 @@ public:
     int getAttackStrength() const;
 
 
-    /*
-    *returns the attack strength of the player which is force+level
-    */
-    int getAttackStrength() const;
-
-
 protected:
     static const int NO_COINS = 0;
     static const int MAX_LEVEL = 10;
     static const int MAX_HP = 100;
 
 
-    std::string m_name;
+    const std::string m_name;
     const std::string m_job;
     int m_level;
     int m_force;

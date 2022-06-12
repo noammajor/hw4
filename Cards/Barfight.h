@@ -4,10 +4,11 @@
 
 class Barfight : public Appliance
 {
+public:
     Barfight() = default;
     ~Barfight();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player>) override;
 
 
 protected:

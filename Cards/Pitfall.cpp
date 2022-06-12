@@ -1,6 +1,6 @@
 #include "Pitfall.h"
 #include "Player.h"
-void Pitfall::applyEncounter(Player& player)
+void Pitfall::applyEncounter(std::unique_ptr<Player>)
 {
     if(player.getname().compare("Rogue"))
     {
