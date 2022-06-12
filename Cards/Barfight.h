@@ -4,14 +4,14 @@
 
 class Barfight : public Appliance
 {
-public:
-    Barfight() = default;
-    ~Barfight();
+    Barfight(int damage=10);
+    ~Barfight()=default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
 
 
-protected:
+private:
+    int GiveDamage;
 
 
 };

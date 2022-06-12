@@ -3,6 +3,7 @@
 #include "Card.h"
 class Appliance :public Card
 {
+public:
     Appliance()=default;
 
     ~Appliance()=default;

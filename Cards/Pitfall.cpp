@@ -9,7 +9,10 @@ void Pitfall::applyEncounter(std::unique_ptr<Player>)
     else
         //look at later
         player.damage(m_hpEffect);
-        return;
-}
 
+}
+Pitfall::Pitfall(int damage)
+{
+  giveDamage=10;
+}
 

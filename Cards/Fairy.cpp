@@ -9,3 +9,7 @@ void Fairy::applyEncounter(Player& player)
     else
         return;
 }
+Fairy::Fairy(int heal)
+{
+    healthHeal=heal;
+}

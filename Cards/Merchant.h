@@ -7,8 +7,9 @@ using std::cout;
 
 class Merchant : public Appliance
 {
-    Merchant() = default;
-    ~Merchant();
+public:
+    Merchant()=default;
+    ~Merchant()override=default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
 

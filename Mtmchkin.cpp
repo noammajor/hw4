@@ -10,6 +10,10 @@
 #include "Dragon.h"
 #include "Vampire.h"
 #include "Goblin.h"
+#include "Fairy.h"
+#include "Merchant.h"
+#include "Treasure.h"
+#include "Pitfall.h"
 #include "utilities.h"
 #include "Fighter.h"
 #include "Wizard.h"
@@ -18,35 +22,54 @@
 
 using namespace std;
 
-Mtmchkin::Mtmchkin(char *fileName)
+Mtmchkin::Mtmchkin(const std::string& fileName)
 {
-    ifstream cards ("fileName.txt");
+    ifstream cards("fileName.txt");
     string line;
     //exception.
-    while (getline(cards, line)) {
-        if (line.empty()) {
+    while (getline(cards, line))
+    {
+        if(line.empty())
+        {
             break;
         }
 
-        switch (line) {
-            case line.compare(DRAGCOMP): {
-                Dragon card = Dragon();
+        switch (SetupCards[line]) {
+            case Dragon: {
+                class Dragon card;
+                m_cardsQueue.push_back(&card);
                 break;
             }
-            case line.compare(VAMPCOMP): {
-                Vampire card = Vampire();
+            case Vampire: {
+                class Vampire card;
+                m_cardsQueue.push_back(&card);
                 break;
             }
-            case line.compare(GOBLCOMP): {
-                Goblin card = Goblin();
+            case Goblin: {
+                class Goblin card;
+                m_cardsQueue.push_back(&card);
                 break;
             }
                 //fairy
-            case line.compare(FairCOMP): {
-                Goblin card = Goblin();
+            case Fairy: {
+                class Fairy card;
+                m_cardsQueue.push_back(&card);
                 break;
             }
-                m_cardsQueue.push(&card);
+            case Treasure: {
+                class Treasure card;
+                m_cardsQueue.push_back(&card);
+                break;
+            }
+            case Merchant: {
+                class Merchant card;
+                m_cardsQueue.push_back(&card);
+                break;
+            }
+            case Pitfall: {
+                class Pitfall card;
+                m_cardsQueue.push_back(&card);
+                break;
 
         }
     }
@@ -80,11 +103,11 @@ int Mtmchkin::initializePlayersNumber()
 std::map <std::string, int> Mtmchkin::initializeJobsMap()
 {
     static std::map<std::string, int> playersJobs =
-    {
-            {"Rogue",   ROGUE},
-            {"Wizard",   WIZARD},
-            {"Fighter", FIGHTER}
-    };
+            {
+                    {"Rogue",   ROGUE},
+                    {"Wizard",   WIZARD},
+                    {"Fighter", FIGHTER}
+            };
     return playersJobs;
 }
 
@@ -140,7 +163,7 @@ void Mtmchkin::playRound()
         Card* currentCard = m_cardsQueue.front();
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         currentCard->applyEncounter(currentPlayer);
-        m_playersQueue.pop();
+        m_playersQueue.pop_back();
         if (currentPlayer->getLevel() == 10)
         {
             m_numberOfPlayersInGames--;
@@ -175,7 +198,7 @@ void Mtmchkin::printLeaderBoard() const
         player.printInfo();
     }
 }
-    // we have to print: m_losers, m_players, m_winners
+// we have to print: m_losers, m_players, m_winners
 
 
 
@@ -192,4 +215,18 @@ bool Mtmchkin::isGameOver() const
 int Mtmchkin::getNumberOfRounds() const
 {
     return m_numberOfRounds;
+}
+
+std::map <std::string,int> Mtmchkin::Initializemap()
+{
+    static std::map<std::string,int> SetupCards =
+            {
+                    {"Vampire", Vampire },
+                    {"Dragon" , Dragon},
+                    {"Goblin" , Goblin},
+                    {"Fairy", Fairy},
+                    {"Treasure",Treasure},
+                    {"Merchant", Merchant},
+                    {"Pitfall",Pitfall}
+            };
 }

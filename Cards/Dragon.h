@@ -8,7 +8,7 @@ public:
     Dragon();
     Dragon& operator=(const Dragon& dragon) = default;
     Dragon(const Dragon&) = default;
-    ~Dragon();
+    ~Dragon() override=default;
 
 
 

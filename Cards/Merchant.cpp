@@ -35,10 +35,8 @@ void Merchant::applyEncounter(std::unique_ptr<Player>)
                 return;
             }
         }
-
-
-
     };
+
 
 
 
