@@ -1,11 +1,13 @@
 #ifndef HW4_TREASURE_H
 #define HW4_TREASURE_H
-
+#include "Appliance.h"
+#include "Card.h"
 
 class Treasure : public Appliance
 {
-    Treasure() = default;
-    ~Treasure() = default;
+public:
+    Treasure();
+    ~Treasure();
 
     void applyEncounter(Player& player) override;
 

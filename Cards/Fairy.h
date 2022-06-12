@@ -5,7 +5,8 @@
 
 class Fairy : public Appliance
 {
-    Fairy() = default;
+public:
+    Fairy();
     Fairy& operator=(const Fairy& fairy)=default;
     Fairy(const Fairy&) = default;
     ~Fairy();

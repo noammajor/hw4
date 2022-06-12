@@ -7,7 +7,8 @@ using std::cout;
 
 class Merchant : public Appliance
 {
-    Merchant() = default;
+public:
+    Merchant();
     ~Merchant();
 
     void applyEncounter(Player& player) override;

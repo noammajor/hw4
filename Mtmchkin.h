@@ -2,6 +2,8 @@
 #define MTMCHKIN_H_
 #include "Cards/Card.h"
 #include "Players/Player.h"
+#include <deque>
+#include <map>
 #include <queue>
 
 class Mtmchkin
@@ -55,15 +57,20 @@ private:
     int m_numberOfRounds;
     int m_numberOfPlayersInGames;
     int m_numberOfCards;
-    std::queue<Card*> m_cardsQueue;
-    std::queue<Player*> m_playersQueue;
+    std::deque<Card*> m_cardsQueue;
+    std::deque<Player*> m_playersQueue;
     std::queue<Player*> m_winners;
     std::queue<Player*> m_losers;
-
     std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
     std::string GOBLCOMP = "Goblin";
     std::string FairCOMP = "Fairy";
+    enum TypeOfCard
+    {
+    Vampire,Dragon,Goblin,Fairy,Treasure,Merchant,Pitfall
+    };
+   static std::map<std::string,TypeOfCard> SetupCards;
+    std::map <std::string,int> Initializemap();
 
 
 

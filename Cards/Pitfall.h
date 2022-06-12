@@ -4,7 +4,8 @@
 
 class Pitfall : public Appliance
 {
-    Pitfall() = default;
+public:
+    Pitfall();
     Pitfall& operator=(const Pitfall& fairy)=default;
     Pitfall(const Pitfall&) = default;
     ~Pitfall();
