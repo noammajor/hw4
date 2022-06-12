@@ -7,7 +7,7 @@ class Treasure : public Appliance
 {
 public:
     Treasure(int payment=10);
-    ~Treasure();
+    ~Treasure() override=default;
 
     void applyEncounter(Player& player) override;
 
