@@ -6,14 +6,14 @@
 class Treasure : public Appliance
 {
 public:
-    Treasure();
-    ~Treasure();
+    Treasure(int payment=10);
+    ~Treasure() override=default;
 
     void applyEncounter(Player& player) override;
 
 
-protected:
-
+private:
+    int giveTreasure;
 
 };
 
