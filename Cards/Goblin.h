@@ -8,7 +8,7 @@ public:
     Goblin();
     Goblin& operator=(const Goblin& goblin) = default;
     Goblin(const Goblin&) = default;
-    ~Goblin() = default;
+    ~Goblin() override = default;
 
 
 private:

@@ -6,16 +6,16 @@
 class Fairy : public Appliance
 {
 public:
-    Fairy();
+    Fairy(int heal=10);
     Fairy& operator=(const Fairy& fairy)=default;
     Fairy(const Fairy&) = default;
-    ~Fairy();
+    ~Fairy()override=default;
 
     void applyEncounter(Player& player) override;
 
 
 protected:
-int healthHeal=10;
+int healthHeal;
 
 };
 

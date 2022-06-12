@@ -6,11 +6,15 @@ void Barfight::applyEncounter(Player& player)
     {
         return;
     }
-    else {
-        //look at later
-//        player.damage(m_hpEffect);
-        return;
+    else
+    {
+        player.damage(m_hpEffect);
     }
+    return;
 }
+Barfight::Barfight(int damage)
+{
+    GiveDamage=damage;
+};
 
 

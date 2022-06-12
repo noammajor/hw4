@@ -4,13 +4,14 @@
 
 class Barfight : public Appliance
 {
-    Barfight() = default;
-    ~Barfight();
+    Barfight(int damage=10);
+    ~Barfight()=default;
 
     void applyEncounter(Player& player) override;
 
 
-protected:
+private:
+    int GiveDamage;
 
 
 };

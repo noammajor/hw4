@@ -8,8 +8,8 @@ using std::cout;
 class Merchant : public Appliance
 {
 public:
-    Merchant();
-    ~Merchant();
+    Merchant()=default;
+    ~Merchant()override=default;
 
     void applyEncounter(Player& player) override;
 

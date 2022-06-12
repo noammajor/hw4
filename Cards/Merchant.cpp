@@ -35,10 +35,8 @@ void Merchant::applyEncounter(Player& player)
                 return;
             }
         }
-
-
-
     };
+
 
 
 

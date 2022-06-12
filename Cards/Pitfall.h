@@ -5,15 +5,15 @@
 class Pitfall : public Appliance
 {
 public:
-    Pitfall();
+    Pitfall(int damage=10);
     Pitfall& operator=(const Pitfall& fairy)=default;
     Pitfall(const Pitfall&) = default;
-    ~Pitfall();
+    ~Pitfall()override=default;
     void applyEncounter(Player& player) override;
 
 
-protected:
-
+private:
+int giveDamage;
 };
 
 
