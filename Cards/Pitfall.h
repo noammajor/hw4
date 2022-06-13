@@ -9,7 +9,8 @@ public:
     Pitfall& operator=(const Pitfall& fairy)=default;
     Pitfall(const Pitfall&) = default;
     ~Pitfall()override=default;
-    void applyEncounter(Player& player) override;
+    std::unique_ptr<Pitfall> createPitfall();
+    void applyEncounter(std::unique_ptr<Player> player) override;
 
 
 private:

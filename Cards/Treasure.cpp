@@ -5,9 +5,13 @@ giveTreasure=payment;
 }
 
 
-void Treasure::applyEncounter(Player& player)
+void Treasure::applyEncounter(std::unique_ptr<Player> player)
 {
-    player.addCoins(giveTreasure);
+     player->addCoins(giveTreasure);
 }
-
+std::unique_ptr<Treasure> createTreasure()
+{
+    std::unique_ptr<Treasure>TreasureCard(new Treasure());
+    return TreasureCard;
+}
 

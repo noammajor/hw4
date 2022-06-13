@@ -1,4 +1,5 @@
 #include "Mtmchkin.h"
+#include <memory>
 #include "Players/Player.h"
 #include <iostream>
 #include <queue>
@@ -18,69 +19,67 @@
 #include "Fighter.h"
 #include "Wizard.h"
 #include "Rogue.h"
+#include "Appliance.h"
 
 
 using namespace std;
 
-Mtmchkin::Mtmchkin(const std::string& fileName)
-{
+Mtmchkin::Mtmchkin(const std::string& fileName) {
     ifstream cards("fileName.txt");
     string line;
     //exception.
-    while (getline(cards, line))
-    {
-        if(line.empty())
-        {
+    while (getline(cards, line)) {
+        if (line.empty()) {
             break;
         }
 
         switch (SetupCards[line]) {
             case Dragon: {
                 class Dragon card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createDragon());
                 break;
             }
             case Vampire: {
                 class Vampire card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createVampire());
                 break;
             }
             case Goblin: {
                 class Goblin card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createGoblin());
                 break;
             }
-                //fairy
+
             case Fairy: {
                 class Fairy card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createFairy());
                 break;
             }
             case Treasure: {
                 class Treasure card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createTreasure());
                 break;
             }
             case Merchant: {
                 class Merchant card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createMerchant());
                 break;
             }
             case Pitfall: {
                 class Pitfall card;
-                m_cardsQueue.push_back(&card);
+                m_cardsQueue.push_back(card.createPitfall());
                 break;
 
+            }
         }
+        printStartGameMessage();
+        m_numberOfPlayersInGames = initializePlayersNumber();
+        m_playersJobs = initializeJobsMap();
+         m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
+
     }
-    printStartGameMessage();
-    m_numberOfPlayersInGames = initializePlayersNumber();
-    m_playersJobs = initializeJobsMap();
-    m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
 
 }
-
-
 int Mtmchkin::initializePlayersNumber()
 {
     string input;

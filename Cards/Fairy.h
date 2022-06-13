@@ -10,8 +10,9 @@ public:
     Fairy& operator=(const Fairy& fairy)=default;
     Fairy(const Fairy&) = default;
     ~Fairy()override=default;
+    std::unique_ptr<Fairy> createFairy();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player> player) override;
 
 
 protected:

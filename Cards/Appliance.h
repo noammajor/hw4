@@ -5,13 +5,9 @@ class Appliance :public Card
 {
 public:
     Appliance()=default;
-
-    ~Appliance()=default;
-
-    //virtual void applyEncounter(Player* player)=0;
+    virtual ~Appliance()=0;
+    virtual void applyEncounter(std::unique_ptr<Player> player)=0;
 
 protected:
-    int const m_hpEffect=10;
-
 };
 #endif

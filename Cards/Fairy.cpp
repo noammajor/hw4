@@ -1,10 +1,10 @@
 #include "Fairy.h"
-void Fairy::applyEncounter(Player& player)
+void Fairy::applyEncounter(std::unique_ptr<Player> player)
 {
-    if(player.getname().compare("Wizard"))
+    if(player->getName().compare("Wizard"))
     {
         //look at later
-        player.heal(healthHeal);
+        player->heal(healthHeal);
     }
     else
         return;
@@ -12,4 +12,9 @@ void Fairy::applyEncounter(Player& player)
 Fairy::Fairy(int heal)
 {
     healthHeal=heal;
+}
+std::unique_ptr<Fairy> createFairy()
+{
+    std::unique_ptr<Fairy>FairyCard(new Fairy());
+    return FairyCard;
 }

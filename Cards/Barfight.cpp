@@ -2,21 +2,26 @@
 #include "Player.h"
 
 
-void Barfight::applyEncounter(std::unique_ptr<Player>)
+void Barfight::applyEncounter(std::unique_ptr<Player> player)
 {
-    if(player->getname().compare("Fighter"))
+    if(player->getName().compare("Fighter"))
     {
         return;
     }
     else
     {
-        player.damage(m_hpEffect);
+        player->damage(GiveDamage);
     }
-    return;
+
 }
 Barfight::Barfight(int damage)
 {
     GiveDamage=damage;
 };
 
+std::unique_ptr<Barfight> createBarfight()
+{
+    std::unique_ptr<Barfight>BarfightCard(new Barfight());
+    return BarfightCard;
+}
 

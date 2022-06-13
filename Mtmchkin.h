@@ -59,7 +59,7 @@ private:
     int m_numberOfRounds;
     int m_numberOfPlayersInGames;
     int m_numberOfCards;
-    std::deque<Card*> m_cardsQueue;
+    std::deque<std::unique_ptr<Card>> m_cardsQueue;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
     std::deque<std::unique_ptr<Player>> m_winners;
     std::deque<std::unique_ptr<Player>> m_losers;
@@ -73,7 +73,7 @@ private:
     {
     Vampire,Dragon,Goblin,Fairy,Treasure,Merchant,Pitfall
     };
-   static std::map<std::string,TypeOfCard> SetupCards;
+    static std::map<std::string,TypeOfCard> SetupCards;
     std::map <std::string,int> Initializemap();
 
     static std::map <std::string, int> initializeJobsMap();

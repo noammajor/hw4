@@ -9,6 +9,8 @@ public:
     Vampire& operator=(const Vampire& dragon) = default;
     Vampire(const Vampire&) = default;
     ~Vampire() override = default;
+    std::unique_ptr<Vampire> createVampire();
+
 
 
 private:

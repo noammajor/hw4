@@ -9,7 +9,8 @@ public:
     Treasure(int payment=10);
     ~Treasure() override=default;
 
-    void applyEncounter(std::unique_ptr<Player>) override;
+    void applyEncounter(std::unique_ptr<Player> player) override;
+    std::unique_ptr<Treasure> createTreasure();
 
 
 private:
