@@ -1,10 +1,10 @@
 #include "Merchant.h"
 #include "utilities.h"
 #include <iostream>
-void Merchant::applyEncounter(Player& player)
+void Merchant::applyEncounter(std::unique_ptr<Player>)
     {
     int whatToDo;
-       printMerchantInitialMessageForInteractiveEncounter(cout, player.getname(), player.getcoins());
+       printMerchantInitialMessageForInteractiveEncounter(cout, player.getname(), player.getCoins());
        std::cin>>whatToDo;
        if (whatToDo!=BUY_NOTHING && whatToDo!=BUY_HP&& whatToDo!=BUY_FORCE)
        {

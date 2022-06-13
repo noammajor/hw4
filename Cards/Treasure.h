@@ -9,7 +9,7 @@ public:
     Treasure(int payment=10);
     ~Treasure() override=default;
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player>) override;
 
 
 private:

@@ -9,15 +9,15 @@ class Battle : public Card
 public:
     Battle();
 
-    Battle(int force,int health,int loot,std::string Type);
+    Battle(int force, int health, int loot, std::string Type);
     
     ~Battle()=default;
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(std::unique_ptr<Player>) override;
 
-    void winbattle(Player& player,int loot);
+    void winBattle(Player& player,int loot);
 
-    void losebattle(Player& player,int health);
+    void loseBattle(Player& player,int health);
 
 protected:
     std::string const m_monster;

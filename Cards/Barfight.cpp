@@ -1,8 +1,10 @@
 #include "Barfight.h"
 #include "Player.h"
-void Barfight::applyEncounter(Player& player)
+
+
+void Barfight::applyEncounter(std::unique_ptr<Player>)
 {
-    if(player.getname().compare("Fighter"))
+    if(player->getname().compare("Fighter"))
     {
         return;
     }

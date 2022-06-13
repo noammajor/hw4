@@ -6,6 +6,7 @@
 
 class Rogue  : public Player
 {
+public:
     Rogue(const std::string &name);
     ~Rogue();
     void addCoins(int coinsToAdd);

@@ -8,11 +8,11 @@ public:
     Vampire();
     Vampire& operator=(const Vampire& dragon) = default;
     Vampire(const Vampire&) = default;
-    ~Vampire()=default;
+    ~Vampire() override = default;
 
 
 private:
-    std::string TYPE_MONSTER = "Vampire";
+    const std::string TYPE_MONSTER = "Vampire";
     int  static const VAMPIRE_DAMAGE = 10;
     int  static const VAMPIRE_COINS = 2;
     int static const VAMPIRE_FORCE = 10;
