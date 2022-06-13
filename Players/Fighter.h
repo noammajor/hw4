@@ -4,14 +4,14 @@
 class Fighter  : public Player
 {
 
-    int getAttackStrength() const override;
+    int getAttackStrength() const;
 
-    Fighter(std:string name);
+    Fighter(std::string name);
 
     ~Fighter();
 
 private:
-    const static  std::string FIGHTER = Fighter;
+    const static  std::string FIGHTER = "Fighter";
 
 
 

@@ -8,11 +8,11 @@ class Rogue  : public Player
 {
     Rogue(const std::string &name);
     ~Rogue();
-    void addCoins(int coinsToAdd) override;
+    void addCoins(int coinsToAdd);
 
 
 private:
-    const static std::string ROGUE = Rogue;
+    const static std::string ROGUE = "Rogue";
 
 
 

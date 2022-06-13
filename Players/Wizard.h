@@ -7,7 +7,7 @@ class Wizard: public Player
 
     Wizard(const std::string &name);
     ~Wizard();
-    void heal(int HpToHeal) override;
+    void heal(int HpToHeal) override ;
 
 
 private:
