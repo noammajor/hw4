@@ -6,7 +6,7 @@ Battle::Battle(int force, int health, int loot, std::string) : m_battleForce(for
 }
 
 
-void Battle::applyEncounter(std::unique_ptr<Player>)
+void Battle::applyEncounter(std::unique_ptr<Player> player)
 {
     if (player->getAttackStrength()>=m_battleForce)
     {
@@ -22,7 +22,7 @@ void Battle::winBattle(Player& player, int loot)
 {
     player.levelUp();
     player.addCoins(loot);
-    printWinBattle(player.getname(), m_monster);
+    printWinBattle(player.getName(), m_monster);
     if(player.getLevel()==10)
     {
     //leadership board
@@ -35,7 +35,7 @@ void Battle::winBattle(Player& player, int loot)
 void Battle::loseBattle(Player &player, int health)
 {
     player.damage(health);
-    printLossBattle(player.getname(),m_monster);
+    printLossBattle(player.getName(),m_monster);
     if(player.isKnockedOut())
     {
         //leadership board

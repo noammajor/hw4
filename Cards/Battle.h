@@ -1,7 +1,6 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
 #include "Card.h"
-#include "string.h"
 #include <string>
 
 class Battle : public Card
@@ -11,7 +10,7 @@ public:
 
     Battle(int force, int health, int loot, std::string Type);
     
-    ~Battle()=default;
+    virtual ~Battle() = 0;
 
     void applyEncounter(std::unique_ptr<Player>) override;
 

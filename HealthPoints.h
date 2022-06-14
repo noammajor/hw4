@@ -4,62 +4,74 @@
 
 class HealthPoints
 {
+
 public:
-    static const int DefaultHealth = 100;
+    static const int DEFAULT_HEALTH = 100;
     /*
         * C'tor of HealthPoints class
         *
-        * @param HP - amount of hp in the class, defult is 100.
+        * @param HP - amount of hp in the class, default is 100.
         * @return
        */
-    HealthPoints(int HP = DefaultHealth );
+    HealthPoints(int healthPoints = DEFAULT_HEALTH );
+
+
     /*
          * Here we are explicitly telling the compiler to use the default methods
     */
     ~HealthPoints() = default;
     HealthPoints(const HealthPoints&) = default;
+
     //the equal operator here should only be for the specific health value.
     HealthPoints& operator=(const HealthPoints& hp1) = default;
+
+    int getHP() const;
     /*
          * Here we are defining the operators +=,-=.
     */
     HealthPoints& operator+=(int add);
+
+
     /*
          * error argument
     */
-    class InvalidArgument{};
+    class InvalidArgument
+    {
+    };
 
-    
+
 private:
     /*
-         * varubales of the class
+         * variables of the class
          * @param healthPoints - amount of healthpoints the user currently has
          * @param maxHealthPoints - maximum healthpoints a player can have
     */
-   int healthPoints;
-   int maxHealthPoints;
+    int m_healthPoints;
+    int m_maxHealthPoints;
+
     /*
          * boolian operators for our class
     */
-   friend bool operator==(const HealthPoints& hp1,const HealthPoints& hp2);
-   friend bool operator>=(const HealthPoints& hp1,const HealthPoints& hp2);
-   friend std::ostream& operator<<(std::ostream& os, const HealthPoints& hp1);
+    friend bool operator==(const HealthPoints& hp1, const HealthPoints& hp2);
+    friend bool operator>=(const HealthPoints& hp1, const HealthPoints& hp2);
+    friend std::ostream& operator<<(std::ostream& os, const HealthPoints& hp1);
 };
+
 /*
-     * opperators that require symetry
+     * operators that require symmetry
 */
-HealthPoints operator+(const HealthPoints& hp1,int add);
+HealthPoints operator+(const HealthPoints& hp1, int add);
 HealthPoints operator+(int add, const HealthPoints& hp1);
-HealthPoints operator-(int sub,const HealthPoints& hp2);
-HealthPoints operator-(const HealthPoints& hp2,int sub);
+HealthPoints operator-(int sub, const HealthPoints& hp2);
+HealthPoints operator-(const HealthPoints& hp2, int sub);
 HealthPoints& operator-=(HealthPoints& hp1, int sub);
 
 /*
-     * boolian operaters that use the 2 friends
+     * boolian operators that use the 2 friends
 */
-bool operator<(const HealthPoints& hp1,const HealthPoints& hp2);
-bool operator!=(const HealthPoints& hp1,const HealthPoints& hp2);
-bool operator>(const HealthPoints& hp1,const HealthPoints& hp2);
-bool operator<=(const HealthPoints& hp1,const HealthPoints& hp2) ;
+bool operator<(const HealthPoints& hp1, const HealthPoints& hp2);
+bool operator!=(const HealthPoints& hp1, const HealthPoints& hp2);
+bool operator>(const HealthPoints& hp1, const HealthPoints& hp2);
+bool operator<=(const HealthPoints& hp1, const HealthPoints& hp2) ;
 
 #endif

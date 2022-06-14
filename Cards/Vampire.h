@@ -5,7 +5,7 @@
 class Vampire: public Battle
 {
 public:
-    Vampire();
+    explicit Vampire();
     Vampire& operator=(const Vampire& dragon) = default;
     Vampire(const Vampire&) = default;
     ~Vampire() override = default;
@@ -14,7 +14,7 @@ public:
 
 
 private:
-    const std::string TYPE_MONSTER = "Vampire";
+    const static std::string TYPE_MONSTER;
     int  static const VAMPIRE_DAMAGE = 10;
     int  static const VAMPIRE_COINS = 2;
     int static const VAMPIRE_FORCE = 10;

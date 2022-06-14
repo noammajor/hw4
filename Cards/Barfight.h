@@ -5,7 +5,7 @@
 class Barfight : public Appliance
 {
 public:
-    Barfight(int damage=10);
+    explicit Barfight(int damage = 10);
     ~Barfight()=default;
 
     void applyEncounter(std::unique_ptr<Player>) override;

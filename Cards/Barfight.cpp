@@ -4,7 +4,7 @@
 
 void Barfight::applyEncounter(std::unique_ptr<Player> player)
 {
-    if(player->getName().compare("Fighter"))
+    if(player->getName() == "Fighter")
     {
         return;
     }
@@ -14,12 +14,15 @@ void Barfight::applyEncounter(std::unique_ptr<Player> player)
     }
 
 }
+
+
 Barfight::Barfight(int damage)
 {
-    GiveDamage=damage;
-};
+    GiveDamage = damage;
+}
 
-std::unique_ptr<Barfight> createBarfight()
+
+std::unique_ptr<Barfight> Barfight::createBarfight()
 {
     std::unique_ptr<Barfight>BarfightCard(new Barfight());
     return BarfightCard;

@@ -1,4 +1,6 @@
 #include "Fairy.h"
+
+
 void Fairy::applyEncounter(std::unique_ptr<Player> player)
 {
     if(player->getName().compare("Wizard"))

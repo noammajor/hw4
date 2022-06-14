@@ -4,9 +4,7 @@
 #include <iostream>
 #include <queue>
 #include <fstream>
-#include <sstream>
 #include <string>
-#include <memory>
 #include "Cards/Card.h"
 #include "Dragon.h"
 #include "Vampire.h"
@@ -19,67 +17,78 @@
 #include "Fighter.h"
 #include "Wizard.h"
 #include "Rogue.h"
-#include "Appliance.h"
 
 
 using namespace std;
 
-Mtmchkin::Mtmchkin(const std::string& fileName) {
+Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>())
+{
+    m_cardsMap = initializeCardsMap();
+    m_cardsQueue = initializeCardsQueue(fileName);
+    printStartGameMessage();
+    m_numberOfPlayersInGames = initializePlayersNumber();
+    m_playersJobsMap = initializeJobsMap();
+    m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
+    m_numberOfRounds = 0; // check if  it is the correct number in the prints
+}
+
+
+std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string& fileName)
+{
     ifstream cards("fileName.txt");
     string line;
+    std::deque<std::unique_ptr<Card>> cardsQueue;
     //exception.
-    while (getline(cards, line)) {
-        if (line.empty()) {
+    while (getline(cards, line))
+    {
+        if (line.empty())
+        {
             break;
         }
 
-        switch (SetupCards[line]) {
+        switch (m_cardsMap[line]) {
             case Dragon: {
                 class Dragon card;
-                m_cardsQueue.push_back(card.createDragon());
+                cardsQueue.push_back(card.createDragon());
                 break;
             }
             case Vampire: {
                 class Vampire card;
-                m_cardsQueue.push_back(card.createVampire());
+                cardsQueue.push_back(card.createVampire());
                 break;
             }
             case Goblin: {
                 class Goblin card;
-                m_cardsQueue.push_back(card.createGoblin());
+                cardsQueue.push_back(card.createGoblin());
                 break;
             }
 
             case Fairy: {
                 class Fairy card;
-                m_cardsQueue.push_back(card.createFairy());
+                cardsQueue.push_back(card.createFairy());
                 break;
             }
             case Treasure: {
                 class Treasure card;
-                m_cardsQueue.push_back(card.createTreasure());
+                cardsQueue.push_back(card.createTreasure());
                 break;
             }
             case Merchant: {
                 class Merchant card;
-                m_cardsQueue.push_back(card.createMerchant());
+                cardsQueue.push_back(card.createMerchant());
                 break;
             }
             case Pitfall: {
                 class Pitfall card;
-                m_cardsQueue.push_back(card.createPitfall());
+                cardsQueue.push_back(card.createPitfall());
                 break;
-
             }
         }
-        printStartGameMessage();
-        m_numberOfPlayersInGames = initializePlayersNumber();
-        m_playersJobs = initializeJobsMap();
-         m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
-
     }
-
+    return cardsQueue;
 }
+
+
 int Mtmchkin::initializePlayersNumber()
 {
     string input;
@@ -111,9 +120,9 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 }
 
 
-std::queue<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
+std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
 {
-    std::queue<std::unique_ptr<Player>> playersQueue;
+    std::deque<std::unique_ptr<Player>> playersQueue;
     string currentName;
     string currentJob;
     bool correct;
@@ -131,16 +140,16 @@ std::queue<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                 getline(std::cin, currentName);
             }
             getline(std::cin, currentJob);
-            switch (m_playersJobs[currentJob])
+            switch (m_playersJobsMap[currentJob])
             {
                 case ROGUE:
-                    playersQueue.push(make_unique<Player>(Rogue(currentName)));
+                    playersQueue.push_back(Rogue::createRogue(currentName));
                     break;
                 case WIZARD:
-                    playersQueue.push(make_unique<Player>(Wizard(currentName)));
+                    playersQueue.push_back(Wizard::createWizard(currentName));
                     break;
                 case FIGHTER:
-                    playersQueue.push(make_unique<Player>(Fighter(currentName)));
+                    playersQueue.push_back(Fighter::createFighter(currentName));
                     break;
                 default:
                     printInvalidClass();
@@ -159,26 +168,26 @@ void Mtmchkin::playRound()
     for (int i = 0 ; i < m_numberOfPlayersInGames ; i++)
     {
         printTurnStartMessage(m_playersQueue.front()->getName());
-        Card* currentCard = m_cardsQueue.front();
+        unique_ptr<Card> currentCard = move(m_cardsQueue.front());
+        m_cardsQueue.pop_front();
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
-        currentCard->applyEncounter(currentPlayer);
-        m_playersQueue.pop_back();
-        if (currentPlayer->getLevel() == 10)
+        m_playersQueue.pop_front();
+        currentCard->applyEncounter(move(currentPlayer));
+        m_cardsQueue.push_back(move(currentCard));
+        if (move(currentPlayer)->getLevel() == 10)
         {
             m_numberOfPlayersInGames--;
-            m_winners.push(std::move(currentPlayer));
+            m_winners.push_back(std::move(currentPlayer));
         }
-        else if (currentPlayer->isKnockedOut())
+        else if (move(currentPlayer)->isKnockedOut())
         {
             m_numberOfPlayersInGames--;
-            m_losers.push(currentPlayer);
+            m_losers.push_back(move(currentPlayer));
         }
         else
         {
-            m_playersQueue.push(currentPlayer);
+            m_playersQueue.push_back(move(currentPlayer));
         }
-        m_cardsQueue.pop();
-        m_cardsQueue.push(currentCard);
     }
     if (m_numberOfPlayersInGames == 0)
     {
@@ -192,13 +201,19 @@ void Mtmchkin::playRound()
 
 void Mtmchkin::printLeaderBoard() const
 {
-    for(Player player : m_playersQueue)
+    for (Player* player = m_losers.front().get() ; player != nullptr ; player++)
     {
-        player.printInfo();
+        player->printInfo();
+    }
+    for (Player* player = m_playersQueue.front().get() ; player != nullptr ; player++)
+    {
+        player->printInfo();
+    }
+    for (Player* player = m_winners.front().get() ; player != nullptr ; player++)
+    {
+        player->printInfo();
     }
 }
-// we have to print: m_losers, m_players, m_winners
-
 
 
 bool Mtmchkin::isGameOver() const
@@ -216,9 +231,9 @@ int Mtmchkin::getNumberOfRounds() const
     return m_numberOfRounds;
 }
 
-std::map <std::string,int> Mtmchkin::Initializemap()
+std::map <std::string,int> Mtmchkin::initializeCardsMap()
 {
-    static std::map<std::string,int> SetupCards =
+    static std::map<std::string,int> setupCards =
             {
                     {"Vampire", Vampire },
                     {"Dragon" , Dragon},
@@ -228,4 +243,5 @@ std::map <std::string,int> Mtmchkin::Initializemap()
                     {"Merchant", Merchant},
                     {"Pitfall",Pitfall}
             };
+    return setupCards;
 }

@@ -21,4 +21,4 @@ int healthHeal;
 };
 
 
-#endif HW4_FAIRY_H
+#endif //HW4_FAIRY_H

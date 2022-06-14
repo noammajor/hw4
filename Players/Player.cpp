@@ -12,8 +12,7 @@ Player::Player(const std::string& name, const std::string& job) : m_name(name), 
 
 void Player::printInfo() const
 {
-    printPlayerDetails(std::cout , &m_name, &m_job, m_level, m_force, m_playerhealthpoints, m_coins);
-    //first argument?
+    printPlayerDetails(std::cout , m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
 }
 
 
@@ -21,6 +20,7 @@ std::string Player::getType() const
 {
     return m_job;
 }
+
 
 std::string Player::getName() const
 {
@@ -114,4 +114,11 @@ bool Player::pay(int payment)
 int Player::getAttackStrength() const
 {
     return (m_level + m_force);
+}
+
+
+std::ostream& operator<<(std::ostream& os, const Player& player)
+{
+    player.print(os);
+    return os;
 }

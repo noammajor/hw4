@@ -13,7 +13,7 @@ public:
 
 
 private:
-       std::string TYPE_MONSTER= "Goblin";
+       std::string static const TYPE_MONSTER;
        int static const GOBLIN_DAMAGE = 10;
        int static const GOBLIN_COINS = 2;
        int static const GOBLIN_FORCE = 6;

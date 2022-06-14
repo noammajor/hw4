@@ -42,18 +42,18 @@ public:
      *copy C'tor
      *get player1 and copies into player2
      */
-    Player(const Player&);
+    //Player(const Player&);
 
     /*
     *assignment operator
     *get player1 and copies into player2
     */
-    Player& operator=(const Player& other);
+    //Player& operator=(const Player& other);
 
     /*
      *D'tor
      */
-    ~Player() = default;
+    virtual ~Player() = 0;
 
     //needs to be made
 
@@ -127,11 +127,6 @@ public:
     int getAttackStrength() const;
 
 
-    /*
-    *returns the attack strength of the player which is force+level
-    */
-    int getAttackStrength() const;
-
 
 protected:
     static const int NO_COINS = 0;
@@ -146,11 +141,14 @@ protected:
     HealthPoints m_playerhealthpoints;
     int m_coins;
 
+    virtual void print(std::ostream& os) const;
 
 private:
     static const int DEFAULT_FORCE = 5;
     static const int INITIAL_LEVEL = 1;
     static const int DEFAULT_COINS = 10;
+
+    friend std::ostream& operator<<(std::ostream& os, const Player& player);
 };
 
 #endif

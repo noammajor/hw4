@@ -20,7 +20,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    explicit Mtmchkin(const std::string& fileName);
+    Mtmchkin(const std::string fileName);
 
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -58,27 +58,29 @@ public:
 private:
     int m_numberOfRounds;
     int m_numberOfPlayersInGames;
-    int m_numberOfCards;
+    //int m_numberOfCards;
     std::deque<std::unique_ptr<Card>> m_cardsQueue;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
     std::deque<std::unique_ptr<Player>> m_winners;
     std::deque<std::unique_ptr<Player>> m_losers;
-    static std::map <std::string, int> m_playersJobs;
+    static std::map <std::string, int> m_playersJobsMap;
+    static std::map<std::string, int> m_cardsMap;
 
-    std::string VAMPCOMP = "Vampire";
+    /*std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
     std::string GOBLCOMP = "Goblin";
-    std::string FairCOMP = "Fairy";
+    std::string FairCOMP = "Fairy";*/
     enum TypeOfCard
     {
     Vampire,Dragon,Goblin,Fairy,Treasure,Merchant,Pitfall
     };
-    static std::map<std::string,TypeOfCard> SetupCards;
-    std::map <std::string,int> Initializemap();
 
+    static std::map <std::string,int> initializeCardsMap();
+
+    static std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
     static std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
-    static std::queue<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
+    static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 
 
     enum jobs

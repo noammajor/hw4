@@ -28,7 +28,7 @@
  * @return
  *      void
  */
-void printPlayerDetails(std::ostream &os, const std::string *name, const std::string *job, int level, int force, int HP, int coins);
+void printPlayerDetails(std::ostream &os, const std::string &name, const std::string &job, int level, int force, int HP, int coins);
 
 /* ---------------------------------------------------------------------------------------------- */
 // ----------------------------        Print functions for Card class         --------------------------
