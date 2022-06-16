@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "utilities.h"
 
-Rogue::Rogue(const std::string &name) :  Player(name, ROGUE)
+Rogue::Rogue(const std::string &name) :  Player(name)
 {
 }
 
@@ -15,18 +15,17 @@ void Rogue::addCoins(int coinsToAdd)
 std::unique_ptr<Rogue> Rogue::createRogue(const std::string &name)
 {
     std::unique_ptr<Rogue> rogueCard(new Rogue(name));
+    if (!rogueCard)
+    {
+        throw std::bad_alloc();
+    }
     return rogueCard;
 }
 
 
-void Rogue::print(std::ostream& os) const
+void Rogue::print() const
 {
-    printPlayerDetails(os, m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
+    printPlayerDetails(std::cout, m_name, ROGUE, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
 }
 
 ////// delete m_job!!
-
-
-
-
-const std::string Rogue::ROGUE = "Rogue";

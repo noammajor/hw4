@@ -14,12 +14,12 @@ void Pitfall::applyEncounter(std::unique_ptr<Player> player)
 
 std::unique_ptr<Pitfall> Pitfall::createPitfall()
 {
-    std::unique_ptr<Pitfall>PitfallCard(new Pitfall());
-    if (!PitfallCard)
+    std::unique_ptr<Pitfall> pitfallCard(new Pitfall());
+    if (!pitfallCard)
     {
         throw std::bad_alloc();
     }
-    return PitfallCard;
+    return pitfallCard;
 }
 std::string Pitfall::gettype()
 {

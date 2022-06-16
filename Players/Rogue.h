@@ -9,14 +9,14 @@ class Rogue  : public Player
 public:
     explicit Rogue(const std::string &name);
     ~Rogue() override = default;
-    void addCoins(int coinsToAdd);
+    void addCoins(int coinsToAdd)  override;
 
     static std::unique_ptr<Rogue> createRogue(const std::string &name);
 
-    void print(std::ostream& os) const override;
+    void print() const override;
 
 private:
-    const static std::string ROGUE;
+    const std::string ROGUE = "Rogue";
 
 
 
