@@ -121,50 +121,56 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
 {
     std::deque<std::unique_ptr<Player>> playersQueue;
-    char currentChar;
+    char currentChar = getchar();
     string input;
     string currentName;
     string currentJob;
-    int i = 0;
-    bool correct;
+    bool correct, playerCreated;
     for (int i = 0; i < numberOfPlayers ; i++)
     {
         printInsertPlayerMessage();
-        correct = true;
         do
         {
-            //we need to read only the first word with no spaces!!
-
-            getline(std::cin, input);
-            while(input[i] != ' ')
+            do
             {
-                currentName += input[i];
-            }
-            while (currentName.length() > 15 || currentName.empty())
-            {
-                printInvalidName();
-                printInsertPlayerMessage();
-                getline(std::cin, currentName);
-            }
-            getline(std::cin, currentJob);
-            switch (m_playersJobsMap[currentJob])
-            {
-                case ROGUE:
-                    playersQueue.push_back(Rogue::createRogue(currentName));
-                    break;
-                case WIZARD:
-                    playersQueue.push_back(Wizard::createWizard(currentName));
-                    break;
-                case FIGHTER:
-                    playersQueue.push_back(Fighter::createFighter(currentName));
-                    break;
-                default:
-                    printInvalidClass();
+                correct = true;
+                playerCreated = true;
+                while (EOF != (currentChar = getchar()))
+                {
+                    if (currentChar == ' ')
+                    {
+                        break;
+                    }
+                    currentName += currentChar;
+                }
+                if (currentName.length() > 15 || currentName.empty())
+                {
+                    printInvalidName();
+                    printInsertPlayerMessage();
+                    currentName = getchar();
                     correct = false;
+                }
             }
+            while (!correct);
+                getline(std::cin, currentJob);
+                switch (m_playersJobsMap[currentJob])
+                {
+                    case ROGUE:
+                        playersQueue.push_back(Rogue::createRogue(currentName));
+                        break;
+                    case WIZARD:
+                        playersQueue.push_back(Wizard::createWizard(currentName));
+                        break;
+                    case FIGHTER:
+                        playersQueue.push_back(Fighter::createFighter(currentName));
+                        break;
+                    default:
+                        printInvalidClass();
+                        playerCreated = false;
+                }
+            }
+            while (!playerCreated);
         }
-        while (!correct);
-    }
     return playersQueue;
 }
 
@@ -172,7 +178,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
 void Mtmchkin::playRound()
 {
     printRoundStartMessage(m_numberOfRounds);
-    for (int i = 0 ; i < m_numberOfPlayersInGames ; i++)
+    for (int i = m_numberOfPlayersInGames ; i > 0 ; i--)
     {
         printTurnStartMessage(m_playersQueue.front()->getName());
         unique_ptr<Card> currentCard = move(m_cardsQueue.front());
@@ -184,12 +190,12 @@ void Mtmchkin::playRound()
         if (move(currentPlayer)->getLevel() == 10)
         {
             m_numberOfPlayersInGames--;
-            m_winners.push_front(std::move(currentPlayer));
+            m_winners.push_back(std::move(currentPlayer));
         }
         else if (move(currentPlayer)->isKnockedOut())
         {
             m_numberOfPlayersInGames--;
-            m_losers.push_back(move(currentPlayer));
+            m_losers.push_front(move(currentPlayer));
         }
         else
         {
@@ -198,7 +204,6 @@ void Mtmchkin::playRound()
     }
     if (m_numberOfPlayersInGames == 0)
     {
-        // check if leader board was updated
         printGameEndMessage();
 
         // end the game here
@@ -243,6 +248,7 @@ int Mtmchkin::getNumberOfRounds() const
 {
     return m_numberOfRounds;
 }
+
 
 std::map <std::string,int> Mtmchkin::initializeCardsMap()
 {
