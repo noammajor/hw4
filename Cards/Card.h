@@ -42,7 +42,7 @@ public:
 
     virtual ~Card() = 0;
 
-   virtual void printCard();
+   virtual void printCard() = 0;
 
 };
 

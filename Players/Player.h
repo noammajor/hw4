@@ -36,7 +36,7 @@ public:
      * @param HP - the amount of health left for a player.
      * @param coins - the amount of tresure available to player.
      */
-    Player(const std::string &name, const std::string &job);
+    Player(const std::string &name);
 
 
     /*
@@ -61,11 +61,11 @@ public:
     /*
      *prints players info to screen
      */
-    void printInfo() const;
 
 
 
-    std::string getType() const;
+
+    //std::string getType() const;
 
 
     std::string getName() const;
@@ -136,13 +136,12 @@ protected:
 
 
     const std::string m_name;
-    const std::string m_job;
     int m_level;
     int m_force;
     HealthPoints m_playerhealthpoints;
     int m_coins;
 
-    virtual void print(std::ostream& os) const = 0;
+    virtual void print() const = 0;
 
 private:
     static const int DEFAULT_FORCE = 5;

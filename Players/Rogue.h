@@ -13,7 +13,7 @@ public:
 
     static std::unique_ptr<Rogue> createRogue(const std::string &name);
 
-    void print(std::ostream& os) const override;
+    void print() const override;
 
 private:
     const std::string ROGUE = "Rogue";

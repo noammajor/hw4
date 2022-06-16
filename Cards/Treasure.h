@@ -15,7 +15,7 @@ public:
 
 private:
     static const int LOOT = 10;
-    const std::string type = "Treasure"
+    const std::string type = "Treasure";
 
 };
 

@@ -15,7 +15,7 @@ public:
 
 private:
     static const int GIVEDAMAGE=10;
-   const std::string type = "Barfight";
+    const std::string type = "Barfight";
 
 };
 

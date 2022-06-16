@@ -5,11 +5,11 @@
 class Appliance :public Card
 {
 public:
-    Appliance();
+    Appliance() = default;
     ~Appliance() override = default;
-    virtual void applyEncounter(std::unique_ptr<Player> player)=0;
+    //virtual void applyEncounter(std::unique_ptr<Player> player)=0;
     void printCard() override;
-    virtual std::string gettype();
+    virtual std::string gettype() = 0;
 
 private:
 

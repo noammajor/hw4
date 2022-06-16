@@ -15,7 +15,7 @@ public:
     ~Fighter() override = default;
     static std::unique_ptr<Fighter> createFighter(const std::string &name);
 
-    void print(std::ostream& os) const override;
+    void print() const override;
 
 private:
     const std::string FIGHTER = "Fighter";

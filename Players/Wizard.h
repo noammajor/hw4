@@ -14,7 +14,7 @@ public:
     void heal(int HpToHeal) override;
     static std::unique_ptr<Wizard> createWizard(const std::string &name);
 
-    void print(std::ostream& os) const override;
+    void print() const override;
 
 private:
     const std::string WIZARD = "Wizard";

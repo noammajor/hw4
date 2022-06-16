@@ -3,7 +3,7 @@
 #include "utilities.h"
 
 
-Wizard::Wizard(const std::string &name) :  Player(name, WIZARD)
+Wizard::Wizard(const std::string &name) :  Player(name)
 {
 }
 
@@ -25,7 +25,7 @@ std::unique_ptr<Wizard> Wizard::createWizard(const std::string &name)
 }
 
 
-void Wizard::print(std::ostream& os) const
+void Wizard::print() const
 {
-    printPlayerDetails(os, m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
+    printPlayerDetails(std::cout, m_name, WIZARD, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
 }

@@ -204,6 +204,7 @@ void Mtmchkin::playRound()
     if (m_numberOfPlayersInGames == 0)
     {
         printGameEndMessage();
+        printLeaderBoard();
     }
     m_numberOfRounds++;
 }

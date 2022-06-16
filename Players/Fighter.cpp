@@ -3,7 +3,7 @@
 #include "utilities.h"
 
 
-Fighter::Fighter(const std::string &name) :  Player(name, FIGHTER)
+Fighter::Fighter(const std::string &name) :  Player(name)
 {
 }
 
@@ -21,8 +21,8 @@ std::unique_ptr<Fighter> Fighter::createFighter(const std::string &name)
 }
 
 
-void Fighter::print(std::ostream& os) const
+void Fighter::print() const
 {
-    printPlayerDetails(os, m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
+    printPlayerDetails(std::cout, m_name, FIGHTER, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
 }
 
