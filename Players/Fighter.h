@@ -8,7 +8,7 @@ class Fighter  : public Player
 {
 
 public:
-    int getAttackStrength() const;
+    int getAttackStrength() const override;
 
     explicit Fighter(const std::string &name);
 
@@ -18,7 +18,7 @@ public:
     void print(std::ostream& os) const override;
 
 private:
-    const static  std::string FIGHTER;
+    const std::string FIGHTER = "Fighter";
 
 
 

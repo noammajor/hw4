@@ -205,6 +205,7 @@ void Mtmchkin::playRound()
     {
         printGameEndMessage();
     }
+    m_numberOfRounds++;
 }
 
 

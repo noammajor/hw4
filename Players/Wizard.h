@@ -9,7 +9,7 @@ class Wizard: public Player
 {
 
 public:
-    Wizard(const std::string &name);
+    explicit Wizard(const std::string &name);
     ~Wizard() override = default;
     void heal(int HpToHeal) override;
     static std::unique_ptr<Wizard> createWizard(const std::string &name);
@@ -17,7 +17,7 @@ public:
     void print(std::ostream& os) const override;
 
 private:
-    const static std::string WIZARD;
+    const std::string WIZARD = "Wizard";
 
 };
 #endif

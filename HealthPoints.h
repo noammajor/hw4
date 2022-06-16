@@ -47,7 +47,7 @@ private:
          * @param maxHealthPoints - maximum healthpoints a player can have
     */
     int m_healthPoints;
-   static const int m_maxHealthPoints=100;
+    static const int MAX_HP =100;
 
     /*
          * boolian operators for our class

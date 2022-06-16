@@ -113,7 +113,7 @@ public:
     /*
      *adds coins after getting the coins add card
      */
-    void addCoins(int coinsToAdd);
+    virtual void addCoins(int coinsToAdd);
 
 
     /*

@@ -4,13 +4,13 @@
 #include <iostream>
 
 
-Player::Player(const std::string& name, const std::string& job) : m_name(name), m_force(DEFAULT_FORCE), m_playerhealthpoints(MAX_HP),
+Player::Player(const std::string& name, const std::string& job) : m_name(name), m_force(DEFAULT_FORCE), m_playerhealthpoints(),
                             m_level(INITIAL_LEVEL), m_coins(DEFAULT_COINS), m_job(job)
 {
 }
 
 
-Player::~Player() {}
+//Player::~Player() {}
 
 
 void Player::printInfo() const
@@ -81,7 +81,7 @@ void Player::damage(int damageTaken)
 
 bool Player::isKnockedOut() const
 {
-    if(m_playerhealthpoints <= 0)
+    if(m_playerhealthpoints.getHP() <= 0)
     {
         return true;
     }
