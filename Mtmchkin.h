@@ -58,10 +58,13 @@ public:
 private:
     int m_numberOfRounds;
     int m_numberOfPlayersInGames;
-    static const int MINCARDS=5;
-    static const int MAXPLAYER=6;
-    static const int MINPLAYER=2;
-    //int m_numberOfCards;
+
+    static const int MIN_CARDS=5;
+    static const int MAX_PLAYER=6;
+    static const int MIN_PLAYER=2;
+    static const int MAX_LENGTH_NAME=2;
+    static const int MAX_LEVEL=10;
+
     std::deque<std::unique_ptr<Card>> m_cardsQueue;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
     std::deque<std::unique_ptr<Player>> m_winners;
@@ -69,21 +72,25 @@ private:
     static std::map <std::string, int> m_playersJobsMap;
     std::map<std::string, int> m_cardsMap;
 
-    /*std::string VAMPCOMP = "Vampire";
-    std::string DRAGCOMP = "Dragon";
-    std::string GOBLCOMP = "Goblin";
-    std::string FairCOMP = "Fairy";*/
+
     enum TypeOfCard
     {
-    Vampire,Dragon,Goblin,Fairy,Treasure,Merchant,Pitfall
+        Vampire,
+        Dragon,
+        Goblin,
+        Fairy,
+        Treasure,
+        Merchant,
+        Pitfall,
+        Barfight
     };
 
     static std::map <std::string,int> initializeCardsMap();
 
-     std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
-    std::map <std::string, int> initializeJobsMap();
+    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
+    static std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
-   static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
+    static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 
 
     enum jobs
@@ -92,9 +99,6 @@ private:
         WIZARD,
         FIGHTER
     };
-
-
-    //std::string TYPE_MONSTER = "Vampire";
 
 
 };

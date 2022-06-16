@@ -1,14 +1,9 @@
 #include "HealthPoints.h"
 
 
-HealthPoints::HealthPoints(int healthPoints)
+HealthPoints::HealthPoints()
 {
-    if ( healthPoints <= 0 )
-    {
-        throw InvalidArgument();
-    }
-    m_healthPoints = healthPoints;
-    m_maxHealthPoints = healthPoints;
+    m_healthPoints =  m_maxHealthPoints;
 }
 
 

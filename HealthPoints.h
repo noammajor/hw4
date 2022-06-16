@@ -6,14 +6,14 @@ class HealthPoints
 {
 
 public:
-    static const int DEFAULT_HEALTH = 100;
+
     /*
         * C'tor of HealthPoints class
         *
         * @param HP - amount of hp in the class, default is 100.
         * @return
        */
-    HealthPoints(int healthPoints = DEFAULT_HEALTH );
+    HealthPoints();
 
 
     /*
@@ -47,7 +47,7 @@ private:
          * @param maxHealthPoints - maximum healthpoints a player can have
     */
     int m_healthPoints;
-    int m_maxHealthPoints;
+   static const int m_maxHealthPoints=100;
 
     /*
          * boolian operators for our class

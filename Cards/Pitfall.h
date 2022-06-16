@@ -5,16 +5,16 @@
 class Pitfall : public Appliance
 {
 public:
-    Pitfall(int damage=10);
+    explicit Pitfall()=default;
     Pitfall& operator=(const Pitfall& fairy)=default;
     Pitfall(const Pitfall&) = default;
     ~Pitfall()override=default;
     static std::unique_ptr<Pitfall> createPitfall();
     void applyEncounter(std::unique_ptr<Player> player) override;
 
-
 private:
-int giveDamage;
+    static const int GIVE_DAMAGE = 10;
+
 };
 
 

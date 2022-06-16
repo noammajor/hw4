@@ -10,21 +10,20 @@ void Barfight::applyEncounter(std::unique_ptr<Player> player)
     }
     else
     {
-        player->damage(GiveDamage);
+        player->damage(GIVEDAMAGE);
     }
 
 }
 
 
-Barfight::Barfight(int damage)
-{
-    GiveDamage = damage;
-}
-
 
 std::unique_ptr<Barfight> Barfight::createBarfight()
 {
     std::unique_ptr<Barfight>BarfightCard(new Barfight());
+    if (!BarfightCard)
+    {
+        throw std::bad_alloc();
+    }
     return BarfightCard;
 }
 

@@ -7,13 +7,10 @@
 class Treasure : public Appliance
 {
 public:
-    Treasure() = default;
+    explicit Treasure() = default;
     ~Treasure() override = default;
-
     void applyEncounter(std::unique_ptr<Player> player) override;
-
-   static std::unique_ptr<Treasure> createTreasure();
-
+    static std::unique_ptr<Treasure> createTreasure();
 
 private:
     static const int LOOT = 10;

@@ -18,6 +18,7 @@
 #include "Wizard.h"
 #include "Rogue.h"
 #include "Exception.h"
+#include "Barfight.h"
 
 using namespace std;
 
@@ -27,7 +28,6 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Play
 {
     m_cardsMap = initializeCardsMap();
     m_cardsQueue = initializeCardsQueue(fileName);
-    printStartGameMessage();
     m_numberOfPlayersInGames = initializePlayersNumber();
     m_playersJobsMap = initializeJobsMap();
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
@@ -49,16 +49,14 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
         {
             break;
         }
-        switch (m_cardsMap[line]) {
+        switch (m_cardsMap[line])
+        {
             case Dragon:
-            {
                 cardsQueue.push_back(Dragon::createDragon());
                 break;
-            }
-            case Vampire: {
+            case Vampire:
                 cardsQueue.push_back(Vampire::createVampire());
                 break;
-            }
             case Goblin:
                 cardsQueue.push_back(Goblin::createGoblin());
                 break;
@@ -74,12 +72,13 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
             case Pitfall:
                 cardsQueue.push_back(Pitfall::createPitfall());
                 break;
+            case Barfight:
+                cardsQueue.push_back(Barfight::createBarfight());
             default:
-
                 throw DeckFileFormatError(cardsQueue.size()+1);
         }
     }
-    if(cardsQueue.size()<MINCARDS)
+    if(cardsQueue.size()<MIN_CARDS)
     {
         throw DeckFileInvalidSize();
     }
@@ -96,7 +95,7 @@ int Mtmchkin::initializePlayersNumber()
         printEnterTeamSizeMessage();
         getline(std::cin, input);
         numberOfPlayers = stoi(input);
-        if (numberOfPlayers < MINPLAYER || numberOfPlayers > MAXPLAYER)
+        if (numberOfPlayers < MIN_PLAYER || numberOfPlayers > MAX_PLAYER)
         {
             printInvalidTeamSize();
             numberOfPlayers = 0;
@@ -143,7 +142,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                     }
                     currentName += currentChar;
                 }
-                if (currentName.length() > 15 || currentName.empty())
+                if (currentName.length() > MAX_LENGTH_NAME || currentName.empty())
                 {
                     printInvalidName();
                     printInsertPlayerMessage();
@@ -205,8 +204,6 @@ void Mtmchkin::playRound()
     if (m_numberOfPlayersInGames == 0)
     {
         printGameEndMessage();
-
-        // end the game here
     }
 }
 

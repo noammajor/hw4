@@ -1,6 +1,4 @@
 #include "Treasure.h"
-#include "Player.h"
-#include "Card.h"
 
 
 
@@ -13,6 +11,10 @@ void Treasure::applyEncounter(std::unique_ptr<Player> player)
 std::unique_ptr<Treasure> Treasure::createTreasure()
 {
     std::unique_ptr<Treasure> treasureCard(new Treasure());
+    if (!treasureCard)
+    {
+        throw std::bad_alloc();
+    }
     return treasureCard;
 }
 

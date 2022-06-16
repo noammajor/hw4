@@ -9,7 +9,7 @@ class Merchant : public Appliance
 {
 
 public:
-    Merchant() = default;
+     explicit Merchant() = default;
     ~Merchant()override = default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
