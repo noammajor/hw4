@@ -3,20 +3,26 @@
 
 void Fairy::applyEncounter(std::unique_ptr<Player> player)
 {
-    if(player->getName().compare("Wizard"))
+    if(player->getName() == "Wizard")
     {
         //look at later
-        player->heal(healthHeal);
+        player->heal(HEALTH_HEAL);
     }
     else
         return;
 }
-Fairy::Fairy(int heal)
-{
-    healthHeal=heal;
-}
+
 std::unique_ptr<Fairy> Fairy::createFairy()
 {
     std::unique_ptr<Fairy>FairyCard(new Fairy());
+    if (!FairyCard)
+    {
+        throw std::bad_alloc();
+    }
     return FairyCard;
+}
+
+std::string Fairy::gettype()
+{
+    return type;
 }

@@ -15,6 +15,10 @@ void Rogue::addCoins(int coinsToAdd)
 std::unique_ptr<Rogue> Rogue::createRogue(const std::string &name)
 {
     std::unique_ptr<Rogue> rogueCard(new Rogue(name));
+    if (!rogueCard)
+    {
+        throw std::bad_alloc();
+    }
     return rogueCard;
 }
 

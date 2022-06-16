@@ -2,6 +2,7 @@
 #include "Player.h"
 
 
+
 void Barfight::applyEncounter(std::unique_ptr<Player> player)
 {
     if(player->getName() == "Fighter")
@@ -10,21 +11,25 @@ void Barfight::applyEncounter(std::unique_ptr<Player> player)
     }
     else
     {
-        player->damage(GiveDamage);
+        player->damage(GIVEDAMAGE);
     }
 
 }
-
-
-Barfight::Barfight(int damage)
+std::string Barfight::gettype()
 {
-    GiveDamage = damage;
+    return type;
 }
+ //const std::string Appliance::m_type="Barfight";
+
 
 
 std::unique_ptr<Barfight> Barfight::createBarfight()
 {
     std::unique_ptr<Barfight>BarfightCard(new Barfight());
+    if (!BarfightCard)
+    {
+        throw std::bad_alloc();
+    }
     return BarfightCard;
 }
 

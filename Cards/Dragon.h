@@ -10,7 +10,7 @@ public:
     Dragon& operator=(const Dragon& dragon) = default;
     Dragon(const Dragon&) = default;
     ~Dragon() override=default;
-    std::unique_ptr<Dragon> createDragon();
+    static std::unique_ptr<Dragon> createDragon();
 
 
 private:

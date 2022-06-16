@@ -26,7 +26,7 @@ public:
      * @return
      *      A new instance of Card.
     */
-    Card();
+    explicit Card()=default;
     /*
      * Handling the player's applyEncounter with the card:
      *
@@ -39,10 +39,10 @@ public:
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
-    Card(const Card&) = default;
+
     virtual ~Card() = 0;
-    virtual Card& operator=(const Card& other) = default;
-    void printCard();
+
+   virtual void printCard();
 
 };
 

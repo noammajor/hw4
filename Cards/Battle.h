@@ -18,6 +18,7 @@ protected:
     void winBattle(Player& player,int loot);
 
     void loseBattle(Player& player,int health);
+    void printCard() override;
 
 private:
     std::string const m_monster;

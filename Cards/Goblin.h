@@ -9,7 +9,7 @@ public:
     Goblin& operator=(const Goblin& goblin) = default;
     Goblin(const Goblin&) = default;
     ~Goblin() override = default;
-    std::unique_ptr<Goblin> createGoblin();
+    static std::unique_ptr<Goblin> createGoblin();
 
 
 private:

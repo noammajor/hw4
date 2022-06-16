@@ -1,14 +1,9 @@
 #include "HealthPoints.h"
 
 
-HealthPoints::HealthPoints(int healthPoints)
+HealthPoints::HealthPoints()
 {
-    if ( healthPoints <= 0 )
-    {
-        throw InvalidArgument();
-    }
-    m_healthPoints = healthPoints;
-    m_maxHealthPoints = healthPoints;
+    m_healthPoints =  MAX_HP;
 }
 
 
@@ -34,9 +29,9 @@ HealthPoints operator+(int add, const HealthPoints& hp1)
 
 HealthPoints& HealthPoints::operator+=(int add)
 {
-    if(m_healthPoints + add >= m_maxHealthPoints)
+    if(m_healthPoints + add >= MAX_HP)
     {
-        m_healthPoints = m_maxHealthPoints;
+        m_healthPoints = MAX_HP;
         return *this;
     }
     if(m_healthPoints + add <= 0)
@@ -123,6 +118,6 @@ bool operator<(const HealthPoints& hp1, const HealthPoints& hp2)
 
 std::ostream& operator<<(std::ostream& os, const HealthPoints& hp1)
 {
-    os << hp1.m_healthPoints << '(' << hp1.m_maxHealthPoints << ')';
+    os << hp1.m_healthPoints;
     return os;
 }

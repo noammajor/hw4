@@ -17,7 +17,8 @@
 #include "Fighter.h"
 #include "Wizard.h"
 #include "Rogue.h"
-
+#include "Exception.h"
+#include "Barfight.h"
 
 using namespace std;
 
@@ -27,7 +28,6 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Play
 {
     m_cardsMap = initializeCardsMap();
     m_cardsQueue = initializeCardsQueue(fileName);
-    printStartGameMessage();
     m_numberOfPlayersInGames = initializePlayersNumber();
     m_playersJobsMap = initializeJobsMap();
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
@@ -39,50 +39,48 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
     ifstream cards("fileName.txt");
     string line;
     std::deque<std::unique_ptr<Card>> cardsQueue;
-    //exception.
+    if(!cards.is_open())
+    {
+      throw DeckFileNotFound();
+    }
     while (getline(cards, line))
     {
         if (line.empty())
         {
             break;
         }
-        switch (m_cardsMap[line]) {
-            case Dragon: {
-                class Dragon card;
-                cardsQueue.push_back(card.createDragon());
+        switch (m_cardsMap[line])
+        {
+            case Dragon:
+                cardsQueue.push_back(Dragon::createDragon());
                 break;
-            }
-            case Vampire: {
-                class Vampire card;
-                cardsQueue.push_back(card.createVampire());
+            case Vampire:
+                cardsQueue.push_back(Vampire::createVampire());
                 break;
-            }
-            case Goblin: {
-                class Goblin card;
-                cardsQueue.push_back(card.createGoblin());
+            case Goblin:
+                cardsQueue.push_back(Goblin::createGoblin());
                 break;
-            }
-            case Fairy: {
-                class Fairy card;
-                cardsQueue.push_back(card.createFairy());
+            case Fairy:
+                cardsQueue.push_back(Fairy::createFairy());
                 break;
-            }
-            case Treasure: {
-                class Treasure card;
-                cardsQueue.push_back(card.createTreasure());
+            case Treasure:
+                cardsQueue.push_back(Treasure::createTreasure());
                 break;
-            }
-            case Merchant: {
-                class Merchant card;
-                cardsQueue.push_back(card.createMerchant());
+            case Merchant:
+                cardsQueue.push_back(Merchant::createMerchant());
                 break;
-            }
-            case Pitfall: {
-                class Pitfall card;
-                cardsQueue.push_back(card.createPitfall());
+            case Pitfall:
+                cardsQueue.push_back(Pitfall::createPitfall());
                 break;
-            }
+            case Barfight:
+                cardsQueue.push_back(Barfight::createBarfight());
+            default:
+                throw DeckFileFormatError(cardsQueue.size()+1);
         }
+    }
+    if(cardsQueue.size()<MIN_CARDS)
+    {
+        throw DeckFileInvalidSize();
     }
     return cardsQueue;
 }
@@ -97,7 +95,7 @@ int Mtmchkin::initializePlayersNumber()
         printEnterTeamSizeMessage();
         getline(std::cin, input);
         numberOfPlayers = stoi(input);
-        if (numberOfPlayers < 2 || numberOfPlayers > 6)
+        if (numberOfPlayers < MIN_PLAYER || numberOfPlayers > MAX_PLAYER)
         {
             printInvalidTeamSize();
             numberOfPlayers = 0;
@@ -144,7 +142,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                     }
                     currentName += currentChar;
                 }
-                if (currentName.length() > 15 || currentName.empty())
+                if (currentName.length() > MAX_LENGTH_NAME || currentName.empty())
                 {
                     printInvalidName();
                     printInsertPlayerMessage();
@@ -206,25 +204,30 @@ void Mtmchkin::playRound()
     if (m_numberOfPlayersInGames == 0)
     {
         printGameEndMessage();
-
-        // end the game here
     }
+    m_numberOfRounds++;
 }
 
 
 void Mtmchkin::printLeaderBoard() const
 {
-    for (Player* player = m_losers.front().get() ; player != nullptr ; player++)
+    Player* player;
+    int ranking=1;
+    printLeaderBoardStartMessage();
+    for (player = m_winners.front().get() ; player != nullptr ; player++)
     {
-        player->printInfo();
+        printPlayerLeaderBoard( ranking, *player);
+        ranking++;
     }
-    for (Player* player = m_playersQueue.front().get() ; player != nullptr ; player++)
+    for (player = m_playersQueue.front().get() ; player != nullptr ; player++)
     {
-        player->printInfo();
+        printPlayerLeaderBoard( ranking, *player);
+        ranking++;
     }
-    for (Player* player = m_winners.front().get() ; player != nullptr ; player++)
+    for (player = m_losers.front().get() ; player != nullptr ; player++)
     {
-        player->printInfo();
+        printPlayerLeaderBoard( ranking, *player);
+        ranking++;
     }
 }
 

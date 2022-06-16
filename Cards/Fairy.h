@@ -6,17 +6,16 @@
 class Fairy : public Appliance
 {
 public:
-    Fairy(int heal=10);
-    Fairy& operator=(const Fairy& fairy)=default;
-    Fairy(const Fairy&) = default;
-    ~Fairy()override=default;
-    std::unique_ptr<Fairy> createFairy();
-
+    explicit Fairy() = default;
+    ~Fairy()override = default;
+    static std::unique_ptr<Fairy> createFairy();
     void applyEncounter(std::unique_ptr<Player> player) override;
+    std::string gettype();
 
 
-protected:
-int healthHeal;
+private:
+    static const int HEALTH_HEAL=10;
+    const std::string type = "Fairy";
 
 };
 

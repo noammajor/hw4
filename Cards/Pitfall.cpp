@@ -1,24 +1,28 @@
 #include "Pitfall.h"
-#include "Player.h"
+
+
 void Pitfall::applyEncounter(std::unique_ptr<Player> player)
 {
-    if(player->getName().compare("Rogue"))
+    if(player->getName() == "Rogue")
     {
         return;
     }
     else
-        //look at later
-        player->damage(giveDamage);
+        player->damage(GIVE_DAMAGE);
+}
 
-}
-Pitfall::Pitfall(int damage)
-{
-  giveDamage=10;
-}
 
 std::unique_ptr<Pitfall> Pitfall::createPitfall()
 {
-    std::unique_ptr<Pitfall>PitfallCard(new Pitfall());
-    return PitfallCard;
+    std::unique_ptr<Pitfall> pitfallCard(new Pitfall());
+    if (!pitfallCard)
+    {
+        throw std::bad_alloc();
+    }
+    return pitfallCard;
+}
+std::string Pitfall::gettype()
+{
+    return type;
 }
 

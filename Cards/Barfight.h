@@ -5,16 +5,17 @@
 class Barfight : public Appliance
 {
 
-protected:
-    explicit Barfight(int damage = 10);
-    ~Barfight()=default;
-
+public:
+     explicit Barfight()=default;
+    ~Barfight() = default;
     void applyEncounter(std::unique_ptr<Player>) override;
-    std::unique_ptr<Barfight> createBarfight();
+    static  std::unique_ptr<Barfight> createBarfight();
+    std::string gettype();
 
 
 private:
-    int GiveDamage;
+    static const int GIVEDAMAGE=10;
+   const std::string type = "Barfight";
 
 };
 

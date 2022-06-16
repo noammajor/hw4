@@ -26,6 +26,3 @@ void Fighter::print(std::ostream& os) const
     printPlayerDetails(os, m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
 }
 
-
-const std::string Fighter::FIGHTER = "Fighter";
-

@@ -1,20 +1,21 @@
 #include "Merchant.h"
-#include "utilities.h"
-#include <iostream>
 
 
 void Merchant::applyEncounter(std::unique_ptr<Player> player)
 {
-    int whatToDo;
-    printMerchantInitialMessageForInteractiveEncounter(cout, player->getName(), player->getCoins());
-    std::cin>>whatToDo;
-    if (whatToDo!=BUY_NOTHING && whatToDo!=BUY_HP&& whatToDo!=BUY_FORCE)
+   std::string getFromPlayer;
+    printMerchantInitialMessageForInteractiveEncounter(std::cout, player->getName(), player->getCoins());
+    std::getline(std::cin,getFromPlayer);
+    int whatToDo=std::stoi(getFromPlayer);
+    while (whatToDo!=BUY_NOTHING && whatToDo!=BUY_HP&& whatToDo!=BUY_FORCE)
     {
         printInvalidInput();
-        std::cin>>whatToDo;
+        std::getline(std::cin,getFromPlayer);
+        whatToDo=std::stoi(getFromPlayer);
     }
     if(whatToDo==BUY_NOTHING)
     {
+        printMerchantSummary(std::cout,player->getName(), whatToDo, 0);
         return;
     }
     if (whatToDo==BUY_HP)
@@ -42,12 +43,19 @@ void Merchant::applyEncounter(std::unique_ptr<Player> player)
 
 std::unique_ptr<Merchant> Merchant::createMerchant()
 {
+
     std::unique_ptr<Merchant> merchantCard(new Merchant());
+    if (!merchantCard)
+    {
+        throw std::bad_alloc();
+    }
     return merchantCard;
 }
 
-
-
+std::string Merchant::gettype()
+{
+    return type;
+}
 
 
 
