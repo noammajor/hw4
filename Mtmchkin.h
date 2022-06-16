@@ -58,6 +58,9 @@ public:
 private:
     int m_numberOfRounds;
     int m_numberOfPlayersInGames;
+    static const int MINCARDS=5;
+    static const int MAXPLAYER=6;
+    static const int MINPLAYER=2;
     //int m_numberOfCards;
     std::deque<std::unique_ptr<Card>> m_cardsQueue;
     std::deque<std::unique_ptr<Player>> m_playersQueue;

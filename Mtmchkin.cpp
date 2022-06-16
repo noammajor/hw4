@@ -79,7 +79,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 throw DeckFileFormatError(cardsQueue.size()+1);
         }
     }
-    if(cardsQueue.size()<5)
+    if(cardsQueue.size()<MINCARDS)
     {
         throw DeckFileInvalidSize();
     }
@@ -96,7 +96,7 @@ int Mtmchkin::initializePlayersNumber()
         printEnterTeamSizeMessage();
         getline(std::cin, input);
         numberOfPlayers = stoi(input);
-        if (numberOfPlayers < 2 || numberOfPlayers > 6)
+        if (numberOfPlayers < MINPLAYER || numberOfPlayers > MAXPLAYER)
         {
             printInvalidTeamSize();
             numberOfPlayers = 0;
