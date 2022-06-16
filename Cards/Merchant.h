@@ -13,7 +13,7 @@ public:
     ~Merchant()override = default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
-    std::unique_ptr<Merchant> createMerchant();
+    static std::unique_ptr<Merchant> createMerchant();
 
 
 private:

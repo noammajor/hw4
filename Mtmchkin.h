@@ -77,10 +77,10 @@ private:
 
     static std::map <std::string,int> initializeCardsMap();
 
-    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
+     std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
     std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
-    static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
+   static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 
 
     enum jobs

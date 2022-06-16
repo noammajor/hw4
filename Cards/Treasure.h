@@ -12,7 +12,7 @@ public:
 
     void applyEncounter(std::unique_ptr<Player> player) override;
 
-    std::unique_ptr<Treasure> createTreasure();
+   static std::unique_ptr<Treasure> createTreasure();
 
 
 private:

@@ -10,7 +10,7 @@ public:
     Fairy& operator=(const Fairy& fairy)=default;
     Fairy(const Fairy&) = default;
     ~Fairy()override=default;
-    std::unique_ptr<Fairy> createFairy();
+    static std::unique_ptr<Fairy> createFairy();
 
     void applyEncounter(std::unique_ptr<Player> player) override;
 

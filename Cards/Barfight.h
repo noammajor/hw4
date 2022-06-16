@@ -10,7 +10,7 @@ protected:
     ~Barfight()=default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
-    std::unique_ptr<Barfight> createBarfight();
+   static  std::unique_ptr<Barfight> createBarfight();
 
 
 private:
