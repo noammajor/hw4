@@ -2,6 +2,7 @@
 #include "Player.h"
 
 
+
 void Barfight::applyEncounter(std::unique_ptr<Player> player)
 {
     if(player->getName() == "Fighter")
@@ -14,6 +15,11 @@ void Barfight::applyEncounter(std::unique_ptr<Player> player)
     }
 
 }
+std::string Barfight::gettype()
+{
+    return type;
+}
+ //const std::string Appliance::m_type="Barfight";
 
 
 

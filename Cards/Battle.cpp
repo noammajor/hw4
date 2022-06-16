@@ -1,5 +1,4 @@
 #include "Battle.h"
-#include "Player.h"
 
 Battle::Battle(int force, int health, int loot, std::string) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
 {
@@ -40,4 +39,16 @@ void Battle::loseBattle(Player &player, int health)
     {
         //leadership board
     }
+}
+
+void Battle::printCard()
+{
+    printCardDetails(std::cout, m_monster);
+    bool isDragon=false;
+    if(m_monster=="Dragon")
+    {
+        isDragon=true;
+    }
+     printMonsterDetails(std::cout,  m_battleForce,  m_healthLose,  m_gainedLoot,  isDragon);
+     printEndOfCardDetails(std::cout);
 }

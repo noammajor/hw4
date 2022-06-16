@@ -11,9 +11,11 @@ public:
     ~Treasure() override = default;
     void applyEncounter(std::unique_ptr<Player> player) override;
     static std::unique_ptr<Treasure> createTreasure();
+    std::string gettype();
 
 private:
     static const int LOOT = 10;
+    const std::string type = "Treasure"
 
 };
 

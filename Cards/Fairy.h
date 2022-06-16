@@ -7,16 +7,15 @@ class Fairy : public Appliance
 {
 public:
     explicit Fairy() = default;
-    Fairy& operator=(const Fairy& fairy) = default;
-    Fairy(const Fairy&) = default;
     ~Fairy()override = default;
     static std::unique_ptr<Fairy> createFairy();
-
     void applyEncounter(std::unique_ptr<Player> player) override;
+    std::string gettype();
 
 
 private:
     static const int HEALTH_HEAL=10;
+    const std::string type = "Fairy";
 
 };
 
