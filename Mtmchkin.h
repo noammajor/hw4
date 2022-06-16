@@ -70,10 +70,8 @@ private:
     std::string DRAGCOMP = "Dragon";
     std::string GOBLCOMP = "Goblin";
     std::string FairCOMP = "Fairy";*/
-    enum TypeOfCard
-    {
-    Vampire,Dragon,Goblin,Fairy,Treasure,Merchant,Pitfall
-    };
+
+
 
     static std::map <std::string,int> initializeCardsMap();
 
@@ -81,6 +79,18 @@ private:
     std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
     static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
+
+
+    enum TypeOfCard
+    {
+        Vampire,
+        Dragon,
+        Goblin,
+        Fairy,
+        Treasure,
+        Merchant,
+        Pitfall
+    };
 
 
     enum jobs
@@ -91,7 +101,6 @@ private:
     };
 
 
-    //std::string TYPE_MONSTER = "Vampire";
 
 
 };

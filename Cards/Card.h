@@ -42,6 +42,7 @@ public:
     Card(const Card&) = default;
     virtual ~Card() = 0;
     virtual Card& operator=(const Card& other) = default;
+    void printCard();
 
 };
 
