@@ -14,6 +14,7 @@ public:
 
     void applyEncounter(std::unique_ptr<Player>) override;
     static std::unique_ptr<Merchant> createMerchant();
+    std::string gettype();
 
 
 private:
@@ -22,6 +23,7 @@ private:
     static const int BUY_NOTHING = 0;
     static const int BUY_HP = 1;
     static const int BUY_FORCE = 2;
+    const std::string type = "Merchant";
 
 
 };

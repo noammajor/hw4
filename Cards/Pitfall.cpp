@@ -21,4 +21,8 @@ std::unique_ptr<Pitfall> Pitfall::createPitfall()
     }
     return PitfallCard;
 }
+std::string Pitfall::gettype()
+{
+    return type;
+}
 

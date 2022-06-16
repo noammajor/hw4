@@ -18,3 +18,7 @@ std::unique_ptr<Treasure> Treasure::createTreasure()
     return treasureCard;
 }
 
+std::string Treasure::gettype()
+{
+    return type;
+}
