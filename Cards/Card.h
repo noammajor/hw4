@@ -40,9 +40,9 @@ public:
      * Here we are explicitly telling the compiler to use the default methods
     */
 
-    virtual ~Card() = 0;
+    virtual ~Card() = default;
 
-   virtual void printCard() = 0;
+    virtual void printCard() = 0;
 
 };
 

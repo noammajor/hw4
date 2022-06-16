@@ -54,7 +54,7 @@ public:
     /*
      *D'tor
      */
-    virtual ~Player() = 0;
+    virtual ~Player() = default;
 
     //needs to be made
 
