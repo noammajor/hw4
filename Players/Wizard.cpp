@@ -8,7 +8,7 @@ Wizard::Wizard(const std::string &name) :  Player(name, WIZARD)
 }
 
 
-void Player::heal(int HpToHeal)
+void Wizard::heal(int HpToHeal)
 {
     m_playerhealthpoints += 2*HpToHeal;
 }

@@ -34,13 +34,13 @@ public:
      * @return
      *      void
     */
-    virtual void applyEncounter(std::unique_ptr<Player>)=0;
+    virtual void applyEncounter(std::unique_ptr<Player>) = 0;
 
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
     Card(const Card&) = default;
-    virtual ~Card()=0;
+    virtual ~Card() = 0;
     virtual Card& operator=(const Card& other) = default;
 
 };

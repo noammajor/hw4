@@ -21,7 +21,9 @@
 
 using namespace std;
 
-Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>())
+Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
+        m_numberOfRounds(0)
+
 {
     m_cardsMap = initializeCardsMap();
     m_cardsQueue = initializeCardsQueue(fileName);
@@ -29,7 +31,6 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Play
     m_numberOfPlayersInGames = initializePlayersNumber();
     m_playersJobsMap = initializeJobsMap();
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
-    m_numberOfRounds = 0; // check if  it is the correct number in the prints
 }
 
 
@@ -45,7 +46,6 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
         {
             break;
         }
-
         switch (m_cardsMap[line]) {
             case Dragon: {
                 class Dragon card;
@@ -62,7 +62,6 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 cardsQueue.push_back(card.createGoblin());
                 break;
             }
-
             case Fairy: {
                 class Fairy card;
                 cardsQueue.push_back(card.createFairy());
@@ -110,7 +109,7 @@ int Mtmchkin::initializePlayersNumber()
 
 std::map <std::string, int> Mtmchkin::initializeJobsMap()
 {
-    static std::map<std::string, int> playersJobs =
+    std::map<std::string, int> playersJobs =
             {
                     {"Rogue",   ROGUE},
                     {"Wizard",   WIZARD},
@@ -123,8 +122,11 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
 {
     std::deque<std::unique_ptr<Player>> playersQueue;
+    char currentChar;
+    string input;
     string currentName;
     string currentJob;
+    int i = 0;
     bool correct;
     for (int i = 0; i < numberOfPlayers ; i++)
     {
@@ -132,7 +134,13 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
         correct = true;
         do
         {
-            getline(std::cin, currentName);
+            //we need to read only the first word with no spaces!!
+
+            getline(std::cin, input);
+            while(input[i] != ' ')
+            {
+                currentName += input[i];
+            }
             while (currentName.length() > 15 || currentName.empty())
             {
                 printInvalidName();
@@ -177,7 +185,7 @@ void Mtmchkin::playRound()
         if (move(currentPlayer)->getLevel() == 10)
         {
             m_numberOfPlayersInGames--;
-            m_winners.push_back(std::move(currentPlayer));
+            m_winners.push_front(std::move(currentPlayer));
         }
         else if (move(currentPlayer)->isKnockedOut())
         {

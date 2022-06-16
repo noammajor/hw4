@@ -64,7 +64,7 @@ private:
     std::deque<std::unique_ptr<Player>> m_winners;
     std::deque<std::unique_ptr<Player>> m_losers;
     static std::map <std::string, int> m_playersJobsMap;
-    static std::map<std::string, int> m_cardsMap;
+    std::map<std::string, int> m_cardsMap;
 
     /*std::string VAMPCOMP = "Vampire";
     std::string DRAGCOMP = "Dragon";
@@ -77,8 +77,8 @@ private:
 
     static std::map <std::string,int> initializeCardsMap();
 
-    static std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
-    static std::map <std::string, int> initializeJobsMap();
+    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
+    std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
     static std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 

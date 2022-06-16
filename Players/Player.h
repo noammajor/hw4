@@ -24,6 +24,7 @@
 
 class Player
 {
+
 public:
 
     /*
@@ -94,7 +95,7 @@ public:
     /*
      *heals the players HP during the game
      */
-     void heal(int HpToHeal);
+     virtual void heal(int HpToHeal);
 
 
     /*
@@ -124,7 +125,7 @@ public:
     /*
      *returns the attack strength of the player which is force+level
      */
-    int getAttackStrength() const;
+    virtual int getAttackStrength() const;
 
 
 
@@ -141,7 +142,7 @@ protected:
     HealthPoints m_playerhealthpoints;
     int m_coins;
 
-    virtual void print(std::ostream& os) const;
+    virtual void print(std::ostream& os) const = 0;
 
 private:
     static const int DEFAULT_FORCE = 5;

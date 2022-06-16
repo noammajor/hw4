@@ -1,21 +1,18 @@
 #include "Treasure.h"
+#include "Player.h"
+#include "Card.h"
 
-
-Treasure::Treasure(int payment)
-{
-giveTreasure=payment;
-}
 
 
 void Treasure::applyEncounter(std::unique_ptr<Player> player)
 {
-     player->addCoins(giveTreasure);
+     player->addCoins(LOOT);
 }
 
 
 std::unique_ptr<Treasure> Treasure::createTreasure()
 {
-    std::unique_ptr<Treasure>TreasureCard(new Treasure());
-    return TreasureCard;
+    std::unique_ptr<Treasure> treasureCard(new Treasure());
+    return treasureCard;
 }
 

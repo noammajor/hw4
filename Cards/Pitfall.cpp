@@ -16,7 +16,7 @@ Pitfall::Pitfall(int damage)
   giveDamage=10;
 }
 
-std::unique_ptr<Pitfall> createPitfall()
+std::unique_ptr<Pitfall> Pitfall::createPitfall()
 {
     std::unique_ptr<Pitfall>PitfallCard(new Pitfall());
     return PitfallCard;

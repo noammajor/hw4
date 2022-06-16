@@ -3,14 +3,15 @@
 #include "Card.h"
 #include <string>
 
+
 class Battle : public Card
 {
-public:
-    Battle();
+
+protected:
 
     Battle(int force, int health, int loot, std::string Type);
     
-    virtual ~Battle() = 0;
+    ~Battle() override = default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
 
@@ -18,7 +19,7 @@ public:
 
     void loseBattle(Player& player,int health);
 
-protected:
+private:
     std::string const m_monster;
     int const m_battleForce;
     int const m_healthLose;

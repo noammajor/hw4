@@ -7,10 +7,11 @@
 
 class Wizard: public Player
 {
+
 public:
     Wizard(const std::string &name);
     ~Wizard() override = default;
-    void heal(int HpToHeal);
+    void heal(int HpToHeal) override;
     static std::unique_ptr<Wizard> createWizard(const std::string &name);
 
     void print(std::ostream& os) const override;

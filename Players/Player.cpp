@@ -10,6 +10,9 @@ Player::Player(const std::string& name, const std::string& job) : m_name(name), 
 }
 
 
+Player::~Player() {}
+
+
 void Player::printInfo() const
 {
     printPlayerDetails(std::cout , m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);

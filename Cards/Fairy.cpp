@@ -15,7 +15,7 @@ Fairy::Fairy(int heal)
 {
     healthHeal=heal;
 }
-std::unique_ptr<Fairy> createFairy()
+std::unique_ptr<Fairy> Fairy::createFairy()
 {
     std::unique_ptr<Fairy>FairyCard(new Fairy());
     return FairyCard;

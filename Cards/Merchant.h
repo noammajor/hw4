@@ -3,18 +3,18 @@
 #include "Player.h"
 #include "utilities.h"
 #include "Appliance.h"
-using std::cout;
+
 
 class Merchant : public Appliance
 {
+
 public:
-    Merchant()=default;
-    ~Merchant()override=default;
+    Merchant() = default;
+    ~Merchant()override = default;
 
     void applyEncounter(std::unique_ptr<Player>) override;
     std::unique_ptr<Merchant> createMerchant();
 
-protected:
 
 private:
     static const int HP_COST = 5;

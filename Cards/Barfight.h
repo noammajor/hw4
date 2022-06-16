@@ -4,7 +4,8 @@
 
 class Barfight : public Appliance
 {
-public:
+
+protected:
     explicit Barfight(int damage = 10);
     ~Barfight()=default;
 
@@ -14,7 +15,6 @@ public:
 
 private:
     int GiveDamage;
-
 
 };
 

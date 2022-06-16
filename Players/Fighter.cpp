@@ -8,7 +8,7 @@ Fighter::Fighter(const std::string &name) :  Player(name, FIGHTER)
 }
 
 
-int Player::getAttackStrength() const
+int Fighter::getAttackStrength() const
 {
     return (m_level + m_force*2);
 }
