@@ -22,6 +22,7 @@ std::unique_ptr<Fighter> Fighter::createFighter(const std::string &name)
 
 void Fighter::print() const
 {
-    printPlayerDetails(std::cout, m_name, FIGHTER, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
+    printPlayerDetails(std::cout, this->m_name, this->FIGHTER, this->m_level, this->m_force,this-> m_playerhealthpoints.getHP(), this->m_coins);
+
 }
 

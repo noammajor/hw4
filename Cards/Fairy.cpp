@@ -1,12 +1,12 @@
 #include "Fairy.h"
 
 
-void Fairy::applyEncounter(std::unique_ptr<Player> player)
+void Fairy::applyEncounter(Player& player)
 {
-    if(player->getName() == "Wizard")
+    if(player.getName() == "Wizard")
     {
         //look at later
-        player->heal(HEALTH_HEAL);
+        player.heal(HEALTH_HEAL);
     }
     else
         return;

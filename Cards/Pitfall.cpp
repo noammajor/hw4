@@ -1,14 +1,14 @@
 #include "Pitfall.h"
 
 
-void Pitfall::applyEncounter(std::unique_ptr<Player> player)
+void Pitfall::applyEncounter(Player& player)
 {
-    if(player->getName() == "Rogue")
+    if(player.getName() == "Rogue")
     {
         return;
     }
     else
-        player->damage(GIVE_DAMAGE);
+        player.damage(GIVE_DAMAGE);
 }
 
 

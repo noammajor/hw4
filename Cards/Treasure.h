@@ -9,7 +9,7 @@ class Treasure : public Appliance
 public:
     explicit Treasure() = default;
     ~Treasure() override = default;
-    void applyEncounter(std::unique_ptr<Player> player) override;
+    void applyEncounter(Player& player) override;
     static std::unique_ptr<Treasure> createTreasure();
     std::string getType() const;
 

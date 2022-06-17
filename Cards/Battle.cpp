@@ -5,15 +5,15 @@ Battle::Battle(int force, int health, int loot) : m_battleForce(force),m_healthL
 }
 
 
-void Battle::applyEncounter(std::unique_ptr<Player> player)
+void Battle::applyEncounter(Player& player)
 {
-    if (player->getAttackStrength() >= m_battleForce)
+    if (player.getAttackStrength() >= m_battleForce)
     {
-        winBattle( *player, m_gainedLoot);
+        winBattle( player, m_gainedLoot);
         return;
     }
     else
-        loseBattle( *player,m_healthLose);
+        loseBattle( player,m_healthLose);
 }
 
 

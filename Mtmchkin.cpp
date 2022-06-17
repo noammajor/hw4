@@ -15,14 +15,14 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Play
 }
 
 
-std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string& fileName)
+std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string fileName)
 {
-    ifstream cards("fileName.txt");
+    std::ifstream cards(fileName);
     string line;
     std::deque<std::unique_ptr<Card>> cardsQueue;
-    if(!cards.is_open())
+   if(!cards)
     {
-      throw DeckFileNotFound();
+     throw DeckFileNotFound();
     }
     while (getline(cards, line))
     {
@@ -101,9 +101,9 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
 {
     std::deque<std::unique_ptr<Player>> playersQueue;
-    char currentChar;
+    int currentChar;
     string input;
-    string currentName = "/0";
+    string currentName= "/0";
     string currentJob = "/0";
     bool correct, playerCreated;
     for (int i = 0; i < numberOfPlayers ; i++)
@@ -115,7 +115,21 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
             {
                 correct = true;
                 playerCreated = true;
-                while (EOF != (currentChar = getchar()))
+                getline(std::cin,input);
+               currentChar=input.find(" ",0);
+               if(currentChar > MAX_LENGTH_NAME|| currentChar==0)
+               {
+                   printInvalidName();
+                   printInsertPlayerMessage();
+                   getline(std::cin,input);
+                   currentChar=input.find(" ",0);
+                   correct = false;
+               }
+                currentName=input.substr(0,currentChar);
+                currentJob=input.substr(currentChar+1);
+
+            }
+               /* while (EOF != (currentChar = getchar()))
                 {
                     if (currentChar == ' ')
                     {
@@ -131,8 +145,8 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                     correct = false;
                 }
             }
+*/
             while (!correct);
-                getline(std::cin, currentJob);
                 switch (m_playersJobsMap[currentJob])
                 {
                     case ROGUE:
@@ -165,9 +179,9 @@ void Mtmchkin::playRound()
         m_cardsQueue.pop_front();
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         m_playersQueue.pop_front();
-        currentCard->applyEncounter(move(currentPlayer));
+        currentCard->applyEncounter(*currentPlayer);
         m_cardsQueue.push_back(move(currentCard));
-        if (move(currentPlayer)->getLevel() == 10)
+        if (currentPlayer->getLevel() == 10)
         {
             m_numberOfPlayersInGames--;
             m_winners.push_back(std::move(currentPlayer));
@@ -193,24 +207,38 @@ void Mtmchkin::playRound()
 
 void Mtmchkin::printLeaderBoard() const
 {
-    Player* player;
     int ranking=1;
     printLeaderBoardStartMessage();
-    for (player = m_winners.front().get() ; player != nullptr ; player++)
+    for (deque<unique_ptr<Player>>::const_iterator iter = m_winners.begin() ; iter != m_winners.end() ; iter++)
+ {
+     printPlayerLeaderBoard( ranking,**iter);
+     ranking++;
+ }
+    for (deque<unique_ptr<Player>>::const_iterator iter = m_playersQueue.begin() ; iter != m_playersQueue.end() ; iter++)
+ {
+     printPlayerLeaderBoard( ranking, **iter);
+     ranking++;
+ }
+    for (deque<unique_ptr<Player>>::const_iterator iter = m_losers.begin() ; iter != m_losers.end() ; iter++)
     {
-        printPlayerLeaderBoard( ranking, *player);
-        ranking++;
-    }
-    for (player = m_playersQueue.front().get() ; player != nullptr ; player++)
-    {
-        printPlayerLeaderBoard( ranking, *player);
-        ranking++;
-    }
-    for (player = m_losers.front().get() ; player != nullptr ; player++)
-    {
-        printPlayerLeaderBoard( ranking, *player);
-        ranking++;
-    }
+     printPlayerLeaderBoard(ranking, **iter);
+     ranking++;
+ }
+/* for (player=m_winners.front().get() ; player != nullptr ; player++)
+ {
+     printPlayerLeaderBoard( ranking,*player);
+     ranking++;
+ }
+ for (player = m_playersQueue.front().get() ; player != nullptr ; player++)
+ {
+     printPlayerLeaderBoard( ranking, *player);
+     ranking++;
+ }
+ for (player = m_losers.front().get() ; player != nullptr ; player++)
+ {
+     printPlayerLeaderBoard( ranking, *player);
+     ranking++;
+ }*/
 }
 
 

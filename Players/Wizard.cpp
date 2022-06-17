@@ -26,5 +26,5 @@ std::unique_ptr<Wizard> Wizard::createWizard(const std::string &name)
 
 void Wizard::print() const
 {
-    printPlayerDetails(std::cout, m_name, WIZARD, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
+    printPlayerDetails(std::cout, this->m_name, this->WIZARD, this->m_level, this->m_force,this-> m_playerhealthpoints.getHP(), this->m_coins);
 }

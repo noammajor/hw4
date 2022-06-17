@@ -2,9 +2,9 @@
 
 
 
-void Treasure::applyEncounter(std::unique_ptr<Player> player)
+void Treasure::applyEncounter(Player& player)
 {
-     player->addCoins(LOOT);
+     player.addCoins(LOOT);
 }
 
 

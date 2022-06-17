@@ -13,7 +13,7 @@ protected:
     
     ~Battle() override = default;
 
-    void applyEncounter(std::unique_ptr<Player>) override;
+    void applyEncounter(Player& player) override;
 
     void winBattle(Player& player,int loot);
 

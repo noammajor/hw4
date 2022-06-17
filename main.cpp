@@ -27,6 +27,22 @@ int main(int argc, char** argv)
     {
         std::cout << e.what();
     }
+    catch (const DeckFileFormatError& e)
+    {
+        std::cout << e.what();
+    }
+    catch (const DeckFileInvalidSize& e)
+    {
+        std::cout << e.what();
+    }
+    catch (const DeckFileNotFound& e)
+    {
+        std::cout << e.what();
+    }
+
+
+
+
     /*vector<unique_ptr<Card>> cards;
     cards.push_back(unique_ptr<Card>(new Goblin()));
     cards.push_back(unique_ptr<Card>(new Vampire()));

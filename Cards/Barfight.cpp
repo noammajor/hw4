@@ -3,15 +3,15 @@
 
 
 
-void Barfight::applyEncounter(std::unique_ptr<Player> player)
+void Barfight::applyEncounter(Player& player)
 {
-    if(player->getName() == "Fighter")
+    if(player.getName() == "Fighter")
     {
         return;
     }
     else
     {
-        player->damage(GIVEDAMAGE);
+        player.damage(GIVEDAMAGE);
     }
 
 }

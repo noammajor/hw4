@@ -8,9 +8,9 @@ class Barfight : public Appliance
 public:
      explicit Barfight()=default;
     ~Barfight() = default;
-    void applyEncounter(std::unique_ptr<Player>) override;
+    void applyEncounter(Player& player) override;
     static  std::unique_ptr<Barfight> createBarfight();
-    std::string getType() const;
+    std::string getType() const override;
 
 
 private:

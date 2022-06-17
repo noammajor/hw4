@@ -75,7 +75,7 @@ private:
     static const int MIN_CARDS=5;
     static const int MAX_PLAYER=6;
     static const int MIN_PLAYER=2;
-    static const int MAX_LENGTH_NAME=2;
+    static const int MAX_LENGTH_NAME=15;
     static const int MAX_LEVEL=10;
 
     std::deque<std::unique_ptr<Card>> m_cardsQueue;
@@ -103,7 +103,7 @@ private:
 
     static std::map <std::string,int> initializeCardsMap();
 
-    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string& fileName);
+    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string fileName);
     std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
     std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);

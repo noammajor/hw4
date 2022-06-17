@@ -24,6 +24,6 @@ std::unique_ptr<Rogue> Rogue::createRogue(const std::string &name)
 
 void Rogue::print() const
 {
-    printPlayerDetails(std::cout, m_name, ROGUE, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
+    printPlayerDetails(std::cout, this->m_name, this->ROGUE, this->m_level, this->m_force,this-> m_playerhealthpoints.getHP(), this->m_coins);
 }
 
