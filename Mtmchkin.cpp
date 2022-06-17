@@ -1,24 +1,5 @@
 #include "Mtmchkin.h"
-#include <memory>
-#include "Players/Player.h"
-#include <iostream>
-#include <queue>
-#include <fstream>
-#include <string>
-#include "Cards/Card.h"
-#include "Dragon.h"
-#include "Vampire.h"
-#include "Goblin.h"
-#include "Fairy.h"
-#include "Merchant.h"
-#include "Treasure.h"
-#include "Pitfall.h"
-#include "utilities.h"
-#include "Fighter.h"
-#include "Wizard.h"
-#include "Rogue.h"
-#include "Exception.h"
-#include "Barfight.h"
+
 
 using namespace std;
 
@@ -120,10 +101,10 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberOfPlayers)
 {
     std::deque<std::unique_ptr<Player>> playersQueue;
-    char currentChar = getchar();
+    char currentChar;
     string input;
-    string currentName;
-    string currentJob;
+    string currentName = "/0";
+    string currentJob = "/0";
     bool correct, playerCreated;
     for (int i = 0; i < numberOfPlayers ; i++)
     {

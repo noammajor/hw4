@@ -2,7 +2,7 @@
 #define HW4_TREASURE_H
 #include "Appliance.h"
 #include "Card.h"
-#include "Player.h"
+#include "../Players/Player.h"
 
 class Treasure : public Appliance
 {
@@ -11,7 +11,7 @@ public:
     ~Treasure() override = default;
     void applyEncounter(std::unique_ptr<Player> player) override;
     static std::unique_ptr<Treasure> createTreasure();
-    std::string gettype();
+    std::string getType() const;
 
 private:
     static const int LOOT = 10;

@@ -136,9 +136,9 @@ protected:
 
 
     const std::string m_name;
-    int m_level;
     int m_force;
     HealthPoints m_playerhealthpoints;
+    int m_level;
     int m_coins;
 
     virtual void print() const = 0;

@@ -4,35 +4,40 @@
 #include  <iostream>
 #include <string>
 
+
 class DeckFileNotFound : public std::exception
 {
 public:
-    std::string what()
+    const char* what() const noexcept override
     {
        return "Deck File Error: File not found";
     }
 };
+
+
 class DeckFileFormatError : public std::exception
 {
-private:
-    int line;
-    std::string message="Deck File Error: File format error in line ";
 public:
-    DeckFileFormatError(int size)
+    const char* what() const noexcept override
     {
-       line=size;
+        return m_message.c_str();
     }
-    std::string what()
+
+
+    DeckFileFormatError(int line) : m_message{"Deck File Error: File format error in line " + std::to_string(line)}
     {
-       message = message + std::to_string(line);
-        return message;
     }
+
+private:
+    std::string m_message;
+
 };
+
 
 class DeckFileInvalidSize : public std::exception
 {
 public:
-    std::string what()
+    const char* what() const noexcept override
     {
         return "Deck File Error: Deck size is invalid";
     }

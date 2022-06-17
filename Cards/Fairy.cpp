@@ -22,7 +22,7 @@ std::unique_ptr<Fairy> Fairy::createFairy()
     return FairyCard;
 }
 
-std::string Fairy::gettype()
+std::string Fairy::getType() const
 {
     return type;
 }

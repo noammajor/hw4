@@ -52,7 +52,7 @@ std::unique_ptr<Merchant> Merchant::createMerchant()
     return merchantCard;
 }
 
-std::string Merchant::gettype()
+std::string Merchant::getType() const
 {
     return type;
 }

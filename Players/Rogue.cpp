@@ -1,6 +1,5 @@
 #include "Rogue.h"
-#include "Player.h"
-#include "utilities.h"
+
 
 Rogue::Rogue(const std::string &name) :  Player(name)
 {
@@ -28,4 +27,3 @@ void Rogue::print() const
     printPlayerDetails(std::cout, m_name, ROGUE, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
 }
 
-////// delete m_job!!

@@ -1,8 +1,9 @@
-#include "Player.h"
 #ifndef HW4_ROGUE_H
 #define HW4_ROGUE_H
+#include "Player.h"
 #include <memory>
 #include <string>
+#include "../utilities.h"
 
 class Rogue  : public Player
 {

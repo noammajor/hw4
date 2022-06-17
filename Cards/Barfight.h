@@ -10,7 +10,7 @@ public:
     ~Barfight() = default;
     void applyEncounter(std::unique_ptr<Player>) override;
     static  std::unique_ptr<Barfight> createBarfight();
-    std::string gettype();
+    std::string getType() const;
 
 
 private:

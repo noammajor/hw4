@@ -4,8 +4,23 @@
 #include "Players/Player.h"
 #include <deque>
 #include <map>
-#include <queue>
 #include <memory>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "Cards/Dragon.h"
+#include "Cards/Vampire.h"
+#include "Cards/Goblin.h"
+#include "Cards/Fairy.h"
+#include "Cards/Merchant.h"
+#include "Cards/Treasure.h"
+#include "Cards/Pitfall.h"
+#include "utilities.h"
+#include "Players/Fighter.h"
+#include "Players/Wizard.h"
+#include "Players/Rogue.h"
+#include "Exception.h"
+#include "Cards/Barfight.h"
 
 
 class Mtmchkin
@@ -56,8 +71,6 @@ public:
     int getNumberOfRounds() const;
 
 private:
-    int m_numberOfRounds;
-    int m_numberOfPlayersInGames;
 
     static const int MIN_CARDS=5;
     static const int MAX_PLAYER=6;
@@ -71,6 +84,9 @@ private:
     std::deque<std::unique_ptr<Player>> m_losers;
     std::map <std::string, int> m_playersJobsMap;
     std::map<std::string, int> m_cardsMap;
+
+    int m_numberOfRounds;
+    int m_numberOfPlayersInGames;
 
 
     enum TypeOfCard

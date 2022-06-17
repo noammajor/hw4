@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Player.h"
 #include <memory>
+#include "../utilities.h"
 
 class Fighter  : public Player
 {

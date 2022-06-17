@@ -1,5 +1,5 @@
 #include "Barfight.h"
-#include "Player.h"
+
 
 
 
@@ -15,7 +15,7 @@ void Barfight::applyEncounter(std::unique_ptr<Player> player)
     }
 
 }
-std::string Barfight::gettype()
+std::string Barfight::getType() const
 {
     return type;
 }

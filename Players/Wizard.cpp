@@ -1,6 +1,5 @@
 #include "Wizard.h"
-#include "Player.h"
-#include "utilities.h"
+
 
 
 Wizard::Wizard(const std::string &name) :  Player(name)
