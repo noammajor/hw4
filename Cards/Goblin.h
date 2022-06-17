@@ -6,14 +6,12 @@ class Goblin: public Battle
 {
 public:
     Goblin();
-    Goblin& operator=(const Goblin& goblin) = default;
-    Goblin(const Goblin&) = default;
     ~Goblin() override = default;
     static std::unique_ptr<Goblin> createGoblin();
-
+    std::string getType() const override;
 
 private:
-       std::string static const TYPE_MONSTER;
+       std::string const TYPE_MONSTER = "Goblin";
        int static const GOBLIN_DAMAGE = 10;
        int static const GOBLIN_COINS = 2;
        int static const GOBLIN_FORCE = 6;

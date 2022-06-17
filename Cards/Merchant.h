@@ -1,7 +1,5 @@
 #ifndef HW4_MERCHANT_H
 #define HW4_MERCHANT_H
-#include "Player.h"
-#include "utilities.h"
 #include "Appliance.h"
 
 
@@ -14,7 +12,7 @@ public:
 
     void applyEncounter(std::unique_ptr<Player>) override;
     static std::unique_ptr<Merchant> createMerchant();
-    std::string gettype();
+    std::string getType() const;
 
 
 private:

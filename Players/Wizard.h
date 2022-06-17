@@ -2,7 +2,7 @@
 #define WIZARD_H_
 #include "Player.h"
 #include <memory>
-#include "utilities.h"
+#include "../utilities.h"
 
 
 class Wizard: public Player
@@ -15,6 +15,7 @@ public:
     static std::unique_ptr<Wizard> createWizard(const std::string &name);
 
     void print() const override;
+
 
 private:
     const std::string WIZARD = "Wizard";

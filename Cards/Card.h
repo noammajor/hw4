@@ -40,9 +40,13 @@ public:
      * Here we are explicitly telling the compiler to use the default methods
     */
 
-    virtual ~Card() = 0;
+    virtual ~Card() = default;
 
-   virtual void printCard() = 0;
+    virtual void printCard(std::ostream& os) const = 0;
+
+    virtual std::string getType() const = 0;
+
+    friend  std::ostream& operator<<(std::ostream& os, const Card& card);
 
 };
 

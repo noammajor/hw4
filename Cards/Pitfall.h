@@ -9,7 +9,7 @@ public:
     ~Pitfall()override=default;
     static std::unique_ptr<Pitfall> createPitfall();
     void applyEncounter(std::unique_ptr<Player> player) override;
-    std::string gettype();
+    std::string getType() const;
 
 private:
     static const int GIVE_DAMAGE = 10;
