@@ -14,10 +14,7 @@ public:
 
 
 private:
-    std::string TYPE_MONSTER = "Dragon";
-    int static const DRAGON_DAMAGE = 100;
-    int static const DRAGON_COINS = 1000;
-    int static const DRAGON_FORCE = 25;
+    cd hw
 };
 
 #endif
