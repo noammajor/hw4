@@ -35,7 +35,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    Mtmchkin(const std::string fileName);
+    explicit Mtmchkin(const std::string &fileName);
 
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -103,7 +103,7 @@ private:
 
     static std::map <std::string,int> initializeCardsMap();
 
-    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string fileName);
+    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string &fileName);
     std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
     std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);

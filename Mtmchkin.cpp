@@ -3,27 +3,35 @@
 
 using namespace std;
 
-Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
+Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
         m_numberOfRounds(0)
 
 {
+    cout<<"1";
     printStartGameMessage();
+    cout<< "2";
     m_cardsMap = initializeCardsMap();
+    cout<< "3";
     m_cardsQueue = initializeCardsQueue(fileName);
+    cout<<"4";
     m_numberOfPlayersInGames = initializePlayersNumber();
+    cout<<"5";
     m_playersJobsMap = initializeJobsMap();
+    cout<<"6";
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
+    cout<< "7";
 }
 
 
-std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string fileName)
+std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
 {
     std::ifstream cards(fileName);
     string line;
     std::deque<std::unique_ptr<Card>> cardsQueue;
-   if(!cards)
+    if(!cards)
     {
-     throw DeckFileNotFound();
+        cout<<"wrong exception";
+        throw DeckFileNotFound();
     }
     while (getline(cards, line))
     {
@@ -44,6 +52,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 break;
             case Fairy:
                 cardsQueue.push_back(Fairy::createFairy());
+                cout<<"made it here";
                 break;
             case Treasure:
                 cardsQueue.push_back(Treasure::createTreasure());
@@ -57,6 +66,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
             case Barfight:
                 cardsQueue.push_back(Barfight::createBarfight());
             default:
+                cout<< "why am i here";
                 throw DeckFileFormatError(cardsQueue.size()+1);
         }
     }
