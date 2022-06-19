@@ -3,12 +3,13 @@
 
 void Pitfall::applyEncounter(Player& player)
 {
-    if(player.getName() == "Rogue")
+    bool isRogue=true;
+    if(player.getName() != "Rogue")
     {
-        return;
-    }
-    else
         player.damage(GIVE_DAMAGE);
+        isRogue=false;
+    }
+    printPitfallMessage( isRogue);
 }
 
 

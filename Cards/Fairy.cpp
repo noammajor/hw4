@@ -3,13 +3,13 @@
 
 void Fairy::applyEncounter(Player& player)
 {
+    bool isWizard=false;
     if(player.getName() == "Wizard")
     {
-        //look at later
+        isWizard=true;
         player.heal(HEALTH_HEAL);
     }
-    else
-        return;
+        printFairyMessage( isWizard);
 }
 
 std::unique_ptr<Fairy> Fairy::createFairy()

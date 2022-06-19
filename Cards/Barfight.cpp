@@ -5,14 +5,14 @@
 
 void Barfight::applyEncounter(Player& player)
 {
-    if(player.getName() == "Fighter")
+    bool isFighter= true;
+    if(player.getName() != "Fighter")
     {
-        return;
-    }
-    else
-    {
+        isFighter= false;
         player.damage(GIVEDAMAGE);
     }
+    printBarfightMessage( isFighter);
+
 
 }
 std::string Barfight::getType() const
