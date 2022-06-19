@@ -2,6 +2,8 @@
 #define BATTLE_H_
 #include "Card.h"
 #include <string>
+#include <iostream>
+#include <fstream>
 
 
 class Battle : public Card
@@ -21,6 +23,8 @@ protected:
     void printCard(std::ostream& os) const override;
 
     virtual std::string getType() const = 0;
+
+    //friend  std::ostream& operator<<(std::ostream& os, const Battle& card);
 
 private:
     int const m_battleForce;

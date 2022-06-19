@@ -11,7 +11,7 @@ public:
     void printCard(std::ostream& os) const override;
     std::string getType() const override = 0;
 
-    //friend  std::ostream& operator<<(std::ostream& os, const Card& card);
+    //friend  std::ostream& operator<<(std::ostream& os, const Appliance& card);
 
 private:
 
