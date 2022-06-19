@@ -4,7 +4,7 @@
 void Fairy::applyEncounter(Player& player)
 {
     bool isWizard=false;
-    if(player.getName() == "Wizard")
+    if(player. == "Wizard")
     {
         isWizard=true;
         player.heal(HEALTH_HEAL);
