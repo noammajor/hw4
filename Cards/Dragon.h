@@ -12,6 +12,7 @@ public:
 
     std::string getType() const override;
 
+
 private:
     const std::string TYPE_MONSTER = "Dragon";
     int static const DRAGON_DAMAGE = 100;

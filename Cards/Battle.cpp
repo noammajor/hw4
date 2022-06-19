@@ -1,5 +1,6 @@
 #include "Battle.h"
-
+#include <iostream>
+using namespace std;
 Battle::Battle(int force, int health, int loot) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
 {
 }
@@ -33,12 +34,26 @@ void Battle::loseBattle(Player &player, int health)
 
 void Battle::printCard(std::ostream& os) const
 {
-    printCardDetails(std::cout,getType());
+    printCardDetails(os,getType());
     bool isDragon=false;
     if(getType() == "Dragon")
     {
         isDragon = true;
     }
-     printMonsterDetails(std::cout,  m_battleForce,  m_healthLose,  m_gainedLoot,  isDragon);
-     printEndOfCardDetails(std::cout);
+     printMonsterDetails(os,  m_battleForce,  m_healthLose,  m_gainedLoot,  isDragon);
+     printEndOfCardDetails(os);
 }
+
+/*
+std::ostream& operator<<(std::ostream& os, const Battle& card)
+{
+    printCardDetails(os,card.getType());
+    bool isDragon=false;
+    if(card.getType() == "Dragon")
+    {
+        isDragon = true;
+    }
+    printMonsterDetails(os,  card.m_battleForce,  card.m_healthLose,  card.m_gainedLoot,  isDragon);
+    printEndOfCardDetails(os);
+    return os;
+}*/

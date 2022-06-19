@@ -2,8 +2,14 @@
 
 void Appliance::printCard(std::ostream& os) const
 {
-    printCardDetails(std::cout, getType());
-    printEndOfCardDetails(std::cout);
+    printCardDetails(os, getType());
+    printEndOfCardDetails(os);
 }
 
-
+/*
+std::ostream& operator<<(std::ostream& os, const Appliance& card)
+{
+    printCardDetails(os, card.getType());
+    printEndOfCardDetails(os);
+    return os;
+}*/

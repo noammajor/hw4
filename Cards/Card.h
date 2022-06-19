@@ -5,6 +5,8 @@
 #include "../Players/Player.h"
 #include "../utilities.h"
 #include <memory>
+#include <iostream>
+#include <ostream>
 
 /*
  *  CardType:
