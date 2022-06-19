@@ -7,6 +7,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_winners(deque<unique_ptr<Play
         m_numberOfRounds(0)
 
 {
+    printStartGameMessage();
     m_cardsMap = initializeCardsMap();
     m_cardsQueue = initializeCardsQueue(fileName);
     m_numberOfPlayersInGames = initializePlayersNumber();
@@ -171,7 +172,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
 
 void Mtmchkin::playRound()
 {
-    printRoundStartMessage(m_numberOfRounds);
+    printRoundStartMessage(m_numberOfRounds + 1);
     for (int i = m_numberOfPlayersInGames ; i > 0 ; i--)
     {
         printTurnStartMessage(m_playersQueue.front()->getName());
@@ -199,7 +200,6 @@ void Mtmchkin::playRound()
     if (m_numberOfPlayersInGames == 0)
     {
         printGameEndMessage();
-        printLeaderBoard();
     }
     m_numberOfRounds++;
 }
