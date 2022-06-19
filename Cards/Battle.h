@@ -19,7 +19,7 @@ protected:
 
     void winBattle(Player& player,int loot);
 
-    void loseBattle(Player& player,int health);
+    virtual void loseBattle(Player& player,int health);
     void printCard(std::ostream& os) const override;
 
     virtual std::string getType() const = 0;

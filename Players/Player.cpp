@@ -53,11 +53,12 @@ int Player::getCoins() const
 
 void Player::buff (int powerUp)
 {
-    if (powerUp < 0)
-    {
-        return;
-    }
     m_force += powerUp;
+    if(m_force+=powerUp<0)
+    {
+        m_force=0;
+    }
+
 }
 
 
