@@ -5,7 +5,10 @@
 Fighter::Fighter(const std::string &name) :  Player(name)
 {
 }
-
+ std::string Fighter::getType() const
+{
+    return FIGHTER;
+}
 
 int Fighter::getAttackStrength() const
 {

@@ -27,6 +27,10 @@ void Merchant::applyEncounter(Player& player)
             printMerchantSummary(std::cout,player.getName(), whatToDo, HP_COST);
             return;
         }
+        else
+        {
+            printMerchantInsufficientCoins(std::cout);
+        }
     }
     if(whatToDo==BUY_FORCE)
     {
@@ -36,6 +40,10 @@ void Merchant::applyEncounter(Player& player)
             player.buff (1);
             printMerchantSummary(std::cout,player.getName(), whatToDo, FORCE_COST);
             return;
+        }
+        else
+        {
+            printMerchantInsufficientCoins(std::cout);
         }
     }
 }

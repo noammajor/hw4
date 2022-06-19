@@ -6,7 +6,7 @@
 void Barfight::applyEncounter(Player& player)
 {
     bool isFighter= true;
-    if(player.getName() != "Fighter")
+    if(player.getType() != "Fighter")
     {
         isFighter= false;
         player.damage(GIVEDAMAGE);

@@ -65,7 +65,7 @@ public:
 
 
 
-    //std::string getType() const;
+    virtual std::string getType() const=0;
 
 
     std::string getName() const;
