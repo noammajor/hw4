@@ -10,7 +10,6 @@ public:
     static std::unique_ptr<Vampire> createVampire();
 
     std::string getType() const override;
-    void applyEncounter(Player& player) override;
     void loseBattle(Player& player,int health) override;
 
 private:

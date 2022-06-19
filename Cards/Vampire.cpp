@@ -4,11 +4,7 @@
 Vampire::Vampire(): Battle(VAMPIRE_FORCE,VAMPIRE_DAMAGE,VAMPIRE_COINS)
 {
 }
-void Vampire::applyEncounter(Player& player)
-{
 
-
-}
 
 std::unique_ptr<Vampire> Vampire::createVampire()
 {
