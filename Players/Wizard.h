@@ -13,7 +13,7 @@ public:
     ~Wizard() override = default;
     void heal(int HpToHeal) override;
     static std::unique_ptr<Wizard> createWizard(const std::string &name);
-
+    std::string getType() const override;
     void print() const override;
 
 

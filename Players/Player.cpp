@@ -23,6 +23,7 @@ std::string Player::getType() const
 }*/
 
 
+
 std::string Player::getName() const
 {
     return m_name;

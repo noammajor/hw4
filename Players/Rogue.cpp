@@ -9,6 +9,10 @@ void Rogue::addCoins(int coinsToAdd)
 {
     m_coins += 2*coinsToAdd;
 }
+std::string Rogue::getType() const
+{
+    return ROGUE;
+}
 
 
 std::unique_ptr<Rogue> Rogue::createRogue(const std::string &name)

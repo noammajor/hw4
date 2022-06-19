@@ -4,7 +4,7 @@
 void Pitfall::applyEncounter(Player& player)
 {
     bool isRogue=true;
-    if(player.getName() != "Rogue")
+    if(player.getType() != "Rogue")
     {
         player.damage(GIVE_DAMAGE);
         isRogue=false;

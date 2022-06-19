@@ -11,7 +11,10 @@ void Wizard::heal(int HpToHeal)
 {
     m_playerhealthpoints += 2*HpToHeal;
 }
-
+std::string Wizard::getType() const
+{
+    return WIZARD;
+}
 
 std::unique_ptr<Wizard> Wizard::createWizard(const std::string &name)
 {

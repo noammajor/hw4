@@ -13,7 +13,7 @@ public:
     void addCoins(int coinsToAdd)  override;
 
     static std::unique_ptr<Rogue> createRogue(const std::string &name);
-
+    std::string getType() const override;
     void print() const override;
 
 private:

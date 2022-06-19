@@ -17,6 +17,7 @@ public:
     static std::unique_ptr<Fighter> createFighter(const std::string &name);
 
     void print() const override;
+    std::string getType() const override;
 
 private:
     const std::string FIGHTER = "Fighter";

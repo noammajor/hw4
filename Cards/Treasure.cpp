@@ -4,6 +4,7 @@
 
 void Treasure::applyEncounter(Player& player)
 {
+    printTreasureMessage();
      player.addCoins(LOOT);
 }
 
