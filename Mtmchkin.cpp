@@ -268,7 +268,8 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
                     {"Fairy", Fairy},
                     {"Treasure",Treasure},
                     {"Merchant", Merchant},
-                    {"Pitfall",Pitfall}
+                    {"Pitfall",Pitfall},
+                    {"Barfight",Barfight}
             };
     return setupCards;
 }

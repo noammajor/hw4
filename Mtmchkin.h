@@ -91,7 +91,7 @@ private:
 
     enum TypeOfCard
     {
-        Vampire,
+        Vampire=1,
         Dragon,
         Goblin,
         Fairy,
@@ -111,7 +111,7 @@ private:
 
     enum jobs
     {
-        ROGUE,
+        ROGUE=1,
         WIZARD,
         FIGHTER
     };
