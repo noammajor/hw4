@@ -16,6 +16,8 @@ Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(), m_losers(),m_numb
     m_playersJobsMap = initializeJobsMap();
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
 }
+
+
 std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
 {
     std::ifstream cards(fileName);
@@ -178,31 +180,11 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                {
                    printInvalidName();
                    printInsertPlayerMessage();
-                   //getline(std::cin,input);
-                   //currentChar=input.find(" ",0);
                    correct = false;
                }
                 currentName=input.substr(0,currentChar);
                 currentJob=input.substr(currentChar+1);
-
             }
-               /* while (EOF != (currentChar = getchar()))
-                {
-                    if (currentChar == ' ')
-                    {
-                        break;
-                    }
-                    currentName += currentChar;
-                }
-                if (currentName.length() > MAX_LENGTH_NAME || currentName.empty())
-                {
-                    printInvalidName();
-                    printInsertPlayerMessage();
-                    currentName = getchar();
-                    correct = false;
-                }
-            }
-*/
             while (!correct);
                 switch (m_playersJobsMap[currentJob])
                 {
