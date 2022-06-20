@@ -130,31 +130,11 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                {
                    printInvalidName();
                    printInsertPlayerMessage();
-                   //getline(std::cin,input);
-                   //currentChar=input.find(" ",0);
                    correct = false;
                }
                 currentName=input.substr(0,currentChar);
                 currentJob=input.substr(currentChar+1);
-
             }
-               /* while (EOF != (currentChar = getchar()))
-                {
-                    if (currentChar == ' ')
-                    {
-                        break;
-                    }
-                    currentName += currentChar;
-                }
-                if (currentName.length() > MAX_LENGTH_NAME || currentName.empty())
-                {
-                    printInvalidName();
-                    printInsertPlayerMessage();
-                    currentName = getchar();
-                    correct = false;
-                }
-            }
-*/
             while (!correct);
                 switch (m_playersJobsMap[currentJob])
                 {
@@ -232,21 +212,6 @@ void Mtmchkin::printLeaderBoard() const
      printPlayerLeaderBoard(ranking, **iter);
      ranking++;
  }
-/* for (player=m_winners.front().get() ; player != nullptr ; player++)
- {
-     printPlayerLeaderBoard( ranking,*player);
-     ranking++;
- }
- for (player = m_playersQueue.front().get() ; player != nullptr ; player++)
- {
-     printPlayerLeaderBoard( ranking, *player);
-     ranking++;
- }
- for (player = m_losers.front().get() ; player != nullptr ; player++)
- {
-     printPlayerLeaderBoard( ranking, *player);
-     ranking++;
- }*/
 }
 
 
