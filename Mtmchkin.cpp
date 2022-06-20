@@ -1,28 +1,76 @@
 #include "Mtmchkin.h"
 
 
+
 //using namespace std;
 
 //Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
   //      m_numberOfRounds(0)
 Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(), m_losers(),m_numberOfRounds(0)
 {
-    //cout<<"1";
+
     printStartGameMessage();
-    //cout<< "2";
     m_cardsMap = initializeCardsMap();
-    //cout<< "3";
     m_cardsQueue = initializeCardsQueue(fileName);
-    //cout<<"4";
     m_numberOfPlayersInGames = initializePlayersNumber();
-    //cout<<"5";
     m_playersJobsMap = initializeJobsMap();
-    //cout<<"6";
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
-    //cout<< "7";
 }
-
-
+std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
+{
+    std::ifstream cards(fileName);
+    if(!cards)
+    {
+        throw DeckFileNotFound();
+    }
+    std::string line;
+    std::deque<std::unique_ptr<Card>> cardsQueue;
+    while (getline(cards, line))
+    {
+        if (line.empty())
+        {
+            break;
+        }
+        switch (m_cardsMap[line])
+        {
+            case Dragon:
+                cardsQueue.push_back(Dragon::createDragon());
+                break;
+            case Vampire:
+                cardsQueue.push_back(Vampire::createVampire());
+                break;
+            case Goblin:
+                cardsQueue.push_back(Goblin::createGoblin());
+                break;
+            case Fairy:
+                cardsQueue.push_back(Fairy::createFairy());
+                break;
+            case Treasure:
+                cardsQueue.push_back(Treasure::createTreasure());
+                break;
+            case Merchant:
+                cardsQueue.push_back(Merchant::createMerchant());
+                break;
+            case Pitfall:
+                cardsQueue.push_back(Pitfall::createPitfall());
+                break;
+            case Barfight:
+                cardsQueue.push_back(Barfight::createBarfight());
+                break;
+            case Gang:
+               cardsQueue.push_back(Gang::createGang(cards));
+                break;
+            default:
+                throw DeckFileFormatError(cardsQueue.size()+1); //check size later
+        }
+    }
+    if(cardsQueue.size()<MIN_CARDS)
+    {
+        throw DeckFileInvalidSize();
+    }
+    return cardsQueue;
+}
+/*
 std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
 {
     std::ifstream cards(fileName);
@@ -65,7 +113,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 cardsQueue.push_back(Barfight::createBarfight());
                 break;
             default:
-                throw DeckFileFormatError(cardsQueue.size()+1);
+                throw DeckFileFormatError(cardsQueue.size()+1); //
         }
     }
     if(cardsQueue.size()<MIN_CARDS)
@@ -74,7 +122,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
     }
     return cardsQueue;
 }
-
+*/
 
 int Mtmchkin::initializePlayersNumber()
 {
@@ -277,7 +325,8 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
                     {"Treasure",Treasure},
                     {"Merchant", Merchant},
                     {"Pitfall",Pitfall},
-                    {"Barfight", Barfight}
+                    {"Barfight", Barfight},
+                    {"Gang", Gang}
             };
     return setupCards;
 }

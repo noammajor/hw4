@@ -1,0 +1,4 @@
+1. שורת השגיעה
+2. Apply encounter
+3. Copy const' operator=
+4.h files
