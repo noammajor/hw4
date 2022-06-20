@@ -9,21 +9,21 @@ int Battle::getdamage() const
     return m_healthLose;
 }
 
-void Battle::applyEncounter(Player& player)
+bool Battle::applyEncounter(Player& player)
 {
     if (player.getAttackStrength() >= m_battleForce)
     {
         winBattle( player, m_gainedLoot);
-        return;
+        return true;
     }
     else
         loseBattle( player,m_healthLose);
+    return false;
 }
 
 
 void Battle::winBattle(Player& player, int loot)
 {
-    player.levelUp();
     player.addCoins(loot);
     printWinBattle(player.getName(), getType());
 }

@@ -2,10 +2,11 @@
 
 
 
-void Treasure::applyEncounter(Player& player)
+bool Treasure::applyEncounter(Player& player)
 {
     printTreasureMessage();
      player.addCoins(LOOT);
+    return false;
 }
 
 

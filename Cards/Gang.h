@@ -35,6 +35,10 @@ private:
     };
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
+    int static const DRAGONDAMAGE = -100;
+    int static const VAMPIREDAMAGE = 10;
+    int static const GOBLINDAMAGE = 10;
+
 
 };
 

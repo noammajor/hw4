@@ -10,7 +10,7 @@ public:
      explicit Merchant() = default;
     ~Merchant()override = default;
 
-    void applyEncounter(Player& player) override;
+    bool applyEncounter(Player& player) override;
     static std::unique_ptr<Merchant> createMerchant();
     std::string getType() const override;
 
