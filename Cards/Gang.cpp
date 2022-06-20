@@ -1,5 +1,10 @@
 #include "Gang.h"
 
+std::string Gang::getType() const
+{
+    return TYPE;
+}
+
 
 Gang::Gang(std::ifstream& cards, int& linesCounter) : m_battleMap (initializeBattleMap())
 {

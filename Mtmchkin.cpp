@@ -223,7 +223,11 @@ void Mtmchkin::playRound()
         m_playersQueue.pop_front();
         winbattle = currentCard->applyEncounter(*currentPlayer);
         if (winbattle)
+        {
             currentPlayer->levelUp();
+            printWinBattle(currentPlayer->getName(),currentPlayer-> getType());
+        }
+
         m_cardsQueue.push_back(move(currentCard));
         if (currentPlayer->getLevel() == 10)
         {

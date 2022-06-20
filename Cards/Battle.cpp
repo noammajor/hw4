@@ -25,7 +25,6 @@ bool Battle::applyEncounter(Player& player)
 void Battle::winBattle(Player& player, int loot)
 {
     player.addCoins(loot);
-    printWinBattle(player.getName(), getType());
 }
 
 

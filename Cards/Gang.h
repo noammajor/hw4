@@ -20,7 +20,7 @@ public:
 
     static  std::unique_ptr<Gang> createGang(std::ifstream& cards, int& linesCounter);
 
-    //std::string getType() const override;
+    std::string getType() const override;
 
 
 private:
@@ -40,6 +40,7 @@ private:
     int static const DRAGONDAMAGE = -100;
     int static const VAMPIREDAMAGE = 10;
     int static const GOBLINDAMAGE = 10;
+    const std::string TYPE="Gang";
 
 
 };
