@@ -25,17 +25,18 @@ public:
 
 private:
 
+    std::map<std::string, int> m_battleMap;
     static std::map <std::string, int> initializeBattleMap();
 
     enum jobs
     {
         Dragon=1,
         Vampire,
-        Goblin
+        Goblin,
+        EndGang
     };
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
-     const std::string TYPE ="Gang";
     int static const DRAGONDAMAGE = -100;
     int static const VAMPIREDAMAGE = 10;
     int static const GOBLINDAMAGE = 10;
@@ -44,4 +45,4 @@ private:
 };
 
 
-#endif //HW4_BARFIGHT_H
+#endif //HW4_GANG_H
