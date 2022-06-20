@@ -20,18 +20,20 @@ public:
 
     static  std::unique_ptr<Gang> createGang(std::ifstream& cards, int& linesCounter);
 
-    std::string getType() const override;
+    //std::string getType() const override;
 
 
 private:
 
+    std::map<std::string, int> m_battleMap;
     static std::map <std::string, int> initializeBattleMap();
 
     enum jobs
     {
         Dragon=1,
         Vampire,
-        Goblin
+        Goblin,
+        EndGang
     };
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
@@ -39,4 +41,4 @@ private:
 };
 
 
-#endif //HW4_BARFIGHT_H
+#endif //HW4_GANG_H
