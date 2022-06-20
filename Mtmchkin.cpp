@@ -63,6 +63,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 break;
             case Barfight:
                 cardsQueue.push_back(Barfight::createBarfight());
+                break;
             default:
                 throw DeckFileFormatError(cardsQueue.size()+1);
         }
@@ -276,7 +277,7 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
                     {"Treasure",Treasure},
                     {"Merchant", Merchant},
                     {"Pitfall",Pitfall},
-                    {"Barfight",Barfight}
+                    {"Barfight", Barfight}
             };
     return setupCards;
 }
