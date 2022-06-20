@@ -21,6 +21,7 @@
 #include "Players/Rogue.h"
 #include "Exception.h"
 #include "Cards/Barfight.h"
+#include "Cards/Gang.h"
 
 
 class Mtmchkin
@@ -98,7 +99,8 @@ private:
         Treasure,
         Merchant,
         Pitfall,
-        Barfight
+        Barfight,
+        Gang
     };
 
     static std::map <std::string,int> initializeCardsMap();
