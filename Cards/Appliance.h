@@ -1,7 +1,7 @@
 #ifndef APPLIANCE_H_
 #define APPLIANCE_H_
 #include "Card.h"
-#include <string>
+//#include <string>
 class Appliance :public Card
 {
 public:

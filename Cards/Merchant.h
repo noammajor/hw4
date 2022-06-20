@@ -12,7 +12,7 @@ public:
 
     void applyEncounter(Player& player) override;
     static std::unique_ptr<Merchant> createMerchant();
-    std::string getType() const;
+    std::string getType() const override;
 
 
 private:

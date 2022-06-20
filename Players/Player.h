@@ -1,8 +1,9 @@
 #include "../HealthPoints.h"
-#include <iostream>
-#include <string>
+//#include <iostream>
+//#include <string>
 #ifndef Player_H_
 #define Player_H_
+
 
 
 /*
@@ -36,7 +37,7 @@ public:
      * @param HP - the amount of health left for a player.
      * @param coins - the amount of tresure available to player.
      */
-    Player(const std::string &name);
+    explicit Player(const std::string &name);
 
 
     /*
@@ -130,9 +131,9 @@ public:
 
 
 protected:
-    static const int NO_COINS = 0;
+    //static const int NO_COINS = 0;
     static const int MAX_LEVEL = 10;
-    static const int MAX_HP = 100;
+    //static const int MAX_HP = 100;
 
 
     const std::string m_name;

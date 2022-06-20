@@ -1,9 +1,9 @@
 #ifndef HW4_FAIRY_H
 #define HW4_FAIRY_H
 #include "Appliance.h"
-#include <iostream>
-#include <memory>
-#include "../Players/Player.h"
+//#include <iostream>
+//#include <memory>
+//#include "../Players/Player.h"
 
 
 class Fairy : public Appliance

@@ -7,7 +7,7 @@ class Barfight : public Appliance
 
 public:
      explicit Barfight()=default;
-    ~Barfight() = default;
+    ~Barfight() override= default;
     void applyEncounter(Player& player) override;
     static  std::unique_ptr<Barfight> createBarfight();
     std::string getType() const override;

@@ -1,6 +1,6 @@
 #ifndef WIZARD_H_
 #define WIZARD_H_
-#include "Player.h"
+//#include "Player.h"
 #include <memory>
 #include "../utilities.h"
 

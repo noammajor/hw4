@@ -1,7 +1,7 @@
 #ifndef HW4_FIGHTER_H
 #define HW4_FIGHTER_H
-#include <iostream>
-#include "Player.h"
+//#include <iostream>
+//#include "Player.h"
 #include <memory>
 #include "../utilities.h"
 

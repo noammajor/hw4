@@ -1,12 +1,12 @@
 #ifndef EX2_Card_H
 #define EX2_Card_H
 
-#include <string>
-#include "../Players/Player.h"
+//#include <string>
+//#include "../Players/Player.h"
 #include "../utilities.h"
 #include <memory>
-#include <iostream>
-#include <ostream>
+//#include <iostream>
+//#include <ostream>
 
 /*
  *  CardType:

@@ -3,13 +3,13 @@
 
 void Pitfall::applyEncounter(Player& player)
 {
-    bool isRogue=true;
+    bool isRogue = true;
     if(player.getType() != "Rogue")
     {
         player.damage(GIVE_DAMAGE);
-        isRogue=false;
+        isRogue = false;
     }
-    printPitfallMessage( isRogue);
+    printPitfallMessage(isRogue);
 }
 
 
@@ -22,8 +22,9 @@ std::unique_ptr<Pitfall> Pitfall::createPitfall()
     }
     return pitfallCard;
 }
+
 std::string Pitfall::getType() const
 {
-    return type;
+    return PITFALL;
 }
 

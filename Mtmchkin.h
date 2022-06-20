@@ -1,13 +1,13 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-#include "Cards/Card.h"
-#include "Players/Player.h"
+//#include "Cards/Card.h"
+//#include "Players/Player.h"
 #include <deque>
 #include <map>
-#include <memory>
-#include <iostream>
+#//include <memory>
+//#include <iostream>
 #include <fstream>
-#include <string>
+//#include <string>
 #include "Cards/Dragon.h"
 #include "Cards/Vampire.h"
 #include "Cards/Goblin.h"
@@ -15,7 +15,7 @@
 #include "Cards/Merchant.h"
 #include "Cards/Treasure.h"
 #include "Cards/Pitfall.h"
-#include "utilities.h"
+//#include "utilities.h"
 #include "Players/Fighter.h"
 #include "Players/Wizard.h"
 #include "Players/Rogue.h"
@@ -76,7 +76,7 @@ private:
     static const int MAX_PLAYER=6;
     static const int MIN_PLAYER=2;
     static const int MAX_LENGTH_NAME=15;
-    static const int MAX_LEVEL=10;
+    //static const int MAX_LEVEL=10;
 
     std::deque<std::unique_ptr<Card>> m_cardsQueue;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
@@ -104,8 +104,8 @@ private:
     static std::map <std::string,int> initializeCardsMap();
 
     std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string &fileName);
-    std::map <std::string, int> initializeJobsMap();
-    static int initializePlayersNumber();
+    static std::map <std::string, int> initializeJobsMap();
+    int initializePlayersNumber();
     std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 
 

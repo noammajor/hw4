@@ -1,9 +1,9 @@
 #ifndef BATTLE_H_
 #define BATTLE_H_
 #include "Card.h"
-#include <string>
-#include <iostream>
-#include <fstream>
+//#include <string>
+//#include <iostream>
+//#include <fstream>
 
 
 class Battle : public Card
@@ -22,7 +22,7 @@ protected:
     virtual void loseBattle(Player& player,int health);
     void printCard(std::ostream& os) const override;
 
-    virtual std::string getType() const = 0;
+    std::string getType() const override = 0;
 
     //friend  std::ostream& operator<<(std::ostream& os, const Battle& card);
 

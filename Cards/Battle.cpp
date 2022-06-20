@@ -1,6 +1,6 @@
 #include "Battle.h"
-#include <iostream>
-using namespace std;
+
+//using namespace std;
 Battle::Battle(int force, int health, int loot) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
 {
 }

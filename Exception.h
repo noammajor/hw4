@@ -1,7 +1,7 @@
 #ifndef HW4_EXCEPTION_H
 #define HW4_EXCEPTION_H
 #include <exception>
-#include  <iostream>
+#include <iostream>
 #include <string>
 
 
@@ -24,7 +24,7 @@ public:
     }
 
 
-    explicit DeckFileFormatError(int line) : m_message{"Deck File Error: File format error in line " + std::to_string(line)}
+    DeckFileFormatError(int line) : m_message{"Deck File Error: File format error in line " + std::to_string(line)}
     {
     }
 

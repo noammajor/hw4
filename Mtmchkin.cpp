@@ -1,38 +1,37 @@
 #include "Mtmchkin.h"
 
 
-using namespace std;
+//using namespace std;
 
-Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
-        m_numberOfRounds(0)
-
+//Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
+  //      m_numberOfRounds(0)
+Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(), m_losers(),m_numberOfRounds(0)
 {
-    cout<<"1";
+    //cout<<"1";
     printStartGameMessage();
-    cout<< "2";
+    //cout<< "2";
     m_cardsMap = initializeCardsMap();
-    cout<< "3";
+    //cout<< "3";
     m_cardsQueue = initializeCardsQueue(fileName);
-    cout<<"4";
+    //cout<<"4";
     m_numberOfPlayersInGames = initializePlayersNumber();
-    cout<<"5";
+    //cout<<"5";
     m_playersJobsMap = initializeJobsMap();
-    cout<<"6";
+    //cout<<"6";
     m_playersQueue = initializePlayersQueue(m_numberOfPlayersInGames);
-    cout<< "7";
+    //cout<< "7";
 }
 
 
 std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
 {
     std::ifstream cards(fileName);
-    string line;
-    std::deque<std::unique_ptr<Card>> cardsQueue;
     if(!cards)
     {
-        cout<<"wrong exception";
         throw DeckFileNotFound();
     }
+    std::string line;
+    std::deque<std::unique_ptr<Card>> cardsQueue;
     while (getline(cards, line))
     {
         if (line.empty())
@@ -52,7 +51,6 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 break;
             case Fairy:
                 cardsQueue.push_back(Fairy::createFairy());
-                cout<<"made it here";
                 break;
             case Treasure:
                 cardsQueue.push_back(Treasure::createTreasure());
@@ -66,7 +64,6 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
             case Barfight:
                 cardsQueue.push_back(Barfight::createBarfight());
             default:
-                cout<< "why am i here";
                 throw DeckFileFormatError(cardsQueue.size()+1);
         }
     }
@@ -80,7 +77,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
 
 int Mtmchkin::initializePlayersNumber()
 {
-    string input;
+    std::string input;
     int numberOfPlayers = 0;
     while (numberOfPlayers == 0)
     {
@@ -113,9 +110,9 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
 {
     std::deque<std::unique_ptr<Player>> playersQueue;
     int currentChar;
-    string input;
-    string currentName= "/0";
-    string currentJob = "/0";
+    std::string input;
+    std::string currentName= "/0";
+    std::string currentJob = "/0";
     bool correct, playerCreated;
     for (int i = 0; i < numberOfPlayers ; i++)
     {
@@ -132,8 +129,8 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                {
                    printInvalidName();
                    printInsertPlayerMessage();
-                   getline(std::cin,input);
-                   currentChar=input.find(" ",0);
+                   //getline(std::cin,input);
+                   //currentChar=input.find(" ",0);
                    correct = false;
                }
                 currentName=input.substr(0,currentChar);
@@ -186,9 +183,9 @@ void Mtmchkin::playRound()
     for (int i = m_numberOfPlayersInGames ; i > 0 ; i--)
     {
         printTurnStartMessage(m_playersQueue.front()->getName());
-        unique_ptr<Card> currentCard = move(m_cardsQueue.front());
+        std::unique_ptr<Card> currentCard = move(m_cardsQueue.front());
         m_cardsQueue.pop_front();
-        unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
+        std::unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         m_playersQueue.pop_front();
         currentCard->applyEncounter(*currentPlayer);
         m_cardsQueue.push_back(move(currentCard));
@@ -219,17 +216,17 @@ void Mtmchkin::printLeaderBoard() const
 {
     int ranking=1;
     printLeaderBoardStartMessage();
-    for (deque<unique_ptr<Player>>::const_iterator iter = m_winners.begin() ; iter != m_winners.end() ; iter++)
+    for (std::deque<std::unique_ptr<Player>>::const_iterator iter = m_winners.begin() ; iter != m_winners.end() ; iter++)
  {
      printPlayerLeaderBoard( ranking,**iter);
      ranking++;
  }
-    for (deque<unique_ptr<Player>>::const_iterator iter = m_playersQueue.begin() ; iter != m_playersQueue.end() ; iter++)
+    for (std::deque<std::unique_ptr<Player>>::const_iterator iter = m_playersQueue.begin() ; iter != m_playersQueue.end() ; iter++)
  {
      printPlayerLeaderBoard( ranking, **iter);
      ranking++;
  }
-    for (deque<unique_ptr<Player>>::const_iterator iter = m_losers.begin() ; iter != m_losers.end() ; iter++)
+    for (std::deque<std::unique_ptr<Player>>::const_iterator iter = m_losers.begin() ; iter != m_losers.end() ; iter++)
     {
      printPlayerLeaderBoard(ranking, **iter);
      ranking++;
