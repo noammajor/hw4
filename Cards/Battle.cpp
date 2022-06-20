@@ -4,7 +4,10 @@
 Battle::Battle(int force, int health, int loot) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
 {
 }
-
+int Battle::getdamage() const
+{
+    return m_healthLose;
+}
 
 void Battle::applyEncounter(Player& player)
 {
