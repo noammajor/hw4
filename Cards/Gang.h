@@ -16,7 +16,7 @@ class Gang : public Card
 public:
      Gang(std::ifstream& cards, int& linesCounter);
     ~Gang() override= default;
-    void applyEncounter(Player& player) override;
+    bool applyEncounter(Player& player) override;
 
     static  std::unique_ptr<Gang> createGang(std::ifstream& cards, int& linesCounter);
 
@@ -35,6 +35,7 @@ private:
     };
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
+     const std::string TYPE ="Gang";
     int static const DRAGONDAMAGE = -100;
     int static const VAMPIREDAMAGE = 10;
     int static const GOBLINDAMAGE = 10;

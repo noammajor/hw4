@@ -1,6 +1,10 @@
 #include "Gang.h"
 
-void Gang::applyEncounter(Player& player)
+std::string Gang::getType() const
+{
+    return TYPE;
+}
+bool Gang::applyEncounter(Player& player)
 {
     bool lose=false;
     for (int i=0;i<m_cardsDeque.size();i++)
@@ -12,6 +16,7 @@ void Gang::applyEncounter(Player& player)
             {
                 case Dragon:
                     player.heal(DRAGONDAMAGE);
+
                     break;
                 case Goblin:
                     player.heal(GOBLINDAMAGE);
@@ -25,7 +30,7 @@ void Gang::applyEncounter(Player& player)
         lose=currentCard->applyEncounter(player);
         m_cardsDeque.push_back(move(currentCard));
     }
-
+    return !lose;
 
 }
 /*
