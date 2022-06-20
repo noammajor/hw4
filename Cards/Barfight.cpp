@@ -12,6 +12,7 @@ bool Barfight::applyEncounter(Player& player)
         player.damage(GIVEDAMAGE);
     }
     printBarfightMessage(isFighter);
+    return false;
 }
 
 

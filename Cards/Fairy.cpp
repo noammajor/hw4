@@ -1,7 +1,7 @@
 #include "Fairy.h"
 
 
-void Fairy::applyEncounter(Player& player)
+bool Fairy::applyEncounter(Player& player)
 {
     bool isWizard=false;
     if(player.getType() == "Wizard")
@@ -10,6 +10,7 @@ void Fairy::applyEncounter(Player& player)
         player.heal(HEALTH_HEAL);
     }
         printFairyMessage( isWizard);
+    return false;
 }
 
 std::unique_ptr<Fairy> Fairy::createFairy()

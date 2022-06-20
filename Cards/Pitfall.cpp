@@ -1,7 +1,7 @@
 #include "Pitfall.h"
 
 
-void Pitfall::applyEncounter(Player& player)
+bool Pitfall::applyEncounter(Player& player)
 {
     bool isRogue = true;
     if(player.getType() != "Rogue")
@@ -10,6 +10,7 @@ void Pitfall::applyEncounter(Player& player)
         isRogue = false;
     }
     printPitfallMessage(isRogue);
+    return false;
 }
 
 

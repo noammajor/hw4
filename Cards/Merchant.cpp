@@ -1,7 +1,7 @@
 #include "Merchant.h"
 
 
-void Merchant::applyEncounter(Player& player)
+bool Merchant::applyEncounter(Player& player)
 {
    std::string getFromPlayer;
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(), player.getCoins());
@@ -46,6 +46,7 @@ void Merchant::applyEncounter(Player& player)
             printMerchantInsufficientCoins(std::cout);
         }
     }
+    return false;
 }
 
 

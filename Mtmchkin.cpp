@@ -212,6 +212,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
 
 void Mtmchkin::playRound()
 {
+    bool winbattle=false;
     printRoundStartMessage(m_numberOfRounds + 1);
     for (int i = m_numberOfPlayersInGames ; i > 0 ; i--)
     {
@@ -220,7 +221,9 @@ void Mtmchkin::playRound()
         m_cardsQueue.pop_front();
         std::unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         m_playersQueue.pop_front();
-        currentCard->applyEncounter(*currentPlayer);
+        winbattle = currentCard->applyEncounter(*currentPlayer);
+        if (winbattle)
+            currentPlayer->levelUp();
         m_cardsQueue.push_back(move(currentCard));
         if (currentPlayer->getLevel() == 10)
         {

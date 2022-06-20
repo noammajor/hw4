@@ -39,15 +39,21 @@ void Gang::applyEncounter(Player& player)
         std::unique_ptr<Card> currentCard = move(m_cardsDeque.front());
         if(lose)
         {
-            switch (battl)
+            switch (m_battleMap[currentCard->getType()])
             {
-
+                case Dragon:
+                    player.heal(DRAGONDAMAGE);
+                    break;
+                case Goblin:
+                    player.heal(GOBLINDAMAGE);
+                    break;
+                case Vampire:
+                    player.heal(VAMPIREDAMAGE);
+                    break;
             }
-            player.heal(currentCard)
-
         }
         m_cardsDeque.pop_front();
-        currentCard->applyEncounter(player);
+        lose=currentCard->applyEncounter(player);
         m_cardsDeque.push_back(move(currentCard));
     }
 

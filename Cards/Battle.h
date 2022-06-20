@@ -21,7 +21,7 @@ protected:
     void printCard(std::ostream& os) const override;
 
     std::string getType() const override = 0;
-    void applyEncounter(Player& player) override;
+    bool applyEncounter(Player& player) override;
 
     //friend  std::ostream& operator<<(std::ostream& os, const Battle& card);
 public:

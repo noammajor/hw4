@@ -8,7 +8,7 @@ public:
     explicit Pitfall()=default;
     ~Pitfall()override=default;
     static std::unique_ptr<Pitfall> createPitfall();
-    void applyEncounter(Player& player) override;
+    bool applyEncounter(Player& player) override;
     std::string getType() const override;
 
 private:

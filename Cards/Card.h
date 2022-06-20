@@ -36,7 +36,7 @@ public:
      * @return
      *      void
     */
-    virtual void applyEncounter(Player& player) = 0;
+    virtual bool applyEncounter(Player& player) = 0;
 
     /*
      * Here we are explicitly telling the compiler to use the default methods

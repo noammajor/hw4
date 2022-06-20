@@ -12,7 +12,7 @@ public:
     explicit Fairy() = default;
     ~Fairy()override = default;
     static std::unique_ptr<Fairy> createFairy();
-    void applyEncounter(Player& player) override;
+    bool applyEncounter(Player& player) override;
     std::string getType() const override;
 
 
