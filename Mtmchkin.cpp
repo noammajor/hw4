@@ -27,12 +27,14 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
     }
     std::string line;
     std::deque<std::unique_ptr<Card>> cardsQueue;
+    int linesCounter = 0;
     while (getline(cards, line))
     {
         if (line.empty())
         {
             break;
         }
+        linesCounter++;
         switch (m_cardsMap[line])
         {
             case Dragon:
@@ -60,7 +62,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 cardsQueue.push_back(Barfight::createBarfight());
                 break;
             case Gang:
-               cardsQueue.push_back(Gang::createGang(cards));
+               cardsQueue.push_back(Gang::createGang(cards, linesCounter));
                 break;
             default:
                 throw DeckFileFormatError(cardsQueue.size()+1); //check size later
