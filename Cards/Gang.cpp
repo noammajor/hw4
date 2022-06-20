@@ -31,7 +31,7 @@ Gang::Gang(std::ifstream& cards, int& linesCounter) : m_battleMap (initializeBat
 }
 
 
-void Gang::applyEncounter(Player& player)
+bool Gang::applyEncounter(Player& player)
 {
     bool lose=false;
     for (int i=0;i<m_cardsDeque.size();i++)
