@@ -3,7 +3,7 @@
 
 
 
-void Barfight::applyEncounter(Player& player)
+bool Barfight::applyEncounter(Player& player)
 {
     bool isFighter= true;
     if(player.getType() != "Fighter")

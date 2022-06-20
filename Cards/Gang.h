@@ -6,6 +6,10 @@
 #include "Goblin.h"
 #include <deque>
 #include <map>
+#include <memory>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 class Gang : public Card
 {
@@ -30,6 +34,7 @@ private:
         Goblin
     };
 
+    std::deque<std::unique_ptr<Card>> m_cardsDeque;
 
 };
 

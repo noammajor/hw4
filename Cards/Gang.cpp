@@ -1,7 +1,30 @@
 #include "Gang.h"
 
+void Gang::applyEncounter(Player& player)
+{
+    bool lose=false;
+    for (int i=0;i<m_cardsDeque.size();i++)
+    {
+        std::unique_ptr<Card> currentCard = move(m_cardsDeque.front());
+        if(lose)
+        {
+            switch (battl)
+            {
 
-static  std::deque<unique_ptr<Gang>> Gang::Gang(std::ifstream& cards, int& linesCounter) {
+            }
+            player.heal(currentCard)
+
+        }
+        m_cardsDeque.pop_front();
+        currentCard->applyEncounter(player);
+        m_cardsDeque.push_back(move(currentCard));
+    }
+
+
+}
+/*
+static  std::deque<unique_ptr<Gang>> Gang::Gang(std::ifstream& cards)
+{
     std::string line;
     std::deque<std::unique_ptr<Card>> cardsDeque;
     while (getline(cards, line)) {
