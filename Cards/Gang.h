@@ -40,6 +40,7 @@ private:
     int static const DRAGONDAMAGE = -100;
     int static const VAMPIREDAMAGE = 10;
     int static const GOBLINDAMAGE = 10;
+    const std::string TYPE="Gang";
 
 
 };
