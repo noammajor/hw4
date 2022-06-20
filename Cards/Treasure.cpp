@@ -6,7 +6,7 @@ bool Treasure::applyEncounter(Player& player)
 {
     printTreasureMessage();
      player.addCoins(LOOT);
-    return false;
+    return true;
 }
 
 

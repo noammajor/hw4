@@ -62,7 +62,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 cardsQueue.push_back(Barfight::createBarfight());
                 break;
             case Gang:
-               cardsQueue.push_back(Gang::createGang(cards, linesCounter));
+               cardsQueue.push_back(Gang::createGang(cards, &linesCounter));
                 break;
             default:
                 throw DeckFileFormatError(cardsQueue.size()+1); //check size later
@@ -75,7 +75,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
     return cardsQueue;
 }
 /*
-std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
+std::deque<std::unique_ptr<Card>> Mtmchkin::initializeBattleQueue(const std::string &fileName)
 {
     std::ifstream cards(fileName);
     if(!cards)
@@ -212,7 +212,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
 
 void Mtmchkin::playRound()
 {
-    bool winbattle=false;
+    bool loseBattle;
     printRoundStartMessage(m_numberOfRounds + 1);
     for (int i = m_numberOfPlayersInGames ; i > 0 ; i--)
     {
@@ -221,13 +221,12 @@ void Mtmchkin::playRound()
         m_cardsQueue.pop_front();
         std::unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         m_playersQueue.pop_front();
-        winbattle = currentCard->applyEncounter(*currentPlayer);
-        if (winbattle)
+        loseBattle = currentCard->applyEncounter(*currentPlayer);
+        if (!loseBattle)
         {
             currentPlayer->levelUp();
-            printWinBattle(currentPlayer->getName(),currentPlayer-> getType());
+            printWinBattle(currentPlayer->getName(),currentCard-> getType());
         }
-
         m_cardsQueue.push_back(move(currentCard));
         if (currentPlayer->getLevel() == 10)
         {

@@ -16,7 +16,7 @@ bool Merchant::applyEncounter(Player& player)
     if(whatToDo==BUY_NOTHING)
     {
         printMerchantSummary(std::cout,player.getName(), whatToDo, 0);
-        return;
+        return true;
     }
     if (whatToDo==BUY_HP)
     {
@@ -25,7 +25,7 @@ bool Merchant::applyEncounter(Player& player)
             player.pay(HP_COST);
             player.heal(1);
             printMerchantSummary(std::cout,player.getName(), whatToDo, HP_COST);
-            return;
+            return true;
         }
         else
         {
@@ -39,14 +39,14 @@ bool Merchant::applyEncounter(Player& player)
             player.pay(FORCE_COST);
             player.buff (1);
             printMerchantSummary(std::cout,player.getName(), whatToDo, FORCE_COST);
-            return;
+            return true;
         }
         else
         {
             printMerchantInsufficientCoins(std::cout);
         }
     }
-    return false;
+    return true;
 }
 
 

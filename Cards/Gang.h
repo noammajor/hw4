@@ -1,6 +1,7 @@
 #ifndef HW4_GANG_H
 #define HW4_GANG_H
-#include "Card.h"
+//#include "Card.h"
+//#include "Battle.h"
 #include "Dragon.h"
 #include "Vampire.h"
 #include "Goblin.h"
@@ -14,14 +15,14 @@
 class Gang : public Card
 {
 public:
-     Gang(std::ifstream& cards, int& linesCounter);
+     Gang(std::ifstream& cards, int* linesCounter);
     ~Gang() override= default;
     bool applyEncounter(Player& player) override;
 
-    static  std::unique_ptr<Gang> createGang(std::ifstream& cards, int& linesCounter);
-
+    static  std::unique_ptr<Gang> createGang(std::ifstream& cards, int* linesCounter);
+    std::deque<std::unique_ptr<Card>> initializeBattleQueue(std::ifstream& cards, int* linesCounter);
     std::string getType() const override;
-
+    void printCard(std::ostream& os) const override;
 
 private:
 
@@ -37,10 +38,11 @@ private:
     };
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
-    int static const DRAGONDAMAGE = -100;
+    int static const DRAGONDAMAGE = 100;
     int static const VAMPIREDAMAGE = 10;
     int static const GOBLINDAMAGE = 10;
     const std::string TYPE="Gang";
+
 
 
 };

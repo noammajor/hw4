@@ -3,14 +3,14 @@
 
 bool Fairy::applyEncounter(Player& player)
 {
-    bool isWizard=false;
+    bool isWizard = false;
     if(player.getType() == "Wizard")
     {
-        isWizard=true;
+        isWizard = true;
         player.heal(HEALTH_HEAL);
     }
         printFairyMessage( isWizard);
-    return false;
+    return true;
 }
 
 std::unique_ptr<Fairy> Fairy::createFairy()

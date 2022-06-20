@@ -4,6 +4,7 @@
 Battle::Battle(int force, int health, int loot) : m_battleForce(force),m_healthLose(health),m_gainedLoot(loot)
 {
 }
+
 int Battle::getdamage() const
 {
     return m_healthLose;
@@ -11,14 +12,17 @@ int Battle::getdamage() const
 
 bool Battle::applyEncounter(Player& player)
 {
+    bool lose = false;
     if (player.getAttackStrength() >= m_battleForce)
     {
         winBattle( player, m_gainedLoot);
-        return true;
     }
     else
-        loseBattle( player,m_healthLose);
-    return false;
+    {
+        loseBattle (player,m_healthLose);
+        lose = true;
+    }
+    return lose;
 }
 
 

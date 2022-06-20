@@ -10,7 +10,7 @@ bool Pitfall::applyEncounter(Player& player)
         isRogue = false;
     }
     printPitfallMessage(isRogue);
-    return false;
+    return true;
 }
 
 

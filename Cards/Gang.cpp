@@ -1,12 +1,14 @@
 #include "Gang.h"
 
-std::string Gang::getType() const
+
+
+Gang::Gang(std::ifstream& cards, int* linesCounter) : m_battleMap (initializeBattleMap())
 {
-    return TYPE;
+    m_cardsDeque = initializeBattleQueue(cards, linesCounter);
 }
 
 
-Gang::Gang(std::ifstream& cards, int& linesCounter) : m_battleMap (initializeBattleMap())
+std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& cards, int* linesCounter)
 {
     std::string line;
     std::deque<std::unique_ptr<Card>> cardsDeque;
@@ -14,8 +16,9 @@ Gang::Gang(std::ifstream& cards, int& linesCounter) : m_battleMap (initializeBat
     {
         if (line.empty())
         {
-            throw DeckFileFormatError(linesCounter);
+            throw DeckFileFormatError(*linesCounter);
         }
+        linesCounter++;
         switch (m_battleMap[line])
         {
             case Dragon:
@@ -28,47 +31,55 @@ Gang::Gang(std::ifstream& cards, int& linesCounter) : m_battleMap (initializeBat
                 cardsDeque.push_back(Goblin::createGoblin());
                 break;
             case EndGang:
-                return;
+                return cardsDeque;
             default:
-                throw DeckFileFormatError(linesCounter);
+                throw DeckFileFormatError(*linesCounter);
         }
     }
+    return cardsDeque;
 }
+
 
 
 bool Gang::applyEncounter(Player& player)
 {
-    bool lose=false;
-    for (int i=0;i<m_cardsDeque.size();i++)
+    bool lose = false;
+    std::unique_ptr<Card> currentCard;
+    int i = m_cardsDeque.size();
+    for ( ; i > 0 ; i--)
     {
-        std::unique_ptr<Card> currentCard = move(m_cardsDeque.front());
+        currentCard = move(m_cardsDeque.front());
+        m_cardsDeque.pop_front();
         if(lose)
         {
             switch (m_battleMap[currentCard->getType()])
             {
                 case Dragon:
-                    player.heal(DRAGONDAMAGE);
+                    player.damage(DRAGONDAMAGE);
                     break;
                 case Goblin:
-                    player.heal(GOBLINDAMAGE);
+                    player.damage(GOBLINDAMAGE);
                     break;
                 case Vampire:
-                    player.heal(VAMPIREDAMAGE);
+                    player.damage(VAMPIREDAMAGE);
                     break;
             }
+            printLossBattle(player.getName(), currentCard->getType());
         }
-        m_cardsDeque.pop_front();
-        lose=currentCard->applyEncounter(player);
+        else
+        {
+            lose = currentCard->applyEncounter(player);
+        }
         m_cardsDeque.push_back(move(currentCard));
     }
-
-
+    return lose;
 }
 
 
-std::unique_ptr<Gang> Gang::createGang(std::ifstream &cards, int& linesCounter)
+std::unique_ptr<Gang> Gang::createGang(std::ifstream &cards, int* linesCounter)
 {
     std::unique_ptr<Gang> gangCard(new Gang(cards, linesCounter));
+    return gangCard;
 }
 
 
@@ -82,5 +93,17 @@ std::map <std::string, int> Gang::initializeBattleMap()
                     {"EndGang", EndGang}
             };
     return battleCards;
+}
+
+
+std::string Gang::getType() const
+{
+    return TYPE;
+}
+
+
+void Gang::printCard(std::ostream& os) const
+{
+    printCardDetails(os,getType());
 }
 
