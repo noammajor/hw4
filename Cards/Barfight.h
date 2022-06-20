@@ -9,13 +9,13 @@ public:
      explicit Barfight()=default;
     ~Barfight() override= default;
     void applyEncounter(Player& player) override;
-    static  std::unique_ptr<Barfight> createBarfight();
+    static std::unique_ptr<Barfight> createBarfight();
     std::string getType() const override;
 
 
 private:
     static const int GIVEDAMAGE=10;
-    const std::string type = "Barfight";
+    const std::string BARFIGHT = "Barfight";
 
 };
 

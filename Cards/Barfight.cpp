@@ -11,21 +11,20 @@ void Barfight::applyEncounter(Player& player)
         isFighter= false;
         player.damage(GIVEDAMAGE);
     }
-    printBarfightMessage( isFighter);
-
-
+    printBarfightMessage(isFighter);
 }
+
+
 std::string Barfight::getType() const
 {
-    return type;
+    return BARFIGHT;
 }
- //const std::string Appliance::m_type="Barfight";
 
 
 
 std::unique_ptr<Barfight> Barfight::createBarfight()
 {
-    std::unique_ptr<Barfight>BarfightCard(new Barfight());
+    std::unique_ptr<Barfight> BarfightCard(new Barfight());
     if (!BarfightCard)
     {
         throw std::bad_alloc();
