@@ -102,9 +102,9 @@ private:
         Barfight,
         Gang
     };
-
+    bool checkinput(std::string &input);
     static std::map <std::string,int> initializeCardsMap();
-
+    bool static containsOnlyLetters(std::string &currentName);
     std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string &fileName);
     static std::map <std::string, int> initializeJobsMap();
     int initializePlayersNumber();

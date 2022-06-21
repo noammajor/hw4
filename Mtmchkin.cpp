@@ -1,5 +1,5 @@
 #include "Mtmchkin.h"
-
+#include <cctype>
 
 
 //using namespace std;
@@ -74,70 +74,28 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
     }
     return cardsQueue;
 }
-/*
-std::deque<std::unique_ptr<Card>> Mtmchkin::initializeBattleQueue(const std::string &fileName)
-{
-    std::ifstream cards(fileName);
-    if(!cards)
-    {
-        throw DeckFileNotFound();
-    }
-    std::string line;
-    std::deque<std::unique_ptr<Card>> cardsQueue;
-    while (getline(cards, line))
-    {
-        if (line.empty())
-        {
-            break;
-        }
-        switch (m_cardsMap[line])
-        {
-            case Dragon:
-                cardsQueue.push_back(Dragon::createDragon());
-                break;
-            case Vampire:
-                cardsQueue.push_back(Vampire::createVampire());
-                break;
-            case Goblin:
-                cardsQueue.push_back(Goblin::createGoblin());
-                break;
-            case Fairy:
-                cardsQueue.push_back(Fairy::createFairy());
-                break;
-            case Treasure:
-                cardsQueue.push_back(Treasure::createTreasure());
-                break;
-            case Merchant:
-                cardsQueue.push_back(Merchant::createMerchant());
-                break;
-            case Pitfall:
-                cardsQueue.push_back(Pitfall::createPitfall());
-                break;
-            case Barfight:
-                cardsQueue.push_back(Barfight::createBarfight());
-                break;
-            default:
-                throw DeckFileFormatError(cardsQueue.size()+1); //
-        }
-    }
-    if(cardsQueue.size()<MIN_CARDS)
-    {
-        throw DeckFileInvalidSize();
-    }
-    return cardsQueue;
-}
-*/
+
 
 int Mtmchkin::initializePlayersNumber()
 {
+    bool legalInput=true;
     std::string input;
     int numberOfPlayers = 0;
     while (numberOfPlayers == 0)
     {
         printEnterTeamSizeMessage();
         getline(std::cin, input);
-        numberOfPlayers = stoi(input);
-        if (numberOfPlayers < MIN_PLAYER || numberOfPlayers > MAX_PLAYER)
+        legalInput=checkinput(input);
+        try 
+        {
+            numberOfPlayers = stoi(input);   
+        }
+        catch (std::exception &err)
+        {
+            numberOfPlayers=0;
+        }
+        
+        if (numberOfPlayers < MIN_PLAYER || numberOfPlayers > MAX_PLAYER )
         {
             printInvalidTeamSize();
             numberOfPlayers = 0;
@@ -167,6 +125,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
     std::string currentName= "/0";
     std::string currentJob = "/0";
     bool correct, playerCreated;
+    //printInsertPlayerMessage();
     for (int i = 0; i < numberOfPlayers ; i++)
     {
         printInsertPlayerMessage();
@@ -174,18 +133,24 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
         {
             do
             {
-                correct = true;
-                playerCreated = true;
-                getline(std::cin,input);
+               correct = true;
+               playerCreated = true;
+               getline(std::cin,input);
                currentChar=input.find(" ",0);
-               if(currentChar > MAX_LENGTH_NAME|| currentChar==0)
+               if(currentChar > MAX_LENGTH_NAME|| currentChar==0 )
                {
                    printInvalidName();
-                   printInsertPlayerMessage();
+                 //  printInsertPlayerMessage();
                    correct = false;
                }
                 currentName=input.substr(0,currentChar);
                 currentJob=input.substr(currentChar+1);
+                if(!containsOnlyLetters(currentName ) && correct)
+                {
+                    printInvalidName();
+                    correct = false;
+                }
+
             }
             while (!correct);
                 switch (m_playersJobsMap[currentJob])
@@ -304,4 +269,27 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
                     {"Gang", Gang}
             };
     return setupCards;
+}
+bool Mtmchkin::containsOnlyLetters(std::string &currentName)
+{
+   for(char i : currentName)
+   {
+       if(int(i)>122 || int(i)<65)
+       {
+           return false;
+       }
+       if(int(i)>90 && int(i)<97)
+       {
+           return false;
+       }
+   }
+    return true;
+}
+bool Mtmchkin::checkinput(std::string &input)
+{
+    if(input.size()>1)
+    {
+        return false;
+    }
+    return true;
 }

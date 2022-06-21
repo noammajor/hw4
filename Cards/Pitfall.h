@@ -5,8 +5,20 @@
 class Pitfall : public Appliance
 {
 public:
+    /*
+  * C'tor of Pitfall class
+  *Default
+  * @return A new instance of Pitfall.
+  */
     explicit Pitfall()=default;
+    /*
+   * D'tor of Pitfall class
+   *
+   *Default
+   * destroys Pitfall
+   */
     ~Pitfall()override=default;
+
     static std::unique_ptr<Pitfall> createPitfall();
     bool applyEncounter(Player& player) override;
     std::string getType() const override;
