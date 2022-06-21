@@ -22,8 +22,10 @@ class Merchant : public Appliance
 public:
     /*
     * C'tor of Merchant class
+    *Default
+    *@return A new instance of Merchant.
     */
-     explicit Merchant() = default;
+    explicit Merchant() = default;
 
     /*
     * Here we are explicitly telling the compiler to use the default methods
@@ -33,21 +35,22 @@ public:
     Merchant& operator=(const Merchant&) = default;
 
     /*
-    * Handling the player's encounter with the card:
-    *
-    * @param player - The player.
-    * @return bool - true if the player won a battle
-    *
+    *  Applies each Cards effect on Player- give player options to buy
+    *  prints the exchange
+    *  @param player- player who turn it is on the card
+    *  @return false always
     */
     bool applyEncounter(Player& player) override;
 
     /*
-    * returns  a unique_ptr to a new Merchant card
+    *  Creates and returns a unique pointer to new instance of Merchant
+    *  @return unique point
     */
     static std::unique_ptr<Merchant> createMerchant();
 
     /*
-    *returns the cards type
+    *  Gives us the Type of the card
+    *  @return string "Merchant"
     */
     std::string getType() const override;
 
@@ -58,6 +61,7 @@ private:
     static const int BUY_NOTHING = 0;
     static const int BUY_HP = 1;
     static const int BUY_FORCE = 2;
+    static const int INVALID_INPUT=-1;
     static const std::string MERCHANT;
 
 };

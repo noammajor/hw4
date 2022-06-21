@@ -22,6 +22,8 @@ class Fairy : public Appliance
 public:
     /*
     * C'tor of Fairy class
+    * Default
+    * @return A new instance of Fairy.
     */
     explicit Fairy() = default;
 
@@ -33,21 +35,21 @@ public:
     Fairy& operator=(const Fairy&) = default;
 
     /*
-    * returns  a unique_ptr to a new Fairy card
+    *  Creates and returns a unique pointer to new instance of Fairy
+    *  @return unique pointer
     */
     static std::unique_ptr<Fairy> createFairy();
 
     /*
-    * Handling the player's encounter with the card:
-    *
-    * @param player - The player.
-    * @return bool - true if the player won a battle
-    *
+    *  Applies each Cards effect on Player
+    *  @param player- player who turn it is on the card
+    *  @return false always
     */
     bool applyEncounter(Player& player) override;
 
     /*
-    *returns the cards type
+    *  Gives us the Type of the card
+    *  @return string "Fairy"
     */
     std::string getType() const override;
 

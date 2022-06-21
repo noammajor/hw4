@@ -140,14 +140,23 @@ void Mtmchkin::insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std:
 
 int Mtmchkin::initializePlayersNumber()
 {
+    bool legalInput = true;
     std::string input;
     int numberOfPlayers = 0;
     while (numberOfPlayers == 0)
     {
         printEnterTeamSizeMessage();
         getline(std::cin, input);
-        numberOfPlayers = stoi(input);
-        if (numberOfPlayers < MIN_PLAYER || numberOfPlayers > MAX_PLAYER)
+        legalInput = checkinput(input);
+        try
+        {
+            numberOfPlayers = stoi(input);
+        }
+        catch (std::exception &err)
+        {
+            numberOfPlayers = 0;
+        }
+        if (numberOfPlayers < MIN_PLAYER || numberOfPlayers > MAX_PLAYER )
         {
             printInvalidTeamSize();
             numberOfPlayers = 0;
@@ -177,6 +186,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
     std::string currentName= "/0";
     std::string currentJob = "/0";
     bool correct, playerCreated;
+    //printInsertPlayerMessage();
     for (int i = 0; i < numberOfPlayers ; i++)
     {
         printInsertPlayerMessage();
@@ -184,18 +194,23 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
         {
             do
             {
-                correct = true;
-                playerCreated = true;
-                getline(std::cin,input);
-                currentChar = input.find(" ",0);
-                if(currentChar > MAX_LENGTH_NAME|| currentChar == 0)
-                {
-                    printInvalidName();
-                    printInsertPlayerMessage();
-                    correct = false;
-                }
+               correct = true;
+               playerCreated = true;
+               getline(std::cin,input);
+               currentChar = input.find(" ",0);
+               if(currentChar > MAX_LENGTH_NAME|| currentChar==0 )
+               {
+                   printInvalidName();
+                 //  printInsertPlayerMessage();
+                   correct = false;
+               }
                 currentName = input.substr(0,currentChar);
                 currentJob = input.substr(currentChar+1);
+                if(!containsOnlyLetters(currentName ) && correct)
+                {
+                    printInvalidName();
+                    correct = false;
+                }
             }
             while (!correct);
                 switch (m_playersJobsMap[currentJob])
@@ -218,12 +233,6 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
         }
     return playersQueue;
 }
-
-/*
-bool Mtmchkin::createPlayer (std::deque<std::unique_ptr<Player>> playersDeque, std::string playersJob)
-{
-
-}*/
 
 
 void Mtmchkin::playRound()
@@ -309,7 +318,7 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
 {
     static std::map<std::string,int> setupCards =
             {
-                    {"Vampire", Vampire },
+                    {"Vampire", Vampire},
                     {"Dragon" , Dragon},
                     {"Goblin" , Goblin},
                     {"Fairy", Fairy},
@@ -320,4 +329,31 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
                     {"Gang", Gang}
             };
     return setupCards;
+}
+
+
+bool Mtmchkin::containsOnlyLetters(std::string &currentName)
+{
+   for(char i : currentName)
+   {
+       if(int(i)>122 || int(i)<65)
+       {
+           return false;
+       }
+       if(int(i)>90 && int(i)<97)
+       {
+           return false;
+       }
+   }
+    return true;
+}
+
+
+bool Mtmchkin::checkinput(std::string &input)
+{
+    if(input.size()>1)
+    {
+        return false;
+    }
+    return true;
 }

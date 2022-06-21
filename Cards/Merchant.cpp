@@ -8,12 +8,27 @@ bool Merchant::applyEncounter(Player& player)
     std::string getFromPlayer;
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(), player.getCoins());
     std::getline(std::cin,getFromPlayer);
-    int whatToDo = std::stoi(getFromPlayer);
+    int whatToDo;
+    try
+    {
+        whatToDo = std::stoi(getFromPlayer);
+    }
+    catch (std::exception &err)
+    {
+        whatToDo = 3;
+    }
     while (whatToDo != BUY_NOTHING && whatToDo != BUY_HP && whatToDo != BUY_FORCE)
     {
         printInvalidInput();
-        std::getline(std::cin,getFromPlayer);
-        whatToDo = std::stoi(getFromPlayer);
+        std::getline(std::cin, getFromPlayer);
+        try
+        {
+            whatToDo = std::stoi(getFromPlayer);
+        }
+        catch (std::exception &err)
+        {
+            whatToDo = INVALID_INPUT;
+        }
     }
     if(whatToDo == BUY_NOTHING)
     {
@@ -36,6 +51,7 @@ bool Merchant::applyEncounter(Player& player)
     {
         printMerchantInsufficientCoins(std::cout);
     }
+    printMerchantSummary(std::cout,player.getName(), whatToDo, 0);
     return false;
 }
 

@@ -21,8 +21,10 @@ class Barfight : public Appliance
 public:
     /*
     * C'tor of Barfight class
+    * Default
+    * @return A new instance of Barfight.
     */
-    explicit Barfight() = default;
+     explicit Barfight() = default;
 
     /*
     * Here we are explicitly telling the compiler to use the default methods
@@ -32,23 +34,23 @@ public:
     Barfight& operator=(const Barfight&) = default;
 
     /*
-    * Handling the player's encounter with the card:
-    *
-    * @param player - The player.
-    * @return bool - true if the player won a battle
-    *
+    *  Applies each Cards effect on Player
+    *  @param player- player who turn it is on the card
+    *  @return true if a battle has happened and the player has won, otherwise false
     */
     bool applyEncounter(Player& player) override;
 
     /*
-    * returns the cards type
-    */
-    std::string getType() const override;
-
-    /*
-    * returns  a unique_ptr to a new Barfight card
+    *  Creates and returns a unique pointer to new instance of Barfight
+    *  @return unique pointer
     */
     static std::unique_ptr<Barfight> createBarfight();
+
+    /*
+    *  Gives us the Type of the card
+    *  @return string "Barfight"
+    */
+    std::string getType() const override;
 
 
 private:

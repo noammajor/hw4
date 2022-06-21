@@ -10,8 +10,11 @@ class Pitfall : public Appliance
 public:
     /*
     * C'tor of Pitfall class
+    * Default
+    * @return A new instance of Pitfall.
     */
-    explicit Pitfall() = default;
+    explicit Pitfall()=default;
+
 
     /*
     * Here we are explicitly telling the compiler to use the default methods
@@ -21,8 +24,8 @@ public:
     Pitfall& operator=(const Pitfall&) = default;
 
     /*
-    * returns  a unique_ptr to a new Pitfall card
-    */
+* returns  a unique_ptr to a new Pitfall card
+*/
     static std::unique_ptr<Pitfall> createPitfall();
 
     /*

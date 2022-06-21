@@ -104,12 +104,14 @@ private:
         Gang
     };
 
+    static bool checkinput(std::string &input);
     static std::map <std::string,int> initializeCardsMap();
-
+    bool static containsOnlyLetters(std::string &currentName);
     std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string &fileName);
     static std::map <std::string, int> initializeJobsMap();
     static int initializePlayersNumber();
     std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
+
     //void insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std::string currentCard, int line);
     //bool createPlayer (std::deque<std::unique_ptr<Player>> playersDeque, std::string playersJob);
 
