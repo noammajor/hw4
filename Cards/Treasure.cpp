@@ -1,12 +1,13 @@
 #include "Treasure.h"
 
 
+const std::string Treasure::TREASURE = "Treasure";
 
 bool Treasure::applyEncounter(Player& player)
 {
     printTreasureMessage();
      player.addCoins(LOOT);
-    return true;
+    return false;
 }
 
 
@@ -22,5 +23,5 @@ std::unique_ptr<Treasure> Treasure::createTreasure()
 
 std::string Treasure::getType() const
 {
-    return type;
+    return TREASURE;
 }

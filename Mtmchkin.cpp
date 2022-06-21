@@ -1,14 +1,8 @@
 #include "Mtmchkin.h"
 
 
-
-//using namespace std;
-
-//Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
-  //      m_numberOfRounds(0)
 Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(), m_losers(),m_numberOfRounds(0)
 {
-
     printStartGameMessage();
     m_cardsMap = initializeCardsMap();
     m_cardsQueue = initializeCardsQueue(fileName);
@@ -74,8 +68,9 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
     }
     return cardsQueue;
 }
+
 /*
-std::deque<std::unique_ptr<Card>> Mtmchkin::initializeBattleQueue(const std::string &fileName)
+std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::string &fileName)
 {
     std::ifstream cards(fileName);
     if(!cards)
@@ -84,40 +79,22 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeBattleQueue(const std::str
     }
     std::string line;
     std::deque<std::unique_ptr<Card>> cardsQueue;
+    int linesCounter = 0;
     while (getline(cards, line))
     {
         if (line.empty())
         {
             break;
         }
-        switch (m_cardsMap[line])
+        linesCounter++;
+        if (line == "Gang")
         {
-            case Dragon:
-                cardsQueue.push_back(Dragon::createDragon());
-                break;
-            case Vampire:
-                cardsQueue.push_back(Vampire::createVampire());
-                break;
-            case Goblin:
-                cardsQueue.push_back(Goblin::createGoblin());
-                break;
-            case Fairy:
-                cardsQueue.push_back(Fairy::createFairy());
-                break;
-            case Treasure:
-                cardsQueue.push_back(Treasure::createTreasure());
-                break;
-            case Merchant:
-                cardsQueue.push_back(Merchant::createMerchant());
-                break;
-            case Pitfall:
-                cardsQueue.push_back(Pitfall::createPitfall());
-                break;
-            case Barfight:
-                cardsQueue.push_back(Barfight::createBarfight());
-                break;
-            default:
-                throw DeckFileFormatError(cardsQueue.size()+1); //
+            cardsQueue.push_back(Gang::createGang(cards, &linesCounter));
+            break;
+        }
+        else
+        {
+            insertToDeque(cardsQueue, line, linesCounter);
         }
     }
     if(cardsQueue.size()<MIN_CARDS)
@@ -125,6 +102,39 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeBattleQueue(const std::str
         throw DeckFileInvalidSize();
     }
     return cardsQueue;
+}
+
+
+void Mtmchkin::insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std::string currentCard, int line) {
+    switch (m_cardsMap[currentCard])
+    {
+        case Dragon:
+            cardsDeque.push_back(Dragon::createDragon());
+            break;
+        case Vampire:
+            cardsDeque.push_back(Vampire::createVampire());
+            break;
+        case Goblin:
+            cardsDeque.push_back(Goblin::createGoblin());
+            break;
+        case Fairy:
+            cardsDeque.push_back(Fairy::createFairy());
+            break;
+        case Treasure:
+            cardsDeque.push_back(Treasure::createTreasure());
+            break;
+        case Merchant:
+            cardsDeque.push_back(Merchant::createMerchant());
+            break;
+        case Pitfall:
+            cardsDeque.push_back(Pitfall::createPitfall());
+            break;
+        case Barfight:
+            cardsDeque.push_back(Barfight::createBarfight());
+            break;
+        default:
+            throw DeckFileFormatError(line);
+    }
 }
 */
 
@@ -151,9 +161,9 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
 {
     std::map<std::string, int> playersJobs =
             {
-                    {"Rogue",   ROGUE},
-                    {"Wizard",   WIZARD},
-                    {"Fighter", FIGHTER}
+                    {"Rogue",   Rogue},
+                    {"Wizard",  Wizard},
+                    {"Fighter", Fighter}
             };
     return playersJobs;
 }
@@ -177,26 +187,26 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
                 correct = true;
                 playerCreated = true;
                 getline(std::cin,input);
-               currentChar=input.find(" ",0);
-               if(currentChar > MAX_LENGTH_NAME|| currentChar==0)
-               {
-                   printInvalidName();
-                   printInsertPlayerMessage();
-                   correct = false;
-               }
-                currentName=input.substr(0,currentChar);
-                currentJob=input.substr(currentChar+1);
+                currentChar = input.find(" ",0);
+                if(currentChar > MAX_LENGTH_NAME|| currentChar == 0)
+                {
+                    printInvalidName();
+                    printInsertPlayerMessage();
+                    correct = false;
+                }
+                currentName = input.substr(0,currentChar);
+                currentJob = input.substr(currentChar+1);
             }
             while (!correct);
                 switch (m_playersJobsMap[currentJob])
                 {
-                    case ROGUE:
+                    case Rogue:
                         playersQueue.push_back(Rogue::createRogue(currentName));
                         break;
-                    case WIZARD:
+                    case Wizard:
                         playersQueue.push_back(Wizard::createWizard(currentName));
                         break;
-                    case FIGHTER:
+                    case Fighter:
                         playersQueue.push_back(Fighter::createFighter(currentName));
                         break;
                     default:
@@ -209,10 +219,16 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
     return playersQueue;
 }
 
+/*
+bool Mtmchkin::createPlayer (std::deque<std::unique_ptr<Player>> playersDeque, std::string playersJob)
+{
+
+}*/
+
 
 void Mtmchkin::playRound()
 {
-    bool loseBattle;
+    bool winBattle;
     printRoundStartMessage(m_numberOfRounds + 1);
     for (int i = m_numberOfPlayersInGames ; i > 0 ; i--)
     {
@@ -221,8 +237,8 @@ void Mtmchkin::playRound()
         m_cardsQueue.pop_front();
         std::unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         m_playersQueue.pop_front();
-        loseBattle = currentCard->applyEncounter(*currentPlayer);
-        if (!loseBattle)
+        winBattle = currentCard->applyEncounter(*currentPlayer);
+        if (winBattle)
         {
             currentPlayer->levelUp();
             printWinBattle(currentPlayer->getName(),currentCard-> getType());

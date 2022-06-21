@@ -1,5 +1,6 @@
 #ifndef HW4_EXCEPTION_H
 #define HW4_EXCEPTION_H
+
 #include <exception>
 #include <iostream>
 #include <string>
@@ -42,7 +43,6 @@ public:
         return "Deck File Error: Deck size is invalid";
     }
 };
-
 
 
 #endif //HW4_EXCEPTION_H

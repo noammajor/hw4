@@ -1,13 +1,9 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-//#include "Cards/Card.h"
-//#include "Players/Player.h"
+
 #include <deque>
 #include <map>
-#//include <memory>
-//#include <iostream>
 #include <fstream>
-//#include <string>
 #include "Cards/Dragon.h"
 #include "Cards/Vampire.h"
 #include "Cards/Goblin.h"
@@ -15,7 +11,6 @@
 #include "Cards/Merchant.h"
 #include "Cards/Treasure.h"
 #include "Cards/Pitfall.h"
-//#include "utilities.h"
 #include "Players/Fighter.h"
 #include "Players/Wizard.h"
 #include "Players/Rogue.h"
@@ -37,6 +32,13 @@ public:
     *      A new instance of Mtmchkin.
     */
     explicit Mtmchkin(const std::string &fileName);
+
+    /*
+    * Here we are explicitly telling the compiler to use the default methods
+    */
+    ~Mtmchkin() = default;
+    Mtmchkin(const Mtmchkin&) = default;
+    Mtmchkin& operator=(const Mtmchkin&) = default;
 
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -73,11 +75,10 @@ public:
 
 private:
 
-    static const int MIN_CARDS=5;
-    static const int MAX_PLAYER=6;
-    static const int MIN_PLAYER=2;
-    static const int MAX_LENGTH_NAME=15;
-    //static const int MAX_LEVEL=10;
+    static const int MIN_CARDS = 5;
+    static const int MAX_PLAYER = 6;
+    static const int MIN_PLAYER = 2;
+    static const int MAX_LENGTH_NAME = 15;
 
     std::deque<std::unique_ptr<Card>> m_cardsQueue;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
@@ -92,7 +93,7 @@ private:
 
     enum TypeOfCard
     {
-        Vampire=1,
+        Vampire = 1,
         Dragon,
         Goblin,
         Fairy,
@@ -107,22 +108,18 @@ private:
 
     std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string &fileName);
     static std::map <std::string, int> initializeJobsMap();
-    int initializePlayersNumber();
+    static int initializePlayersNumber();
     std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
-
+    //void insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std::string currentCard, int line);
+    //bool createPlayer (std::deque<std::unique_ptr<Player>> playersDeque, std::string playersJob);
 
     enum jobs
     {
-        ROGUE=1,
-        WIZARD,
-        FIGHTER
+        Rogue = 1,
+        Wizard,
+        Fighter
     };
 
-
-
-
 };
-
-
 
 #endif /* MTMCHKIN_H_ */

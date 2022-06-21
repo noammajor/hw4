@@ -1,14 +1,19 @@
 #include "Rogue.h"
 
 
+const std::string Rogue::ROGUE = "Rogue";
+
 Rogue::Rogue(const std::string &name) :  Player(name)
 {
 }
+
 
 void Rogue::addCoins(int coinsToAdd)
 {
     m_coins += 2*coinsToAdd;
 }
+
+
 std::string Rogue::getType() const
 {
     return ROGUE;
@@ -28,6 +33,6 @@ std::unique_ptr<Rogue> Rogue::createRogue(const std::string &name)
 
 void Rogue::print() const
 {
-    printPlayerDetails(std::cout, this->m_name, this->ROGUE, this->m_level, this->m_force,this-> m_playerhealthpoints.getHP(), this->m_coins);
+    printPlayerDetails(std::cout, this->m_name, this->ROGUE, this->m_level, this->m_force, this-> m_healthpoints.getHP(), this->m_coins);
 }
 

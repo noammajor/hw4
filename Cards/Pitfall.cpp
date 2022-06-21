@@ -1,6 +1,9 @@
 #include "Pitfall.h"
 
 
+const std::string Pitfall::PITFALL = "Pitfall";
+
+
 bool Pitfall::applyEncounter(Player& player)
 {
     bool isRogue = true;
@@ -10,7 +13,7 @@ bool Pitfall::applyEncounter(Player& player)
         isRogue = false;
     }
     printPitfallMessage(isRogue);
-    return true;
+    return false;
 }
 
 
@@ -23,6 +26,7 @@ std::unique_ptr<Pitfall> Pitfall::createPitfall()
     }
     return pitfallCard;
 }
+
 
 std::string Pitfall::getType() const
 {

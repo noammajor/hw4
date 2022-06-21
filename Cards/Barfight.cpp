@@ -1,18 +1,18 @@
 #include "Barfight.h"
 
 
-
+const std::string Barfight::BARFIGHT = "Barfight";
 
 bool Barfight::applyEncounter(Player& player)
 {
-    bool isFighter= true;
+    bool isFighter = true;
     if(player.getType() != "Fighter")
     {
-        isFighter= false;
-        player.damage(GIVEDAMAGE);
+        isFighter = false;
+        player.damage(DAMAGE);
     }
     printBarfightMessage(isFighter);
-    return true;
+    return false;
 }
 
 
@@ -20,7 +20,6 @@ std::string Barfight::getType() const
 {
     return BARFIGHT;
 }
-
 
 
 std::unique_ptr<Barfight> Barfight::createBarfight()

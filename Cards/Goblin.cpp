@@ -1,8 +1,9 @@
 #include "Goblin.h"
 
 
-Goblin::Goblin():
-Battle(GOBLIN_FORCE, GOBLIN_DAMAGE,GOBLIN_COINS)
+const std::string Goblin::GOBLIN = "Goblin";
+
+Goblin::Goblin(): Battle(GOBLIN_FORCE, GOBLIN_DAMAGE,GOBLIN_COINS)
 {
 }
 
@@ -16,5 +17,5 @@ std::unique_ptr<Goblin> Goblin::createGoblin()
 
 std::string Goblin::getType() const
 {
-    return TYPE_MONSTER;
+    return GOBLIN;
 }

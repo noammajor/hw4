@@ -2,7 +2,6 @@
 #ifndef CPP_UTIL_H
 #define CPP_UTIL_H
 
-//#include <iostream>
 #include <cstring>
 #include <sstream>
 #include <functional>
@@ -128,7 +127,7 @@ void printTreasureMessage();
  
  * @param os - The ostream.
  * @param playerName - The name of the player who encountered the merchant.
- * @param type - The type of purchase the player has made (1 for potion / 2 for boost).
+ * @param TREASURE - The TREASURE of purchase the player has made (1 for potion / 2 for boost).
  * @param amount - The amount that the player has purchased.
  * @param cost - The total cost that the player has payed.
  * @return

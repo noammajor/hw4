@@ -1,15 +1,13 @@
-#include "../HealthPoints.h"
-//#include <iostream>
-//#include <string>
 #ifndef Player_H_
 #define Player_H_
 
+#include "../HealthPoints.h"
 
 
 /*
 * Run Length Encoding List
 *
-* Implements a Player in muchkin game
+* Implements a Player in mtmchkin game
 
 *the following class is available:
 *player
@@ -29,119 +27,102 @@ class Player
 public:
 
     /*
-     * C'tor of player class
-     *
-     * @param name - name of player.
-     * @param level- the level of the player during the game.
-     * @param force - strength of the player.
-     * @param HP - the amount of health left for a player.
-     * @param coins - the amount of tresure available to player.
-     */
+    * C'tor of player class
+    *
+    * @param name - name of player.
+    */
     explicit Player(const std::string &name);
 
-
     /*
-     *copy C'tor
-     *get player1 and copies into player2
-     */
-    //Player(const Player&);
-
-    /*
-    *assignment operator
-    *get player1 and copies into player2
+    * Here we are explicitly telling the compiler to use the default methods
     */
-    //Player& operator=(const Player& other);
-
-    /*
-     *D'tor
-     */
     virtual ~Player() = default;
-
-    //needs to be made
+    Player(const Player&) = default;
+    Player& operator=(const Player&) = default;
 
     /*
-     *prints players info to screen
-     */
+    *returns players type
+    */
+    virtual std::string getType() const = 0;
 
-
-
-
-    virtual std::string getType() const=0;
-
-
+    /*
+    * returns players name
+    */
     std::string getName() const;
 
 
     /*
-     *adds a level to player during game
-     */
+    * adds a level to player during game
+    */
     void levelUp();
 
 
     /*
-     *returns players level
-     */
+    * returns players level
+    */
     int getLevel() const;
 
-
+    /*
+    *  returns players amount of coins
+    */
     int getCoins() const;
 
 
     /*
-     *adds to the force of the player during the game
-     */
+    * adds to the force of the player during the game
+    */
     void buff (int powerUp);
 
 
     /*
-     *heals the players HP during the game
-     */
+    * heals the player and add him HP during the game
+    */
      virtual void heal(int HpToHeal);
 
 
     /*
-     *functions that lowers the players HP after the loss of the battle
-     */
+    * lowers the players HP after the loss of the battle
+    */
     void damage(int damageTaken);
 
 
     /*
-     *checks if player lost game and lost all of his HP
-     */
+    * checks if player lost game and lost all of his HP
+    */
     bool isKnockedOut() const;
 
 
     /*
-     *adds coins after getting the coins add card
-     */
+    * adds coins after getting the coins add card
+    */
     virtual void addCoins(int coinsToAdd);
 
 
     /*
-     used for payment to buy iteams during game using cards
-     */
+    * used for payment to buy items during game using cards
+    */
     bool pay(int payment);
 
 
     /*
-     *returns the attack strength of the player which is force+level
-     */
+    * returns the attack strength of the player which is force+level
+    */
     virtual int getAttackStrength() const;
 
 
 
 protected:
-    //static const int NO_COINS = 0;
     static const int MAX_LEVEL = 10;
-    //static const int MAX_HP = 100;
-
 
     const std::string m_name;
     int m_force;
-    HealthPoints m_playerhealthpoints;
+    HealthPoints m_healthpoints;
     int m_level;
     int m_coins;
 
+    /*
+    *prints players info to screen
+    */
     virtual void print() const = 0;
 
 private:

@@ -1,10 +1,11 @@
 #include "Gang.h"
 
 
+const std::string Gang::GANG = "Gang";
 
-Gang::Gang(std::ifstream& cards, int* linesCounter) : m_battleMap (initializeBattleMap())
+Gang::Gang(std::ifstream& cards, int* linesCounter) : m_battleMap (initializeBattleMap()),
+        m_cardsDeque (initializeBattleQueue(cards, linesCounter))
 {
-    m_cardsDeque = initializeBattleQueue(cards, linesCounter);
 }
 
 
@@ -40,17 +41,16 @@ std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& car
 }
 
 
-
 bool Gang::applyEncounter(Player& player)
 {
-    bool lose = false;
+    bool victory = false;
     std::unique_ptr<Card> currentCard;
     int i = m_cardsDeque.size();
     for ( ; i > 0 ; i--)
     {
         currentCard = move(m_cardsDeque.front());
         m_cardsDeque.pop_front();
-        if(lose)
+        if(victory)
         {
             switch (m_battleMap[currentCard->getType()])
             {
@@ -68,11 +68,11 @@ bool Gang::applyEncounter(Player& player)
         }
         else
         {
-            lose = currentCard->applyEncounter(player);
+            victory = currentCard->applyEncounter(player);
         }
         m_cardsDeque.push_back(move(currentCard));
     }
-    return lose;
+    return victory;
 }
 
 
@@ -98,7 +98,7 @@ std::map <std::string, int> Gang::initializeBattleMap()
 
 std::string Gang::getType() const
 {
-    return TYPE;
+    return GANG;
 }
 
 
