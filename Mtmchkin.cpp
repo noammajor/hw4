@@ -1,11 +1,7 @@
 #include "Mtmchkin.h"
-#include <cctype>
 
 
-//using namespace std;
 
-//Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(deque<unique_ptr<Player>>()), m_losers(deque<unique_ptr<Player>>()),
-  //      m_numberOfRounds(0)
 Mtmchkin::Mtmchkin(const std::string &fileName) : m_winners(), m_losers(),m_numberOfRounds(0)
 {
 
@@ -78,14 +74,12 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
 
 int Mtmchkin::initializePlayersNumber()
 {
-    bool legalInput=true;
     std::string input;
     int numberOfPlayers = 0;
     while (numberOfPlayers == 0)
     {
         printEnterTeamSizeMessage();
         getline(std::cin, input);
-        legalInput=checkinput(input);
         try 
         {
             numberOfPlayers = stoi(input);   
