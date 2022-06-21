@@ -56,7 +56,7 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsQueue(const std::stri
                 cardsQueue.push_back(Barfight::createBarfight());
                 break;
             case Gang:
-               cardsQueue.push_back(Gang::createGang(cards, &linesCounter));
+                cardsQueue.push_back(Gang::createGang(cards, &linesCounter));
                 break;
             default:
                 throw DeckFileFormatError(cardsQueue.size()+1); //check size later
@@ -140,14 +140,12 @@ void Mtmchkin::insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std:
 
 int Mtmchkin::initializePlayersNumber()
 {
-    bool legalInput = true;
     std::string input;
     int numberOfPlayers = 0;
     while (numberOfPlayers == 0)
     {
         printEnterTeamSizeMessage();
         getline(std::cin, input);
-        legalInput = checkinput(input);
         try
         {
             numberOfPlayers = stoi(input);
@@ -194,16 +192,16 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
         {
             do
             {
-               correct = true;
-               playerCreated = true;
-               getline(std::cin,input);
-               currentChar = input.find(" ",0);
-               if(currentChar > MAX_LENGTH_NAME|| currentChar==0 )
-               {
-                   printInvalidName();
-                 //  printInsertPlayerMessage();
-                   correct = false;
-               }
+                correct = true;
+                playerCreated = true;
+                getline(std::cin,input);
+                currentChar = input.find(" ",0);
+                if(currentChar > MAX_LENGTH_NAME|| currentChar==0 )
+                {
+                    printInvalidName();
+                    //  printInsertPlayerMessage();
+                    correct = false;
+                }
                 currentName = input.substr(0,currentChar);
                 currentJob = input.substr(currentChar+1);
                 if(!containsOnlyLetters(currentName ) && correct)
@@ -281,20 +279,20 @@ void Mtmchkin::printLeaderBoard() const
     int ranking=1;
     printLeaderBoardStartMessage();
     for (std::deque<std::unique_ptr<Player>>::const_iterator iter = m_winners.begin() ; iter != m_winners.end() ; iter++)
- {
-     printPlayerLeaderBoard( ranking,**iter);
-     ranking++;
- }
+    {
+        printPlayerLeaderBoard( ranking,**iter);
+        ranking++;
+    }
     for (std::deque<std::unique_ptr<Player>>::const_iterator iter = m_playersQueue.begin() ; iter != m_playersQueue.end() ; iter++)
- {
-     printPlayerLeaderBoard( ranking, **iter);
-     ranking++;
- }
+    {
+        printPlayerLeaderBoard( ranking, **iter);
+        ranking++;
+    }
     for (std::deque<std::unique_ptr<Player>>::const_iterator iter = m_losers.begin() ; iter != m_losers.end() ; iter++)
     {
-     printPlayerLeaderBoard(ranking, **iter);
-     ranking++;
- }
+        printPlayerLeaderBoard(ranking, **iter);
+        ranking++;
+    }
 }
 
 
@@ -334,17 +332,17 @@ std::map <std::string,int> Mtmchkin::initializeCardsMap()
 
 bool Mtmchkin::containsOnlyLetters(std::string &currentName)
 {
-   for(char i : currentName)
-   {
-       if(int(i)>122 || int(i)<65)
-       {
-           return false;
-       }
-       if(int(i)>90 && int(i)<97)
-       {
-           return false;
-       }
-   }
+    for(char i : currentName)
+    {
+        if(int(i) > 122 || int(i) < 65)
+        {
+            return false;
+        }
+        if(int(i) > 90 && int(i) < 97)
+        {
+            return false;
+        }
+    }
     return true;
 }
 
