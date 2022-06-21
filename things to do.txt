@@ -1,4 +1,16 @@
-1. שורת השגיעה
-2. Apply encounter
-3. Copy const' operator=
+
 4.h files
+
+
+קבצים שסיימנו באמת!!
+appliance *2
+barfight *2
+battle *2
+card *2
+dragon *2
+fairy *2
+gang *2
+goblin *2
+merchant *2
+pitfall *2
+vampire *2

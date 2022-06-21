@@ -1,6 +1,8 @@
 #include "Fairy.h"
 
 
+const std::string Fairy::FAIRY = "Fairy";
+
 bool Fairy::applyEncounter(Player& player)
 {
     bool isWizard = false;
@@ -10,8 +12,9 @@ bool Fairy::applyEncounter(Player& player)
         player.heal(HEALTH_HEAL);
     }
         printFairyMessage( isWizard);
-    return true;
+    return false;
 }
+
 
 std::unique_ptr<Fairy> Fairy::createFairy()
 {
@@ -23,7 +26,8 @@ std::unique_ptr<Fairy> Fairy::createFairy()
     return FairyCard;
 }
 
+
 std::string Fairy::getType() const
 {
-    return type;
+    return FAIRY;
 }

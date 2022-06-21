@@ -1,30 +1,49 @@
 #ifndef HW4_FIGHTER_H
 #define HW4_FIGHTER_H
-//#include <iostream>
-//#include "Player.h"
+
 #include <memory>
 #include "../utilities.h"
+
 
 class Fighter  : public Player
 {
 
 public:
-    int getAttackStrength() const override;
-
+    /*
+    * C'tor of Fighter class
+    */
     explicit Fighter(const std::string &name);
 
+    /*
+    * Here we are explicitly telling the compiler to use the default methods
+    */
     ~Fighter() override = default;
+    Fighter(const Fighter&) = default;
+    Fighter& operator=(const Fighter&) = default;
+
+    int getAttackStrength() const override;
+
+    /*
+    * returns  a unique_ptr to a new Fighter player
+    * @param name - the requested name for  the new player
+    */
     static std::unique_ptr<Fighter> createFighter(const std::string &name);
 
-    void print() const override;
+    /*
+    *returns players type
+    */
     std::string getType() const override;
 
+
+    /*
+    *prints the players details to the screen
+    */
+    void print() const override;
+
+
 private:
-    const std::string FIGHTER = "Fighter";
-
-
+    static const std::string FIGHTER;
 
 };
-
 
 #endif //HW4_FIGHTER_H

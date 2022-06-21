@@ -1,6 +1,8 @@
 #include "Merchant.h"
 
 
+const std::string Merchant::MERCHANT = "Merchant";
+
 bool Merchant::applyEncounter(Player& player)
 {
     std::string getFromPlayer;
@@ -9,66 +11,53 @@ bool Merchant::applyEncounter(Player& player)
     int whatToDo;
     try
     {
-        whatToDo=std::stoi(getFromPlayer);
+        whatToDo = std::stoi(getFromPlayer);
     }
     catch (std::exception &err)
     {
-        whatToDo=3;
+        whatToDo = 3;
     }
-    while (whatToDo!=BUY_NOTHING && whatToDo!=BUY_HP&& whatToDo!=BUY_FORCE)
+    while (whatToDo != BUY_NOTHING && whatToDo != BUY_HP && whatToDo != BUY_FORCE)
     {
         printInvalidInput();
-        std::getline(std::cin,getFromPlayer);
+        std::getline(std::cin, getFromPlayer);
         try
         {
-            whatToDo=std::stoi(getFromPlayer);
+            whatToDo = std::stoi(getFromPlayer);
         }
         catch (std::exception &err)
         {
-            whatToDo=INVALID_INPUT;
+            whatToDo = INVALID_INPUT;
         }
     }
-    if(whatToDo==BUY_NOTHING)
+    if(whatToDo == BUY_NOTHING)
     {
         printMerchantSummary(std::cout,player.getName(), whatToDo, 0);
-        return true;
+        return false;
     }
-    if (whatToDo==BUY_HP)
+    else if (whatToDo == BUY_HP && player.pay(HP_COST))
     {
-        if (player.getCoins()>=HP_COST)
-        {
-            player.pay(HP_COST);
-            player.heal(1);
-            printMerchantSummary(std::cout,player.getName(), whatToDo, HP_COST);
-            return true;
-        }
-        else
-        {
-            printMerchantInsufficientCoins(std::cout);
-        }
+        player.heal(1);
+        printMerchantSummary(std::cout,player.getName(), whatToDo, HP_COST);
+        return false;
     }
-    if(whatToDo==BUY_FORCE)
+    else if(whatToDo == BUY_FORCE && player.pay(FORCE_COST))
     {
-        if (player.getCoins()>=FORCE_COST)
-        {
-            player.pay(FORCE_COST);
-            player.buff (1);
-            printMerchantSummary(std::cout,player.getName(), whatToDo, FORCE_COST);
-            return true;
-        }
-        else
-        {
-            printMerchantInsufficientCoins(std::cout);
-        }
+        player.buff (1);
+        printMerchantSummary(std::cout,player.getName(), whatToDo, FORCE_COST);
+        return false;
+    }
+    else
+    {
+        printMerchantInsufficientCoins(std::cout);
     }
     printMerchantSummary(std::cout,player.getName(), whatToDo, 0);
-    return true;
+    return false;
 }
 
 
 std::unique_ptr<Merchant> Merchant::createMerchant()
 {
-
     std::unique_ptr<Merchant> merchantCard(new Merchant());
     if (!merchantCard)
     {
@@ -77,9 +66,10 @@ std::unique_ptr<Merchant> Merchant::createMerchant()
     return merchantCard;
 }
 
+
 std::string Merchant::getType() const
 {
-    return type;
+    return MERCHANT;
 }
 
 

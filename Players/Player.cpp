@@ -2,26 +2,10 @@
 
 
 
-Player::Player(const std::string& name) : m_name(name), m_force(DEFAULT_FORCE), m_playerhealthpoints(),
-                            m_level(INITIAL_LEVEL), m_coins(DEFAULT_COINS)
+Player::Player(const std::string& name) : m_name(name), m_force(DEFAULT_FORCE), m_healthpoints(),
+                                          m_level(INITIAL_LEVEL), m_coins(DEFAULT_COINS)
 {
 }
-
-
-//Player::~Player() {}
-
-
-/*void Player::printInfo() const
-{
-    printPlayerDetails(std::cout , m_name, m_job, m_level, m_force, m_playerhealthpoints.getHP(), m_coins);
-}
-
-
-std::string Player::getType() const
-{
-    return m_job;
-}*/
-
 
 
 std::string Player::getName() const
@@ -64,7 +48,7 @@ void Player::buff (int powerUp)
 
 void Player::heal(int HpToHeal)
 {
-    m_playerhealthpoints += HpToHeal;
+    m_healthpoints += HpToHeal;
 }
 
 
@@ -74,13 +58,13 @@ void Player::damage(int damageTaken)
     {
         return;
     }
-    m_playerhealthpoints -= damageTaken;
+    m_healthpoints -= damageTaken;
 }
 
 
 bool Player::isKnockedOut() const
 {
-    if(m_playerhealthpoints.getHP() <= 0)
+    if(m_healthpoints.getHP() <= 0)
     {
         return true;
     }

@@ -1,19 +1,37 @@
 #ifndef APPLIANCE_H_
 #define APPLIANCE_H_
+
 #include "Card.h"
-//#include <string>
+
+
 class Appliance :public Card
 {
+
 public:
-    Appliance() = default;
+
+    /*
+    * C'tor of Aplliance class
+    */
+    explicit Appliance() = default;
+
+    /*
+    * Here we are explicitly telling the compiler to use the default methods
+    */
     ~Appliance() override = default;
-    //virtual void applyEncounter(std::unique_ptr<Player> player)=0;
+    Appliance(const Appliance&) = default;
+    Appliance& operator=(const Appliance&) = default;
+
+    /*
+    * prints the cards details to the screen
+    * @ param os - output stream
+    */
     void printCard(std::ostream& os) const override;
+
+    /*
+    *returns the cards type
+    */
     std::string getType() const override = 0;
 
-    //friend  std::ostream& operator<<(std::ostream& os, const Appliance& card);
-
-private:
-
 };
+
 #endif
