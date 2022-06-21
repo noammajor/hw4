@@ -140,6 +140,7 @@ void Mtmchkin::insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std:
 
 int Mtmchkin::initializePlayersNumber()
 {
+    bool legalInput = true;
     std::string input;
     int numberOfPlayers = 0;
     while (numberOfPlayers == 0)
@@ -192,18 +193,18 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersQueue(int numberO
         {
             do
             {
-                correct = true;
-                playerCreated = true;
-                getline(std::cin,input);
-                currentChar = input.find(" ",0);
-                if(currentChar > MAX_LENGTH_NAME|| currentChar==0 )
-                {
-                    printInvalidName();
-                    //  printInsertPlayerMessage();
-                    correct = false;
-                }
+               correct = true;
+               playerCreated = true;
+               getline(std::cin,input);
+               currentChar = input.find(" ",0);
+               if(currentChar > MAX_LENGTH_NAME || currentChar == 0 )
+               {
+                   printInvalidName();
+                 //  printInsertPlayerMessage();
+                   correct = false;
+               }
                 currentName = input.substr(0,currentChar);
-                currentJob = input.substr(currentChar+1);
+                currentJob = input.substr(currentChar + 1);
                 if(!containsOnlyLetters(currentName ) && correct)
                 {
                     printInvalidName();
@@ -345,8 +346,6 @@ bool Mtmchkin::containsOnlyLetters(std::string &currentName)
     }
     return true;
 }
-
-
 bool Mtmchkin::checkinput(std::string &input)
 {
     if(input.size()>1)
