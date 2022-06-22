@@ -31,7 +31,7 @@ public:
     /*
     * C'tor of Dragon class
     */
-    Gang(std::ifstream& cards, int* linesCounter);
+    Gang(std::ifstream& cards, int& linesCounter);
 
     /*
     * Here we are explicitly telling the compiler to use the default methods
@@ -54,14 +54,14 @@ public:
     * @param cards - input stream
     * @param linesCounter - counts the lines of the input in order to return it in a case of error
     */
-    static std::unique_ptr<Gang> createGang(std::ifstream& cards, int* linesCounter);
+    static std::unique_ptr<Gang> createGang(std::ifstream& cards, int& linesCounter);
 
     /*
     * returns a deque of cards' unique_ptrs
     * @param cards - input stream
     * @param linesCounter - counts the lines of the input in order to return it in a case of error
     */
-    std::deque<std::unique_ptr<Card>> initializeBattleQueue(std::ifstream& cards, int* linesCounter);
+    std::deque<std::unique_ptr<Card>> initializeBattleQueue(std::ifstream& cards, int &linesCounter);
 
     /*
     *returns the cards type

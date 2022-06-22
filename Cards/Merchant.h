@@ -61,7 +61,7 @@ private:
     static const int BUY_NOTHING = 0;
     static const int BUY_HP = 1;
     static const int BUY_FORCE = 2;
-    static const int INVALID_INPUT=-1;
+    static const int INVALID_INPUT = -1;
     static const std::string MERCHANT;
 
 };

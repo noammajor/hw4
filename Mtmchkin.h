@@ -81,11 +81,12 @@ private:
     static const int MIN_CARDS = 5;
     static const int MAX_PLAYER = 6;
     static const int MIN_PLAYER = 2;
+    static const int MAX_LEVEL = 10;
     static const int MAX_LENGTH_NAME = 15;
-    static const int MAX_ASCII_VALUE=122;
-    static const int MIN_ASCII_VALUE=65;
-    static const int UPPER_INTER_ASCII_VALUE=97;
-    static const int LOWER_INTER_ASCII_VALUE=90;
+    static const int MAX_ASCII_VALUE = 122;
+    static const int MIN_ASCII_VALUE = 65;
+    static const int UPPER_INTER_ASCII_VALUE = 97;
+    static const int LOWER_INTER_ASCII_VALUE = 90;
 
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
@@ -99,6 +100,92 @@ private:
     int m_numberOfPlayersInGames;
 
 
+    /*
+    *  creates the map for creating the deck.
+    *
+    *  @return
+    *        map holding a string and int (int is represented as a emun)
+    */
+    static std::map <std::string,int> initializeCardsMap();
+
+    /*
+    *  checks if the input is only alphabet letters
+    *
+    *  @return
+    *          bool - true if the name is only letter.
+    */
+    bool static containsOnlyLetters(std::string &currentName);
+
+    /*
+    *  creates the deck of cards for the game
+    *
+    *  @return
+    *         deque - returns the deck of cards
+    */
+    std::deque<std::unique_ptr<Card>> initializeCardsDeque(const std::string &fileName);
+
+    /*
+    *  creates the map for creating the players.
+    *
+    *  @return
+    *        map - holding a string and int (int is represented as a emun)
+    */
+    static std::map <std::string, int> initializeJobsMap();
+
+    /*
+    *  recieves from the user the amount of players who want to play
+    *
+    *  @return
+    *        int - the amount of players
+    */
+    static int initializePlayersNumber();
+
+    /*
+    *  creates the deck that holds the layers for the game
+    *
+    *  @return
+    *         deque - returns the deck of cards
+    */
+    std::deque<std::unique_ptr<Player>> initializePlayersDeque(int numberOfPlayers);
+
+    /*
+    *  finds the place of " " and chooses right boolian value
+    *
+    *  @return
+    *         int - place in string to "cut" into two words
+    */
+    static int setupOfPlayersDeck(bool& correct, bool& playercreated, std::string& input);
+
+    /*
+    *  checks if word only has letters
+    */
+    static void ifOnlyHasLetter (bool& correct, std::string& currentName);
+
+    /*
+    *  checks if length of word is legal
+    */
+    static void ifIsLegalLength (bool& correct,int currentChar);
+
+    /*
+    *  takes the string apart to two diffrent strings, player name and type
+    */
+    static void takingAppartTheName (std::string& input,int currentChar,std::string& currentName,std::string& currentJob);
+
+    /*
+    *  checks which card name was chosen, pushes them into deck.
+    */
+    void pushCardsToDeck( std::deque<std::unique_ptr<Card>>& cardsDeque,int& linesCounter,
+                          std::string& line,std::ifstream& cards);
+
+
+    enum Jobs
+    {
+        Rogue = 1,
+        Wizard,
+        Fighter
+    };
+
+
     enum TypeOfCard
     {
         Vampire = 1,
@@ -110,81 +197,6 @@ private:
         Pitfall,
         Barfight,
         Gang
-    };
-
-
-    /*
-  *  creates the map for creating the deck.
-  *
-  *  @return
-  *        map holding a string and int (int is represented as a emun)
-  */
-    static std::map <std::string,int> initializeCardsMap();
-    /*
-  *  checks if the input is only alphabet letters
-  *
-  *  @return
-  *          bool - true if the name is only letter.
-  */
-    bool static containsOnlyLetters(std::string &currentName);
-    /*
- *  creates the deck of cards for the game
- *
- *  @return
- *         deque - returns the deck of cards
- */
-    std::deque<std::unique_ptr<Card>> initializeCardsDeque(const std::string &fileName);
-    /*
- *  creates the map for creating the players.
- *
- *  @return
- *        map - holding a string and int (int is represented as a emun)
- */
-    static std::map <std::string, int> initializeJobsMap();
-    /*
- *  recieves from the user the amount of players who want to play
- *
- *  @return
- *        int - the amount of players
- */
-    static int initializePlayersNumber();
-    /*
-*  creates the deck that holds the layers for the game
-*
-*  @return
-*         deque - returns the deck of cards
-*/
-    std::deque<std::unique_ptr<Player>> initializePlayersDeque(int numberOfPlayers);
-/*
-*  finds the place of " " and chooses right boolian value
-*
-*  @return
-*         int - place in string to "cut" into two words
-*/
-    int setupOfPlayersDeck(bool& correct,bool& playercreated,std::string& input);
-/*
-*  checks if word only has letters
-*/
-    void ifOnlyHasLetter (bool& correct,std::string& currentName);
-/*
-*  checks if length of word is legal
-*/
-    void ifIsLegalLength (bool& correct,int currentChar);
-/*
-*  takes the string apart to two diffrent strings, player name and type
-*/
-    void takingAppartTheName (std::string& input,int currentChar,std::string& currentName,std::string& currentJob);
-/*
-*  checks which card name was chosen, pushes them into deck.
-*/
-    void pushCardsToDeck( std::deque<std::unique_ptr<Card>>& cardsDeque,int& linesCounter,
-                          std::string& line,std::ifstream& cards);
-
-    enum jobs
-    {
-        Rogue = 1,
-        Wizard,
-        Fighter
     };
 
 };

@@ -3,13 +3,13 @@
 
 const std::string Gang::GANG = "Gang";
 
-Gang::Gang(std::ifstream& cards, int* linesCounter) : m_battleMap (initializeBattleMap()),
+Gang::Gang(std::ifstream& cards, int& linesCounter) : m_battleMap (initializeBattleMap()),
         m_cardsDeque (initializeBattleQueue(cards, linesCounter))
 {
 }
 
 
-std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& cards, int* linesCounter)
+std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& cards, int &linesCounter)
 {
     std::string line;
     std::deque<std::unique_ptr<Card>> cardsDeque;
@@ -17,7 +17,7 @@ std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& car
     {
         if (line.empty())
         {
-            throw DeckFileFormatError(*linesCounter);
+            throw DeckFileFormatError( linesCounter);
         }
         linesCounter++;
         switch (m_battleMap[line])
@@ -34,7 +34,7 @@ std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& car
             case EndGang:
                 return cardsDeque;
             default:
-                throw DeckFileFormatError(*linesCounter);
+                throw DeckFileFormatError(linesCounter);
         }
     }
     return cardsDeque;
@@ -76,7 +76,7 @@ bool Gang::applyEncounter(Player& player)
 }
 
 
-std::unique_ptr<Gang> Gang::createGang(std::ifstream &cards, int* linesCounter)
+std::unique_ptr<Gang> Gang::createGang(std::ifstream &cards, int& linesCounter)
 {
     std::unique_ptr<Gang> gangCard(new Gang(cards, linesCounter));
     return gangCard;

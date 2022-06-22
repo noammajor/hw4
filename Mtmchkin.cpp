@@ -41,7 +41,7 @@ void Mtmchkin::pushCardsToDeck( std::deque<std::unique_ptr<Card>>& cardsDeque,in
             cardsDeque.push_back(Barfight::createBarfight());
             break;
         case Gang:
-            cardsDeque.push_back(Gang::createGang(cards, &linesCounter));
+            cardsDeque.push_back(Gang::createGang(cards, linesCounter));
             break;
         default:
             throw DeckFileFormatError(linesCounter);
@@ -77,7 +77,6 @@ std::deque<std::unique_ptr<Card>> Mtmchkin::initializeCardsDeque(const std::stri
     }
     return cardsDeque;
 }
-
 
 
 int Mtmchkin::initializePlayersNumber()
@@ -116,13 +115,14 @@ std::map <std::string, int> Mtmchkin::initializeJobsMap()
             };
     return playersJobs;
 }
+
+
 std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersDeque(int numberOfPlayers)
 {
     std::deque<std::unique_ptr<Player>> playersQueue;
     int currentChar;
     std::string input;
     std::string currentName= "/0",currentJob = "/0";
-    // std::string currentJob = "/0";
     bool correct, playerCreated;
     for (int i = 0; i < numberOfPlayers ; i++)
     {
@@ -159,6 +159,7 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersDeque(int numberO
     return playersQueue;
 }
 
+
 void Mtmchkin::playRound()
 {
     bool winBattle;
@@ -177,7 +178,7 @@ void Mtmchkin::playRound()
             printWinBattle(currentPlayer->getName(),currentCard-> getType());
         }
         m_cardsDeque.push_back(move(currentCard));
-        if (currentPlayer->getLevel() == 10)
+        if (currentPlayer->getLevel() == MAX_LEVEL)
         {
             m_numberOfPlayersInGames--;
             m_winners.push_back(std::move(currentPlayer));
@@ -260,17 +261,18 @@ bool Mtmchkin::containsOnlyLetters(std::string &currentName)
 {
    for(char i : currentName)
    {
-       if(int(i)> MAX_ASCII_VALUE || int(i)< MIN_ASCII_VALUE)
+       if(int(i) > MAX_ASCII_VALUE || int(i) < MIN_ASCII_VALUE)
        {
            return false;
        }
-       if(int(i)>LOWER_INTER_ASCII_VALUE && int(i)<UPPER_INTER_ASCII_VALUE)
+       if(int(i) > LOWER_INTER_ASCII_VALUE && int(i) < UPPER_INTER_ASCII_VALUE)
        {
            return false;
        }
    }
     return true;
 }
+
 
 int Mtmchkin::setupOfPlayersDeck(bool& correct,bool& playerCreated,std::string& input)
 {
@@ -281,6 +283,7 @@ int Mtmchkin::setupOfPlayersDeck(bool& correct,bool& playerCreated,std::string& 
     return placeOfSpace;
 }
 
+
 void Mtmchkin::ifOnlyHasLetter (bool& correct,std::string& currentName)
 {
     if(!containsOnlyLetters(currentName ) && correct)
@@ -290,6 +293,7 @@ void Mtmchkin::ifOnlyHasLetter (bool& correct,std::string& currentName)
     }
 }
 
+
 void Mtmchkin::ifIsLegalLength  (bool& correct,int currentChar)
 {
     if(currentChar > MAX_LENGTH_NAME|| currentChar==0 )
@@ -298,6 +302,7 @@ void Mtmchkin::ifIsLegalLength  (bool& correct,int currentChar)
         correct = false;
     }
 }
+
 
 void Mtmchkin::takingAppartTheName (std::string& input,int currentChar,std::string& currentName,std::string& currentJob)
 {
