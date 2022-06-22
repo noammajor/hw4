@@ -149,13 +149,13 @@ std::deque<std::unique_ptr<Player>> Mtmchkin::initializePlayersDeque(int numberO
             while (!correct);
                 switch (m_playersJobsMap[currentJob])
                 {
-                    case Rogue:
+                    case ROGUE:
                         playersQueue.push_back(Rogue::createRogue(currentName));
                         break;
-                    case Wizard:
+                    case WIZARD:
                         playersQueue.push_back(Wizard::createWizard(currentName));
                         break;
-                    case Fighter:
+                    case FIGHTER:
                         playersQueue.push_back(Fighter::createFighter(currentName));
                         break;
                     default:

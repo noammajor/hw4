@@ -43,14 +43,14 @@ std::deque<std::unique_ptr<Card>> Gang::initializeBattleQueue(std::ifstream& car
 
 bool Gang::applyEncounter(Player& player)
 {
-    bool victory = false;
+    bool victory = true;
     std::unique_ptr<Card> currentCard;
     int i = m_cardsDeque.size();
     for ( ; i > 0 ; i--)
     {
         currentCard = move(m_cardsDeque.front());
         m_cardsDeque.pop_front();
-        if(victory)
+        if(!victory)
         {
             switch (m_battleMap[currentCard->getType()])
             {
