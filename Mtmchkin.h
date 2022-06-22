@@ -73,12 +73,20 @@ public:
     */
     int getNumberOfRounds() const;
 
+
+
+
 private:
 
     static const int MIN_CARDS = 5;
     static const int MAX_PLAYER = 6;
     static const int MIN_PLAYER = 2;
     static const int MAX_LENGTH_NAME = 15;
+    static const int MAX_ASCII_VALUE=122;
+    static const int MIN_ASCII_VALUE=65;
+    static const int UPPER_INTER_ASCII_VALUE=97;
+    static const int LOWER_INTER_ASCII_VALUE=90;
+
 
     std::deque<std::unique_ptr<Card>> m_cardsDeque;
     std::deque<std::unique_ptr<Player>> m_playersDeque;
@@ -147,7 +155,30 @@ private:
 *         deque - returns the deck of cards
 */
     std::deque<std::unique_ptr<Player>> initializePlayersDeque(int numberOfPlayers);
-
+/*
+*  finds the place of " " and chooses right boolian value
+*
+*  @return
+*         int - place in string to "cut" into two words
+*/
+    int setupOfPlayersDeck(bool& correct,bool& playercreated,std::string& input);
+/*
+*  checks if word only has letters
+*/
+    void ifOnlyHasLetter (bool& correct,std::string& currentName);
+/*
+*  checks if length of word is legal
+*/
+    void ifIsLegalLength (bool& correct,int currentChar);
+/*
+*  takes the string apart to two diffrent strings, player name and type
+*/
+    void takingAppartTheName (std::string& input,int currentChar,std::string& currentName,std::string& currentJob);
+/*
+*  checks which card name was chosen, pushes them into deck.
+*/
+    void pushCardsToDeck( std::deque<std::unique_ptr<Card>>& cardsDeque,int& linesCounter,
+                          std::string& line,std::ifstream& cards);
 
     enum jobs
     {
