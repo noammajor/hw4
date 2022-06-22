@@ -1,8 +1,6 @@
 #ifndef HW4_BARFIGHT_H
 #define HW4_BARFIGHT_H
-
 #include "Appliance.h"
-
 
 /*
 * Run Length Encoding List

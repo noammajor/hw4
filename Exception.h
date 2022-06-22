@@ -19,16 +19,16 @@ public:
 class DeckFileFormatError : public std::exception
 {
 public:
-    const char* what() const  noexcept override
-    {
-        return m_message.c_str();
-    }
-
-
+ 
     DeckFileFormatError(int line) : m_message{"Deck File Error: File format error in line " + std::to_string(line)}
     {
     }
 
+     const char* what() const  noexcept override
+     {
+        return m_message.c_str();
+     }
+    
 private:
     std::string m_message;
 

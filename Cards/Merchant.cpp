@@ -15,7 +15,7 @@ bool Merchant::applyEncounter(Player& player)
     }
     catch (std::exception &err)
     {
-        whatToDo = 3;
+        whatToDo = INVALID_INPUT;
     }
     while (whatToDo != BUY_NOTHING && whatToDo != BUY_HP && whatToDo != BUY_FORCE)
     {

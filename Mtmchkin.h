@@ -80,8 +80,8 @@ private:
     static const int MIN_PLAYER = 2;
     static const int MAX_LENGTH_NAME = 15;
 
-    std::deque<std::unique_ptr<Card>> m_cardsQueue;
-    std::deque<std::unique_ptr<Player>> m_playersQueue;
+    std::deque<std::unique_ptr<Card>> m_cardsDeque;
+    std::deque<std::unique_ptr<Player>> m_playersDeque;
     std::deque<std::unique_ptr<Player>> m_winners;
     std::deque<std::unique_ptr<Player>> m_losers;
     std::map <std::string, int> m_playersJobsMap;
@@ -104,16 +104,50 @@ private:
         Gang
     };
 
-    static bool checkinput(std::string &input);
-    static std::map <std::string,int> initializeCardsMap();
-    bool static containsOnlyLetters(std::string &currentName);
-    std::deque<std::unique_ptr<Card>> initializeCardsQueue(const std::string &fileName);
-    static std::map <std::string, int> initializeJobsMap();
-    static int initializePlayersNumber();
-    std::deque<std::unique_ptr<Player>> initializePlayersQueue(int numberOfPlayers);
 
-    //void insertToDeque (std::deque<std::unique_ptr<Card>> cardsDeque, std::string currentCard, int line);
-    //bool createPlayer (std::deque<std::unique_ptr<Player>> playersDeque, std::string playersJob);
+    /*
+  *  creates the map for creating the deck.
+  *
+  *  @return
+  *        map holding a string and int (int is represented as a emun)
+  */
+    static std::map <std::string,int> initializeCardsMap();
+    /*
+  *  checks if the input is only alphabet letters
+  *
+  *  @return
+  *          bool - true if the name is only letter.
+  */
+    bool static containsOnlyLetters(std::string &currentName);
+    /*
+ *  creates the deck of cards for the game
+ *
+ *  @return
+ *         deque - returns the deck of cards
+ */
+    std::deque<std::unique_ptr<Card>> initializeCardsDeque(const std::string &fileName);
+    /*
+ *  creates the map for creating the players.
+ *
+ *  @return
+ *        map - holding a string and int (int is represented as a emun)
+ */
+    static std::map <std::string, int> initializeJobsMap();
+    /*
+ *  recieves from the user the amount of players who want to play
+ *
+ *  @return
+ *        int - the amount of players
+ */
+    static int initializePlayersNumber();
+    /*
+*  creates the deck that holds the layers for the game
+*
+*  @return
+*         deque - returns the deck of cards
+*/
+    std::deque<std::unique_ptr<Player>> initializePlayersDeque(int numberOfPlayers);
+
 
     enum jobs
     {
